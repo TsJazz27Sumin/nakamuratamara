@@ -1,7 +1,8 @@
-# nakamuratamara
+# イントロダクション
 
-- This is Report sharing site for my close university professor.
-- Using popular python framework django.
+- 親しい大学の先生のために作ったレポート共有サイトです。（作成中）
+- Pyhtonのフレームワークを使用しています。
+- 0円運用をするために、Herokuにデプロイし、ストレージとしてGoogle Driveを使用する想定です。
 
 # 参考記事
 
