@@ -12,7 +12,6 @@
 - [DjangoでWebアプリを作ってみる。【vol. 04 モデルを作ってDjangoAdminで操作してみる。】](https://qiita.com/TsJazz27Sumin/items/a439d6cdad6c97e02f6b)
 - [DjangoでWebアプリを作ってみる。【vol. 05 Djangoビューを使ってHelloWorldをしてみる。】](https://qiita.com/TsJazz27Sumin/items/ba0b6fee502792301149)
 - [DjangoでWebアプリを作ってみる。【vol. 06 EdinetのAPIを叩いて、有価証券報告書から役員情報を抜き出す】](https://qiita.com/TsJazz27Sumin/items/776eea0c6d0ac823d0f6)
-- [【参加報告レポート】INEVITABLE ja night 9：デベロッパーカンファレンスから読み解くテクノロジーの不可避な流れ](https://qiita.com/TsJazz27Sumin/items/cb9cfd31fb9c36b70c13)
 - [DjangoでWebアプリを作ってみる。【vol. 07 有価証券報告書から抜き出した役員情報を加工する。】](https://qiita.com/TsJazz27Sumin/items/3f2a6d1eb18973fefd62)
 - [DjangoでWebアプリを作ってみる。【vol. 08 有価証券報告書から抜き出した役員情報を画面に表示する。】](https://qiita.com/TsJazz27Sumin/items/cf5159d53ebc7f294cd8)
 - [DjangoでWebアプリを作ってみる。【vol. 09 ここまでの課題の解消】](https://qiita.com/TsJazz27Sumin/items/248c65fa712bc443c084)
