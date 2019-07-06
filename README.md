@@ -36,6 +36,10 @@
   - [フォームの内容を保持する（テンプレートファイルに変数を渡す方法）](https://narito.ninja/blog/detail/45/)
   - [Djangoにおけるクラスベース汎用ビューの入門と使い方サンプル](https://qiita.com/felyce/items/7d0187485cad4418c073)
 
+- リクエストパラメータ関連
+  - [Django でクエリ文字列（クエリストリング）を取得する](https://qiita.com/shinno21/items/f78c4e3580d9cf58b953)
+  - [DjangoでGETリクエストのクエリパラメータを取得](https://qiita.com/RyoMa_0923/items/8b13fefc5b284677dfe1)
+
 - セッション
   - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
 
