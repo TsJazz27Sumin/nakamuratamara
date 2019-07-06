@@ -39,6 +39,8 @@
 - リクエストパラメータ関連
   - [Django でクエリ文字列（クエリストリング）を取得する](https://qiita.com/shinno21/items/f78c4e3580d9cf58b953)
   - [DjangoでGETリクエストのクエリパラメータを取得](https://qiita.com/RyoMa_0923/items/8b13fefc5b284677dfe1)
+  - [DjangoのビューとHttpRequestオブジェクト](https://hombre-nuevo.com/python/python0044/)
+  - [user-agents](https://pypi.org/project/user-agents/)
 
 - セッション
   - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
@@ -46,6 +48,10 @@
 
 - ページ遷移関連
   - [【Django】renderとreverse_lazyの使い分けについて](https://qiita.com/frosty/items/1df28edde34907f53bea)
+
+- ORM関連
+  - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
+  - [Django データベース操作 についてのまとめ](https://qiita.com/okoppe8/items/66a8747cf179a538355b)
 
 - メール送信関連
   - [HerokuのDjangoにSendGridを設定してメールを送る](https://www.mathpython.com/ja/sendgrid/)
@@ -55,6 +61,9 @@
   - [[Django] ファイルアップロード機能の使い方 [基本設定編]](https://qiita.com/okoppe8/items/86776b8df566a4513e96)
   - [Python3 + google-api-python-clientで、Google Drive APIを使ってpdfファイルをアップロードし、OCR処理をする](https://thinkami.hatenablog.com/entry/2018/04/01/173611)
   - [「Google Drive REST API v3」に「アクセストークン」を付与してファイルを検索／ダウンロードする](https://qiita.com/CUTBOSS/items/2ccb543f68f1a6c1aa7d)
+
+- セキュリティ関連
+  - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
 
 - プロジェクト構成
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
