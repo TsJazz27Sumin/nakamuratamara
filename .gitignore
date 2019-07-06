@@ -1,2 +1,3 @@
 *.pyc
 songcycle/config/settings/production.py
+songcycle/config/settings/develop.py
