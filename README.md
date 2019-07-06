@@ -28,10 +28,18 @@
   - [Djangoでログイン画面を作成する](https://narito.ninja/blog/detail/40/)
   - [djangoでログイン画面を実装する](https://qiita.com/hayata-yamamoto/items/cb217f2c6ec07f2dc73a)
 
+- セッション
+  - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
+
+- メール送信関連
+  - [HerokuのDjangoにSendGridを設定してメールを送る](https://www.mathpython.com/ja/sendgrid/)
+  - [Sendgrid 公式](https://sendgrid.kke.co.jp/docs/Integrate/Frameworks/django.html)
+
 - ファイルアップロード関連
   - [[Django] ファイルアップロード機能の使い方 [基本設定編]](https://qiita.com/okoppe8/items/86776b8df566a4513e96)
   - [Python3 + google-api-python-clientで、Google Drive APIを使ってpdfファイルをアップロードし、OCR処理をする](https://thinkami.hatenablog.com/entry/2018/04/01/173611)
   - [「Google Drive REST API v3」に「アクセストークン」を付与してファイルを検索／ダウンロードする](https://qiita.com/CUTBOSS/items/2ccb543f68f1a6c1aa7d)
 
 - デプロイ関連
+  - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
   - [Heroku アプリに PostgreSQL を導入する](http://neos21.hatenablog.com/entry/2018/12/06/080000)
