@@ -24,7 +24,7 @@ def home(request):
 
     print("exist_onetime_password is false")
     # NGだったら、テンポラリーのログインURLが無効になっていることを伝える。
-    return render(request, 'student/home.html')
+    return render(request, 'student/temporary_url_expired.html')
 
 # class エリア
 
@@ -59,11 +59,3 @@ class requestLoginView(FormView):
         # 失敗してもログインURLを送信したことにする。
         # TODO できればWarning出してログ監視したい。
         return render(self.request, 'student/request_login_success.html', {})
-
-class loginView(LoginView):
-    form_class = forms.LoginForm
-    template_name = "student/login.html"
-
-# TODO ログアウトできてない疑惑
-class logoutView(LoginRequiredMixin, LogoutView):
-    template_name = "student/logout.html"
