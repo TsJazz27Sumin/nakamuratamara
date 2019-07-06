@@ -34,6 +34,10 @@ body {
   display: flex;
 }
 
+.cover-heading {
+  margin: 60px;
+}
+
 .cover-container {
   max-width: 42em;
 }

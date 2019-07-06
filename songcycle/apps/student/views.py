@@ -2,6 +2,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from . import forms
+from . import services
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic import FormView
@@ -21,8 +22,20 @@ class requestLoginView(FormView):
 
     def form_valid(self, form):
         print("form_valid called!")
-        # TODO メールアドレスが先生が登録済みのものかエラーチェックを追加する。
-        # OKだったら、テンポラリーのログインURLを送信する。
+
+        # TODO 
+        # メールアドレスが先生が登録済みのものかエラーチェックを追加する。
+
+        if(services.is_exist_email("mailaddress")):
+            print("is_exist_email is true")
+            # OKだったら、テンポラリーのログインURLを送信する。
+            # DBにテンポラリーのログインURLをどのアドレスに送信したかを登録しておく。
+            # もちろん有効期限付きで15分以内とか。
+            # テンポラリーのデータは、1日経ったらcronで消したい。
+        else:
+            print("is_exist_email is false")
+            # NGだったら、できればWarning出してログを登録して監視したい。
+        
         return render(self.request, 'student/request_login_success.html', {})
     
     def form_invalid(self, form):
