@@ -40,6 +40,9 @@
   - [Python3 + google-api-python-clientで、Google Drive APIを使ってpdfファイルをアップロードし、OCR処理をする](https://thinkami.hatenablog.com/entry/2018/04/01/173611)
   - [「Google Drive REST API v3」に「アクセストークン」を付与してファイルを検索／ダウンロードする](https://qiita.com/CUTBOSS/items/2ccb543f68f1a6c1aa7d)
 
+- プロジェクト構成
+  - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
+
 - デプロイ関連
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
   - [Heroku アプリに PostgreSQL を導入する](http://neos21.hatenablog.com/entry/2018/12/06/080000)
