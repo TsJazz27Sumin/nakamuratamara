@@ -15,7 +15,7 @@
 </head>
 
 <body class="text-center">
-    <form action="" method="POST" class="form-signin">
+    <form action="{% url 'request_login' %}" method="POST" class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal">Nakamuratamara</h1>
         {% csrf_token %}
 
