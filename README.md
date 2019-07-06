@@ -30,11 +30,20 @@
   - [Djangoでログイン画面を作成する](https://narito.ninja/blog/detail/40/)
   - [djangoでログイン画面を実装する](https://qiita.com/hayata-yamamoto/items/cb217f2c6ec07f2dc73a)
 
+- スコープ関連
+  - [Pythonのクラスメンバのスコープまとめ](https://qiita.com/0xfffffff7/items/6ef16e79fe9886acb3f2)
+
 - フォーム関連
   - [Django forms.Formを用いたフォームの作成](https://qiita.com/peijipe/items/009fc487505dfdb03a8d)
   - [お問い合わせフォームの作り方【かみ砕いて説明します】](https://codor.co.jp/django/how-to-make-contact-form)
   - [フォームの内容を保持する（テンプレートファイルに変数を渡す方法）](https://narito.ninja/blog/detail/45/)
   - [Djangoにおけるクラスベース汎用ビューの入門と使い方サンプル](https://qiita.com/felyce/items/7d0187485cad4418c073)
+  - [How to get the submitted value of a form in a Django class-based view?](https://stackoverflow.com/questions/25090003/how-to-get-the-submitted-value-of-a-form-in-a-django-class-based-view)
+  - [Djangoのrequest.POSTからの値取得 - name属性が同じinputが複数ある場合](http://y0m0r.hateblo.jp/entry/20120625/1340631834)
+
+- モデル関連
+  - [Django: モデルフィールドリファレンスの一覧](https://qiita.com/nachashin/items/f768f0d437e0042dd4b3)
+  - [モデルmodels.DateTimeFieldに現在の時間を挿入する方法](https://sleepless-se.net/2018/06/09/django%E3%83%A2%E3%83%87%E3%83%ABmodels-datetimefield%E3%81%AB%E7%8F%BE%E5%9C%A8%E3%81%AE%E6%99%82%E9%96%93%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
 
 - リクエストパラメータ関連
   - [Django でクエリ文字列（クエリストリング）を取得する](https://qiita.com/shinno21/items/f78c4e3580d9cf58b953)
@@ -67,6 +76,9 @@
 
 - プロジェクト構成
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
+  
+ - マイグレーション関連
+   - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
 
 - デプロイ関連
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
