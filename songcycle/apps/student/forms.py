@@ -1,4 +1,5 @@
 from django.contrib.auth import forms as auth_forms
+from django import forms
 
 class LoginForm(auth_forms.AuthenticationForm):
     
@@ -6,3 +7,7 @@ class LoginForm(auth_forms.AuthenticationForm):
         super().__init__(*args, **kw)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
+class RequestLoginForm(forms.Form):
+    
+    email = forms.EmailField()
