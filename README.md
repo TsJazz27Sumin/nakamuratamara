@@ -31,7 +31,7 @@
   - [djangoでログイン画面を実装する](https://qiita.com/hayata-yamamoto/items/cb217f2c6ec07f2dc73a)
 
 - スコープ関連
-  -[Pythonのクラスメンバのスコープまとめ](https://qiita.com/0xfffffff7/items/6ef16e79fe9886acb3f2)
+  - [Pythonのクラスメンバのスコープまとめ](https://qiita.com/0xfffffff7/items/6ef16e79fe9886acb3f2)
 
 - フォーム関連
   - [Django forms.Formを用いたフォームの作成](https://qiita.com/peijipe/items/009fc487505dfdb03a8d)
