@@ -18,6 +18,8 @@
 - [DjangoでWebアプリを作ってみる。【vol. 10 Ajaxを使ってみる。】](https://qiita.com/TsJazz27Sumin/items/6ec833c70f0b18ce116a)
 
 # 参考記事
+- 命名ルール
+  - [Python命名規則一覧](https://qiita.com/naomi7325/items/4eb1d2a40277361e898b)
 
 - ログイン関連
   - [Django2.1.1 を使ってログインを実装する](https://developer-collaboration.com/2018/10/05/django-login01/)
@@ -28,8 +30,17 @@
   - [Djangoでログイン画面を作成する](https://narito.ninja/blog/detail/40/)
   - [djangoでログイン画面を実装する](https://qiita.com/hayata-yamamoto/items/cb217f2c6ec07f2dc73a)
 
+- フォーム関連
+  - [Django forms.Formを用いたフォームの作成](https://qiita.com/peijipe/items/009fc487505dfdb03a8d)
+  - [お問い合わせフォームの作り方【かみ砕いて説明します】](https://codor.co.jp/django/how-to-make-contact-form)
+  - [フォームの内容を保持する（テンプレートファイルに変数を渡す方法）](https://narito.ninja/blog/detail/45/)
+  - [Djangoにおけるクラスベース汎用ビューの入門と使い方サンプル](https://qiita.com/felyce/items/7d0187485cad4418c073)
+
 - セッション
   - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
+
+- ページ遷移関連
+  - [【Django】renderとreverse_lazyの使い分けについて](https://qiita.com/frosty/items/1df28edde34907f53bea)
 
 - メール送信関連
   - [HerokuのDjangoにSendGridを設定してメールを送る](https://www.mathpython.com/ja/sendgrid/)
