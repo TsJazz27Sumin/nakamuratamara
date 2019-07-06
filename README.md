@@ -42,6 +42,7 @@
 
 - セッション
   - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
+  - [Djangoユーザセッション管理機能を実装してみた。](https://sinyblog.com/django/user_session/)
 
 - ページ遷移関連
   - [【Django】renderとreverse_lazyの使い分けについて](https://qiita.com/frosty/items/1df28edde34907f53bea)
@@ -61,3 +62,4 @@
 - デプロイ関連
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
   - [Heroku アプリに PostgreSQL を導入する](http://neos21.hatenablog.com/entry/2018/12/06/080000)
+  - [Django session_data を定期的に削除する](https://www.monotalk.xyz/blog/django-session_data-%E3%82%92%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B/)
