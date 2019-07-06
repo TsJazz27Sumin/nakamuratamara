@@ -122,13 +122,13 @@ sys.path.append(os.path.join(PROJECT_ROOT, "apps"))
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 MEDIA_URL = '/document/'
 
 MEDIA_ROOT = (
-    os.path.join(BASE_DIR, 'document')
+    os.path.join(PROJECT_ROOT, 'document')
 )
 
 LOGIN_URL = 'login'
