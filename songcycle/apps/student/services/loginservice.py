@@ -6,7 +6,7 @@ from django.utils.crypto import get_random_string
 from student import functions
 from student.services import masterservice
 from student.repositories import applicationuserrepository
-from student.repositories import temporarilyloginurlrepository
+from student.repositories.temporarilyloginurlrepository import TemporarilyLoginUrlRepository
 from student.queries import applicationuserquery
 from student.queries import temporarilyloginurlquery
 from student.models.accessinformation import AccessInformation
@@ -24,7 +24,7 @@ def send_login_url(email):
     onetime_password = get_random_string(200)
     login_url = masterservice.get_root_login_url() + onetime_password
 
-    temporarilyloginurlrepository.insert(email, onetime_password)
+    TemporarilyLoginUrlRepository().insert(email, onetime_password)
 
     # TODO 
     # OKだったら、テンポラリーのログインURLを送信する。
