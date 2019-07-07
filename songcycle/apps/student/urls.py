@@ -1,9 +1,10 @@
 from django.urls import path
-from . import views
+from student.views import homeview
+from student.views import requestloginview
 
 urlpatterns = [
-    path('request-login/', views.requestLoginView.as_view(), name="request_login"),
-    path('login/',views.login, name="login"),
-    path('logout/',views.logout, name="logout"),
-    path('home/',views.home, name="home")
+    path('request-login/', requestloginview.requestLoginView.as_view(), name="request_login"),
+    path('login/',homeview.login, name="login"),
+    path('logout/',homeview.logout, name="logout"),
+    path('home/',homeview.home, name="home")
 ]

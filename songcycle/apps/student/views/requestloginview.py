@@ -1,53 +1,15 @@
-from django.views.generic import TemplateView
-from . import forms
-from . import services
-from django.shortcuts import render, redirect
-from django.views.generic import FormView
-from django.urls import reverse_lazy
 from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
-# def エリア
-
-# TODO
-# Home画面での切り替えはAjax
-# Ajaxでのリクエストの際はログインチェック
-
-def logout(request):
-    request.session.flush()
-    return redirect('request_login')
-
-def home(request):
-    
-    if 'authority' in request.session:
-        print(request.session['authority'])
-    else:
-        # 権限が不明な場合は、強制ログアウト
-        return redirect('request_login')
-
-    return render(request, 'student/home.html')
-
-def login(request):
-
-    onetime_password = request.GET.get("onetimepassword")
-    active_user = services.get_active_user(onetime_password)
-
-    if(active_user is not None):
-        services.update_login_information(active_user)
-
-        # TODO
-        # OKだったら、セッションにユーザ情報を登録する。
-        request.session['authority'] = active_user.authority
-
-        return redirect('home')
-
-    return render(request, 'student/temporary_url_expired.html')
-
-# class エリア
+from student.forms import RequestLoginForm
+from student import services
 
 class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
-    form_class = forms.RequestLoginForm
+    form_class = RequestLoginForm
     template_name = "student/request_login.html"
 
     def form_valid(self, form):

@@ -1,7 +1,7 @@
 # import area
-from . import dataaccessors
-from . import queryservices
-from . import functions
+from student import dataaccessors
+from student import queryservices
+from student import functions
 from student.models.accessinformation import AccessInformation
 from student.models.temporarilyloginurl import TemporarilyLoginUrl
 from datetime import datetime, timedelta
