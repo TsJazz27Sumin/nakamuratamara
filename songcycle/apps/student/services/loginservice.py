@@ -5,7 +5,7 @@ from django.utils.crypto import get_random_string
 
 from student import functions
 from student.services import masterservice
-from student.repositories import applicationuserrepository
+from student.repositories.applicationuserrepository import ApplicationUserRepository
 from student.repositories.temporarilyloginurlrepository import TemporarilyLoginUrlRepository
 from student.queries import applicationuserquery
 from student.queries import temporarilyloginurlquery
@@ -14,7 +14,7 @@ from student.models.accessinformation import AccessInformation
 def update_login_information(active_user):
     active_user.last_login_date_timestamp = datetime.now()
     active_user.login_count += 1
-    applicationuserrepository.update(active_user)
+    ApplicationUserRepository().update(active_user)
 
 def exist_email(email):
     return applicationuserquery.is_active_user(email)
