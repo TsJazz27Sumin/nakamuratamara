@@ -54,9 +54,11 @@
 - セッション
   - [Djangoでセッションを使用する](http://python.zombie-hunting-club.com/entry/2017/11/06/222409)
   - [Djangoユーザセッション管理機能を実装してみた。](https://sinyblog.com/django/user_session/)
+  - [Djangoのセッション設定](https://intellectual-curiosity.tokyo/2018/11/10/django%E3%81%AE%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E8%A8%AD%E5%AE%9A/)
 
 - ページ遷移関連
   - [【Django】renderとreverse_lazyの使い分けについて](https://qiita.com/frosty/items/1df28edde34907f53bea)
+  - [Django shortcut functions](https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/)
 
 - ORM関連
   - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
