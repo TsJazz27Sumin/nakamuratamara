@@ -15,16 +15,19 @@ class requestLoginView(FormView):
 
     def form_valid(self, form):
 
+        login_service = LoginService()
+        access_information_service = AccessInformationService()
+
         http_accept_language = self.request.META['HTTP_ACCEPT_LANGUAGE']
         user_agent = parse(self.request.META['HTTP_USER_AGENT'])
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        if(LoginService().exist_email(email)):
-            AccessInformationService().add_success(http_accept_language, user_agent, remote_addr, email)
-            LoginService().send_login_url(email)
+        if(login_service.exist_email(email)):
+            access_information_service.add_success(http_accept_language, user_agent, remote_addr, email)
+            login_service.send_login_url(email)
         else:
-            AccessInformationService().add_fault(http_accept_language, user_agent, remote_addr, email)
+            access_information_service.add_fault(http_accept_language, user_agent, remote_addr, email)
 
             # TODO 
             # pandasでcsvにしてメール送信してデイリーでログ監視したい。
@@ -33,12 +36,15 @@ class requestLoginView(FormView):
         return render(self.request, 'student/request_login_success.html', {})
     
     def form_invalid(self, form):
+
+        access_information_service = AccessInformationService()
+
         http_accept_language = self.request.META['HTTP_ACCEPT_LANGUAGE']
         user_agent = parse(self.request.META['HTTP_USER_AGENT'])
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        AccessInformationService().add_fault(http_accept_language, user_agent, remote_addr, email)
+        access_information_service.add_fault(http_accept_language, user_agent, remote_addr, email)
 
         # 失敗してもログインURLを送信したことにする。
         return render(self.request, 'student/request_login_success.html', {})

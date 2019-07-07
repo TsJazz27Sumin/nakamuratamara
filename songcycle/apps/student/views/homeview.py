@@ -29,11 +29,13 @@ def home(request):
 
 def login(request):
 
+    login_service = LoginService()
+
     onetime_password = request.GET.get("onetimepassword")
-    active_user = LoginService().get_active_user(onetime_password)
+    active_user = login_service.get_active_user(onetime_password)
 
     if(active_user is not None):
-        LoginService().update_login_information(active_user)
+        login_service.update_login_information(active_user)
 
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
