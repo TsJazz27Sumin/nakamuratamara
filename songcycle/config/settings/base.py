@@ -132,6 +132,7 @@ MEDIA_ROOT = (
     os.path.join(PROJECT_ROOT, 'document')
 )
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'request_login'
+# セッションの設定
+SESSION_COOKIE_AGE = 3600 # 60分
+SESSION_SAVE_EVERY_REQUEST = True # 1リクエストごとにセッション情報を更新
+
