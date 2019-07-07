@@ -3,7 +3,9 @@ from datetime import datetime, timedelta
 
 from django.utils.crypto import get_random_string
 
-from student import dataaccessors, functions, queryservices
+from student import dataaccessors, functions
+from student.queries import applicationuserquery
+from student.queries import temporarilyloginurlquery
 from student.models.accessinformation import AccessInformation
 from student.models.temporarilyloginurl import TemporarilyLoginUrl
 
@@ -14,7 +16,7 @@ def update_login_information(active_user):
     dataaccessors.save_application_user(active_user)
 
 def exist_email(email):
-    return queryservices.is_active_user(email)
+    return applicationuserquery.is_active_user(email)
 
 def send_login_url(email):
 
@@ -40,11 +42,11 @@ def get_active_user(onetime_password):
     if(onetime_password is None):
         return None
     
-    temporarily_login_url = queryservices.is_valid_onetime_password(onetime_password, valid_time)
+    temporarily_login_url = temporarilyloginurlquery.is_valid_onetime_password(onetime_password, valid_time)
 
     if(temporarily_login_url is not None):
         email = temporarily_login_url.request_email
-        active_user = queryservices.get_active_user(email)
+        active_user = applicationuserquery.get_active_user(email)
 
         return active_user
     
