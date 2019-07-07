@@ -4,9 +4,8 @@ from datetime import datetime, timedelta
 from django.utils.crypto import get_random_string
 
 from student.queries import accessinformationquery
-from student import dataaccessors, functions
-from student.models.accessinformation import AccessInformation
-from student.models.temporarilyloginurl import TemporarilyLoginUrl
+from student import functions
+from student.repositories import accessinformationrepository
 
 def add_success(http_accept_language, user_agent, remote_addr, value):
     __add(http_accept_language, user_agent, remote_addr, value, "", "")
@@ -38,20 +37,18 @@ def __add(http_accept_language, user_agent, remote_addr, success_value, fault_va
     if(user_agent.is_bot):
         device_type = "bot"
 
-    access_information = AccessInformation(
-        event_type = functions.get_event_type_request_login(),
-        http_accept_language = functions.get_value(http_accept_language,""),
-        browser = functions.get_value(user_agent.browser.family,""),
-        browser_version = functions.get_value(user_agent.browser.version_string,""),
-        os = functions.get_value(user_agent.os.family,""),
-        os_version = functions.get_value(user_agent.os.version_string,""),
-        device = functions.get_value(user_agent.device.family,""),
-        device_brand = functions.get_value(user_agent.device.brand,""),
-        device_type = device_type,
-        remote_addr = functions.get_value(remote_addr,""), 
-        success_value = success_value,
-        fault_value = fault_value,
-        comment = comment
+    accessinformationrepository.insert(
+        functions.get_event_type_request_login(),
+        functions.get_value(http_accept_language,""),
+        functions.get_value(user_agent.browser.family,""),
+        functions.get_value(user_agent.browser.version_string,""),
+        functions.get_value(user_agent.os.family,""),
+        functions.get_value(user_agent.os.version_string,""),
+        functions.get_value(user_agent.device.family,""),
+        functions.get_value(user_agent.device.brand,""),
+        device_type,
+        functions.get_value(remote_addr,""), 
+        success_value,
+        fault_value,
+        comment
     )
-
-    dataaccessors.save_access_information(access_information)
