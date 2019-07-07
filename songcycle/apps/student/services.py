@@ -6,7 +6,7 @@ from student.models import AccessInformation
 import datetime
 
 def exist_email(email):
-    return True
+    return queryservices.is_active_user(email)
 
 def exist_onetime_password(onetime_password):
     # TODO DBとの照合
@@ -46,7 +46,7 @@ def __add_access_information(http_accept_language, user_agent, remote_addr, succ
         device_type = "bot"
 
     access_information = AccessInformation(
-        event_type = "request_login",
+        event_type = functions.get_event_type_request_login(),
         http_accept_language = functions.get_value(http_accept_language,""),
         browser = functions.get_value(user_agent.browser.family,""),
         browser_version = functions.get_value(user_agent.browser.version_string,""),

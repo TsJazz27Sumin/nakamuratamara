@@ -41,11 +41,7 @@ class requestLoginView(FormView):
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        # TODO 
-        # メールアドレスが先生が登録済みのものかエラーチェックを追加する。
-
-        if(services.exist_email("mailaddress")):
-            print("is_exist_email is true")
+        if(services.exist_email(email)):
             services.add_success_access_information(http_accept_language, user_agent, remote_addr, email)
 
             # TODO 
@@ -54,12 +50,12 @@ class requestLoginView(FormView):
             # もちろん有効期限付きで15分以内とか。
             # テンポラリーのデータは、1日経ったらcronで消したい。
         else:
-            print("is_exist_email is false")
             services.add_fault_access_information(http_accept_language, user_agent, remote_addr, email)
 
             # TODO 
             # pandasでcsvにしてメール送信してデイリーでログ監視したい。
         
+        # 失敗してもログインURLを送信したことにする。
         return render(self.request, 'student/request_login_success.html', {})
     
     def form_invalid(self, form):

@@ -1,9 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-# 個別に洗い替えしたいとき用に残しておく。
-# delete from public.django_migrations where app = 'student';
-
 class AccessInformation(models.Model):
 
     event_type = models.CharField(default="", max_length=50)
@@ -20,4 +17,24 @@ class AccessInformation(models.Model):
     access_date_timestamp = models.DateTimeField (default=timezone.now)
     success_value = models.CharField(default="", max_length=50)
     fault_value = models.CharField(default="", max_length=50)
+    comment = models.CharField(default="", max_length=50)
+
+class ApplicationUser(models.Model):
+
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(default="nothing", max_length=100)
+    last_name = models.CharField(default="nothing", max_length=100)
+    authority = models.CharField(default="00102", max_length=20)
+    active = models.CharField(default="00", max_length=2)
+    first_login_date_timestamp = models.DateTimeField (default=timezone.now)
+    last_login_date_timestamp = models.DateTimeField (default=timezone.now)
+    login_count = models.IntegerField (default=0)
+    comment = models.CharField(default="", max_length=100)
+
+class MasterData(models.Model):
+
+    code = models.CharField(default="000", max_length=3)
+    sub_code = models.CharField(default="00", max_length=2)
+    value = models.CharField(default="nothing", max_length=50)
+    sub_value = models.CharField(default="nothing", max_length=50)
     comment = models.CharField(default="", max_length=50)
