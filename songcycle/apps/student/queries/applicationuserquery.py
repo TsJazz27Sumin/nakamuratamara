@@ -1,7 +1,7 @@
 # import area
 from student.models.applicationuser import ApplicationUser
 from student.functions import function
-from student.services import masterservice
+from student.queries.masterquery import MasterQuery
 import threading
 
 # CRUDのRは、ここに集約する。
@@ -19,7 +19,7 @@ class ApplicationUserQuery:
         return cls.__singleton
 
     def is_active_user(self, email):
-        return ApplicationUser.objects.filter(email=email, active=masterservice.get_active_user_status()).count() == 1
+        return ApplicationUser.objects.filter(email=email, active=MasterQuery().get_active_user_status()).count() == 1
 
     def get_active_user(self, email):
-        return ApplicationUser.objects.filter(email=email, active=masterservice.get_active_user_status()).first()
+        return ApplicationUser.objects.filter(email=email, active=MasterQuery().get_active_user_status()).first()

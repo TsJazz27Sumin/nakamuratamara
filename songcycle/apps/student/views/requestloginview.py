@@ -5,8 +5,8 @@ from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
 from student.forms.requestloginform import RequestLoginForm
-from student.services import loginservice
-from student.services import accessinformationservice
+from student.services.loginservice import LoginService
+from student.services.accessinformationservice import AccessInformationService
 
 class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
@@ -20,11 +20,11 @@ class requestLoginView(FormView):
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        if(loginservice.exist_email(email)):
-            accessinformationservice.add_success(http_accept_language, user_agent, remote_addr, email)
-            loginservice.send_login_url(email)
+        if(LoginService().exist_email(email)):
+            AccessInformationService().add_success(http_accept_language, user_agent, remote_addr, email)
+            LoginService().send_login_url(email)
         else:
-            accessinformationservice.add_fault(http_accept_language, user_agent, remote_addr, email)
+            AccessInformationService().add_fault(http_accept_language, user_agent, remote_addr, email)
 
             # TODO 
             # pandasでcsvにしてメール送信してデイリーでログ監視したい。
@@ -38,7 +38,7 @@ class requestLoginView(FormView):
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        accessinformationservice.add_fault(http_accept_language, user_agent, remote_addr, email)
+        AccessInformationService().add_fault(http_accept_language, user_agent, remote_addr, email)
 
         # 失敗してもログインURLを送信したことにする。
         return render(self.request, 'student/request_login_success.html', {})
