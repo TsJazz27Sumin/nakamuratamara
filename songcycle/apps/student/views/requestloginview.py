@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
-from student.forms import RequestLoginForm
+from student.forms.requestloginform import RequestLoginForm
 from student.services import loginservice
 from student.services import accessinformationservice
 
