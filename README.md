@@ -84,6 +84,7 @@
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
   - [Pythonでシングルトン(Singleton)を実装してみる](http://www.denzow.me/entry/2018/01/28/171416)
   - [Python で定数を定義する](https://maku77.github.io/python/syntax/const.html)
+  - [Python でシングルトンパターンを実装する](https://blog.bitmeister.jp/?p=4806)
   
  - マイグレーション関連
    - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
