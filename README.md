@@ -74,6 +74,9 @@
 - セキュリティ関連
   - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
 
+- 日付関連
+  - [python 現在時刻取得](disclosure.edinet-fsa.go.jp)
+
 - プロジェクト構成
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
   
