@@ -67,6 +67,7 @@
 - メール送信関連
   - [HerokuのDjangoにSendGridを設定してメールを送る](https://www.mathpython.com/ja/sendgrid/)
   - [Sendgrid 公式](https://sendgrid.kke.co.jp/docs/Integrate/Frameworks/django.html)
+  - [Django で Gmail を送信する](https://qiita.com/ekzemplaro/items/3265f755eb4537b18478)
 
 - ファイルアップロード関連
   - [[Django] ファイルアップロード機能の使い方 [基本設定編]](https://qiita.com/okoppe8/items/86776b8df566a4513e96)
@@ -79,8 +80,10 @@
 - 日付関連
   - [python 現在時刻取得](disclosure.edinet-fsa.go.jp)
 
-- プロジェクト構成
+- アーキテクチャ関連
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
+  - [Pythonでシングルトン(Singleton)を実装してみる](http://www.denzow.me/entry/2018/01/28/171416)
+  - [Python で定数を定義する](https://maku77.github.io/python/syntax/const.html)
   
  - マイグレーション関連
    - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
