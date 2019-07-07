@@ -21,12 +21,12 @@ def get_non_active_user_status():
 # TODO:できればDBのマスタと連動させたい。
 ## テンポラリーログインURLの有効期間
 def get_temporary_time():
-    return 15
+    return 120
 
 ## TODO 開発と本番で切り替えたい。
 ## root_login_url
 def get_root_login_url():
-    return "http://127.0.0.1:8000/student/home/?onetimepassword="
+    return "http://127.0.0.1:8000/student/login/?onetimepassword="
 
 ## event_type
 

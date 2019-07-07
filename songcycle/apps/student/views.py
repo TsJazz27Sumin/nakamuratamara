@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from . import forms
 from . import services
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -13,8 +13,22 @@ from user_agents import parse
 # Home画面での切り替えはAjax
 # Ajaxでのリクエストの際はログインチェック
 
+def logout(request):
+    request.session.flush()
+    return redirect('request_login')
+
 def home(request):
-    # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/home/?onetimepassword=abc
+    
+    if 'authority' in request.session:
+        print(request.session['authority'])
+    else:
+        # 権限が不明な場合は、強制ログアウト
+        return redirect('request_login')
+
+    return render(request, 'student/home.html')
+
+def login(request):
+
     onetime_password = request.GET.get("onetimepassword")
     active_user = services.get_active_user(onetime_password)
 
@@ -23,8 +37,9 @@ def home(request):
 
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
+        request.session['authority'] = active_user.authority
 
-        return render(request, 'student/home.html')
+        return redirect('home')
 
     return render(request, 'student/temporary_url_expired.html')
 
