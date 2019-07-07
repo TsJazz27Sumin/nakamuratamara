@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from django.utils.crypto import get_random_string
 
-from student.queries import accessinformationquery
+from student.queries.accessinformationquery import AccessInformationQuery
 from student.functions import function
 from student.services import masterservice
 from student.repositories.accessinformationrepository import AccessInformationRepository
@@ -14,7 +14,7 @@ def add_success(http_accept_language, user_agent, remote_addr, value):
 def add_fault(http_accept_language, user_agent, remote_addr, value):
     nowtime = datetime.now()
     
-    count = accessinformationquery.get_fault_count(remote_addr, nowtime.strftime('%Y-%m-%d'))
+    count = AccessInformationQuery().get_fault_count(remote_addr, nowtime.strftime('%Y-%m-%d'))
 
     # 同一日内で5回以上間違えている場合は、不正アクセスとみなして記録するのを止める。
     if(count > 5):
