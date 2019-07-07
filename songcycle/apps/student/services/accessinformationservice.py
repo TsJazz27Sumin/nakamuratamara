@@ -12,12 +12,16 @@ from student.repositories.accessinformationrepository import AccessInformationRe
 class AccessInformationService:
 
     __singleton = None
+    __access_information_query = None
+    __access_information_repository = None
     __new_lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
         if cls.__singleton == None:
             cls.__singleton = super(AccessInformationService, cls).__new__(cls)
+            cls.__access_information_query = AccessInformationQuery()
+            cls.__access_information_repository = AccessInformationRepository()
         cls.__new_lock.release()
         return cls.__singleton
 
@@ -27,7 +31,7 @@ class AccessInformationService:
     def add_fault(self, http_accept_language, user_agent, remote_addr, value):
         nowtime = datetime.now()
         
-        count = AccessInformationQuery().get_fault_count(remote_addr, nowtime.strftime('%Y-%m-%d'))
+        count = self.__access_information_query.get_fault_count(remote_addr, nowtime.strftime('%Y-%m-%d'))
 
         # 同一日内で5回以上間違えている場合は、不正アクセスとみなして記録するのを止める。
         if(count > 5):
@@ -51,7 +55,7 @@ class AccessInformationService:
         if(user_agent.is_bot):
             device_type = "bot"
 
-        AccessInformationRepository().insert(
+        self.__access_information_repository.insert(
             MasterQuery().get_event_type_request_login(),
             function.get_value(http_accept_language,""),
             function.get_value(user_agent.browser.family,""),
