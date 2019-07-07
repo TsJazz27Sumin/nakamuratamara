@@ -21,7 +21,7 @@ def get_non_active_user_status():
 # TODO:できればDBのマスタと連動させたい。
 ## テンポラリーログインURLの有効期間
 def get_temporary_time():
-    return 60
+    return 15
 
 ## TODO 開発と本番で切り替えたい。
 ## root_login_url
