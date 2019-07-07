@@ -1,5 +1,7 @@
 # import area
-from student.models import AccessInformation, ApplicationUser, TemporarilyLoginUrl
+from student.models.accessinformation import AccessInformation
+from student.models.applicationuser import ApplicationUser
+from student.models.temporarilyloginurl import TemporarilyLoginUrl
 from . import functions
 
 # CRUDのRは、ここに集約する。

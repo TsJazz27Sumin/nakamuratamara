@@ -2,7 +2,8 @@
 from . import dataaccessors
 from . import queryservices
 from . import functions
-from student.models import AccessInformation, TemporarilyLoginUrl
+from student.models.accessinformation import AccessInformation
+from student.models.temporarilyloginurl import TemporarilyLoginUrl
 from datetime import datetime, timedelta
 from django.utils.crypto import get_random_string
 
