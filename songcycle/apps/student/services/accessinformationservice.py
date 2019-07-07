@@ -6,7 +6,7 @@ from django.utils.crypto import get_random_string
 from student.queries import accessinformationquery
 from student.functions import function
 from student.services import masterservice
-from student.repositories import accessinformationrepository
+from student.repositories.accessinformationrepository import AccessInformationRepository
 
 def add_success(http_accept_language, user_agent, remote_addr, value):
     __add(http_accept_language, user_agent, remote_addr, value, "", "")
@@ -38,7 +38,7 @@ def __add(http_accept_language, user_agent, remote_addr, success_value, fault_va
     if(user_agent.is_bot):
         device_type = "bot"
 
-    accessinformationrepository.insert(
+    AccessInformationRepository().insert(
         masterservice.get_event_type_request_login(),
         function.get_value(http_accept_language,""),
         function.get_value(user_agent.browser.family,""),
