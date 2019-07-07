@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.utils.crypto import get_random_string
 
 from student import functions
+from student.services import masterservice
 from student.repositories import applicationuserrepository
 from student.repositories import temporarilyloginurlrepository
 from student.queries import applicationuserquery
@@ -21,7 +22,7 @@ def exist_email(email):
 def send_login_url(email):
 
     onetime_password = get_random_string(200)
-    login_url = functions.get_root_login_url() + onetime_password
+    login_url = masterservice.get_root_login_url() + onetime_password
 
     temporarilyloginurlrepository.insert(email, onetime_password)
 
@@ -32,7 +33,7 @@ def send_login_url(email):
     print(login_url)
 
 def get_active_user(onetime_password):
-    valid_time = datetime.now() - timedelta(minutes=functions.get_temporary_time())
+    valid_time = datetime.now() - timedelta(minutes=masterservice.get_temporary_time())
 
     if(onetime_password is None):
         return None
