@@ -5,7 +5,7 @@ from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
 from student import forms
-from student import services
+from student.services import loginservice
 
 # def エリア
 
@@ -30,10 +30,10 @@ def home(request):
 def login(request):
 
     onetime_password = request.GET.get("onetimepassword")
-    active_user = services.get_active_user(onetime_password)
+    active_user = loginservice.get_active_user(onetime_password)
 
     if(active_user is not None):
-        services.update_login_information(active_user)
+        loginservice.update_login_information(active_user)
 
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
