@@ -92,3 +92,6 @@
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
   - [Heroku アプリに PostgreSQL を導入する](http://neos21.hatenablog.com/entry/2018/12/06/080000)
   - [Django session_data を定期的に削除する](https://www.monotalk.xyz/blog/django-session_data-%E3%82%92%E5%AE%9A%E6%9C%9F%E7%9A%84%E3%81%AB%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B/)
+ 
+ - visual studio code 関連
+  - [VS CodeでPythonの中間ファイル(.pyc)を非表示にする](https://www.sukerou.com/2019/03/vs-codepythonpyc.html)
