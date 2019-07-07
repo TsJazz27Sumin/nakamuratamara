@@ -16,15 +16,16 @@ from user_agents import parse
 def home(request):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/home/?onetimepassword=abc
     onetime_password = request.GET.get("onetimepassword")
+    active_user = services.get_active_user(onetime_password)
 
-    # TODO
-    # テンポラリーのログインURL情報がDBにあるので照合する。
-    if(services.exist_onetime_password(onetime_password)):
+    if(active_user is not None):
+        services.update_login_information(active_user)
+
+        # TODO
         # OKだったら、セッションにユーザ情報を登録する。
+
         return render(request, 'student/home.html')
 
-    print("exist_onetime_password is false")
-    # NGだったら、テンポラリーのログインURLが無効になっていることを伝える。
     return render(request, 'student/temporary_url_expired.html')
 
 # class エリア
@@ -43,12 +44,7 @@ class requestLoginView(FormView):
 
         if(services.exist_email(email)):
             services.add_success_access_information(http_accept_language, user_agent, remote_addr, email)
-
-            # TODO 
-            # OKだったら、テンポラリーのログインURLを送信する。
-            # DBにテンポラリーのログインURL情報をどのアドレスに送信したかを登録しておく。
-            # もちろん有効期限付きで15分以内とか。
-            # テンポラリーのデータは、1日経ったらcronで消したい。
+            services.send_login_url(email)
         else:
             services.add_fault_access_information(http_accept_language, user_agent, remote_addr, email)
 

@@ -2,26 +2,60 @@
 from . import dataaccessors
 from . import queryservices
 from . import functions
-from student.models import AccessInformation
-import datetime
+from student.models import AccessInformation, TemporarilyLoginUrl
+from datetime import datetime, timedelta
+from django.utils.crypto import get_random_string
+
+def update_login_information(active_user):
+    active_user.last_login_date_timestamp = datetime.now()
+    active_user.login_count += 1
+    dataaccessors.save_application_user(active_user)
+
 
 def exist_email(email):
     return queryservices.is_active_user(email)
 
-def exist_onetime_password(onetime_password):
-    # TODO DBとの照合
-    if(onetime_password is not None and onetime_password == "abc"):
-        return True
+def send_login_url(email):
+
+    onetime_password = get_random_string(200)
+    login_url = functions.get_root_login_url() + onetime_password
+
+    temporarily_login_url = TemporarilyLoginUrl(
+        request_email = email,
+        onetime_password = onetime_password
+    )
+
+    dataaccessors.save_temporarily_login_url(temporarily_login_url)
+
+    # TODO 
+    # OKだったら、テンポラリーのログインURLを送信する。
+    # テンポラリーのデータは、1日経ったらcronで消したい。
+
+    print(login_url)
+
+def get_active_user(onetime_password):
+    valid_time = datetime.now() - timedelta(minutes=functions.get_temporary_time())
+
+    if(onetime_password is None):
+        return None
     
-    return False
+    temporarily_login_url = queryservices.is_valid_onetime_password(onetime_password, valid_time)
+
+    if(temporarily_login_url is not None):
+        email = temporarily_login_url.request_email
+        active_user = queryservices.get_active_user(email)
+
+        return active_user
+    
+    return None
 
 def add_success_access_information(http_accept_language, user_agent, remote_addr, value):
     __add_access_information(http_accept_language, user_agent, remote_addr, value, "", "")
 
 def add_fault_access_information(http_accept_language, user_agent, remote_addr, value):
-    dt = datetime.datetime.now()
+    nowtime = datetime.now()
     
-    count = queryservices.get_fault_count(remote_addr, dt.strftime('%Y-%m-%d'))
+    count = queryservices.get_fault_count(remote_addr, nowtime.strftime('%Y-%m-%d'))
 
     # 同一日内で5回以上間違えている場合は、不正アクセスとみなして記録するのを止める。
     if(count > 5):

@@ -19,6 +19,12 @@ class AccessInformation(models.Model):
     fault_value = models.CharField(default="", max_length=50)
     comment = models.CharField(default="", max_length=50)
 
+class TemporarilyLoginUrl(models.Model):
+
+    request_email = models.EmailField()
+    onetime_password = models.CharField(max_length=200)
+    send_email_date_timestamp = models.DateTimeField (default=timezone.now)
+
 class ApplicationUser(models.Model):
 
     email = models.EmailField(unique=True)

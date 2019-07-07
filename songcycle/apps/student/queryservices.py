@@ -1,5 +1,5 @@
 # import area
-from student.models import AccessInformation, ApplicationUser
+from student.models import AccessInformation, ApplicationUser, TemporarilyLoginUrl
 from . import functions
 
 # CRUDのRは、ここに集約する。
@@ -9,3 +9,9 @@ def get_fault_count(remote_addr, target_date):
 
 def is_active_user(email):
     return ApplicationUser.objects.filter(email=email, active=functions.get_active_user_status()).count() == 1
+
+def get_active_user(email):
+    return ApplicationUser.objects.filter(email=email, active=functions.get_active_user_status()).first()
+
+def is_valid_onetime_password(onetime_password, valid_timestamp):
+    return TemporarilyLoginUrl.objects.filter(onetime_password=onetime_password, send_email_date_timestamp__gt=valid_timestamp).first()
