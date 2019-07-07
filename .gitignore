@@ -1,4 +1,5 @@
 *.pyc
+songcycle/config/settings/production.py
 songcycle/config/settings/develop.py
 songcycle/apps/student/migrations/*.py
 songcycle/apps/student/sql/general.sql
