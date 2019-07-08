@@ -3,6 +3,9 @@ from django.utils import timezone
 
 class TemporarilyLoginUrl(models.Model):
 
+    class Meta:
+        app_label = 'student'
+        
     request_email = models.EmailField()
     onetime_password = models.CharField(max_length=200)
     send_email_date_timestamp = models.DateTimeField (default=timezone.now)

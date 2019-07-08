@@ -14,12 +14,16 @@ from student.services.loginservice import LoginService
 # Home画面での切り替えはAjax
 # Ajaxでのリクエストの際はログインチェック
 
+#認証エリア
+
 @decorator.authenticate
 def home(request):
     
     print(request.session['authority'])
 
     return render(request, 'student/home.html')
+
+#非認証エリア
 
 def logout(request):
     request.session.flush()

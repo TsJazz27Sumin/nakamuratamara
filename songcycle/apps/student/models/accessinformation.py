@@ -3,6 +3,9 @@ from django.utils import timezone
 
 class AccessInformation(models.Model):
 
+    class Meta:
+        app_label = 'student'
+        
     event_type = models.CharField(default="", max_length=50)
     http_accept_language = models.CharField(default="", max_length=50)
     browser = models.CharField(default="", max_length=20)
@@ -18,4 +21,5 @@ class AccessInformation(models.Model):
     success_value = models.CharField(default="", max_length=50)
     fault_value = models.CharField(default="", max_length=50)
     comment = models.CharField(default="", max_length=50)
+
     

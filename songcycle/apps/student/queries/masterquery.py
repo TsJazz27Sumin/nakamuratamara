@@ -1,5 +1,7 @@
 import threading
 
+from student.models.masterdata import MasterData
+
 class MasterQuery:
 
     __singleton = None
@@ -12,28 +14,21 @@ class MasterQuery:
         cls.__new_lock.release()
         return cls.__singleton
 
-    # TODO:できればDBのマスタと連動させたい。
-    # 定数系
-
-    ## user_status
-
     def get_active_user_status(self):
-        return "01"
+        return MasterData.objects.filter(code="002", value="active").first().sub_code
 
     def get_non_active_user_status(self):
-        return "02"
+        return MasterData.objects.filter(code="002", value="sleep").first().sub_code
 
-    # TODO:できればDBのマスタと連動させたい。
-    ## テンポラリーログインURLの有効期間
     def get_temporary_time(self):
-        return 120
+        value = MasterData.objects.filter(code="003", sub_code="01").first().value
+        return int(value)
 
     ## TODO 開発と本番で切り替えたい。
-    ## root_login_url
     def get_root_login_url(self):
-        return "http://127.0.0.1:8000/student/login/?onetimepassword="
+        return MasterData.objects.filter(code="004", sub_code="01").first().value
 
     ## event_type
 
     def get_event_type_request_login(self):
-        return "request_login"
+        return MasterData.objects.filter(code="005", sub_code="01").first().value

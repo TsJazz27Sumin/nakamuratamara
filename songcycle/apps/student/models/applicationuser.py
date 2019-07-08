@@ -3,6 +3,9 @@ from django.utils import timezone
 
 class ApplicationUser(models.Model):
 
+    class Meta:
+        app_label = 'student'
+
     email = models.EmailField(unique=True)
     first_name = models.CharField(default="nothing", max_length=100)
     last_name = models.CharField(default="nothing", max_length=100)
