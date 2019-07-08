@@ -13,19 +13,26 @@ from student.services.loginservice import LoginService
 # Home画面での切り替えはAjax
 # Ajaxでのリクエストの際はログインチェック
 
+# デコレータ
+
+def authenticate(function):
+    def wrapper(*args, **kwargs):
+        if 'authority' not in args[0].session:
+            # 権限が不明な場合は、強制ログアウト
+            return redirect('request_login')
+        return function(*args, **kwargs)
+    return wrapper
+
+@authenticate
+def home(request):
+    
+    print(request.session['authority'])
+
+    return render(request, 'student/home.html')
+
 def logout(request):
     request.session.flush()
     return redirect('request_login')
-
-def home(request):
-    
-    if 'authority' in request.session:
-        print(request.session['authority'])
-    else:
-        # 権限が不明な場合は、強制ログアウト
-        return redirect('request_login')
-
-    return render(request, 'student/home.html')
 
 def login(request):
 
