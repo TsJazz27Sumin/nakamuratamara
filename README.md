@@ -80,6 +80,11 @@
 - 日付関連
   - [python 現在時刻取得](disclosure.edinet-fsa.go.jp)
 
+- デコレータ関連
+  - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
+  - [Python デコレータ再入門　 ~デコレータは種類別に覚えよう~](https://qiita.com/macinjoke/items/1be6cf0f1f238b5ba01b)
+  - [Pythonのデコレータについて](https://qiita.com/mtb_beta/items/d257519b018b8cd0cc2e)
+
 - アーキテクチャ関連
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
   - [Pythonでシングルトン(Singleton)を実装してみる](http://www.denzow.me/entry/2018/01/28/171416)
