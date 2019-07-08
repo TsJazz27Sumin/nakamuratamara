@@ -6,6 +6,7 @@ from user_agents import parse
 
 from student import forms
 from student.decorators import decorator
+from student.queries.masterquery import MasterQuery
 from student.services.loginservice import LoginService
 
 # def エリア
@@ -18,10 +19,9 @@ from student.services.loginservice import LoginService
 
 @decorator.authenticate
 def home(request):
-    
+    context = {'authority_name': request.session['authority']}
     print(request.session['authority'])
-
-    return render(request, 'student/home.html')
+    return render(request, 'student/home.html', context)
 
 #非認証エリア
 
@@ -41,7 +41,7 @@ def login(request):
 
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
-        request.session['authority'] = active_user.authority
+        request.session['authority'] = MasterQuery().get_value(active_user.authority)
 
         return redirect('home')
 

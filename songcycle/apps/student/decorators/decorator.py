@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from student.queries.masterquery import MasterQuery
 
 def authenticate(function):
     def wrapper(*args, **kwargs):

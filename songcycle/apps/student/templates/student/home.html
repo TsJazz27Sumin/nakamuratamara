@@ -23,8 +23,12 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="{% url 'home' %}">ホーム</a>
                     <a class="nav-link" href="#">レポート</a>
+
+                    {% if authority_name == "admin" %}
                     <a class="nav-link" href="#">アクセスログ</a>
                     <a class="nav-link" href="#">ユーザー管理</a>
+                    {% endif %}
+                    
                     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
                 </nav>
             </div>
