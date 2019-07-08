@@ -13,7 +13,7 @@ from student.services.loginservice import LoginService
 # Home画面での切り替えはAjax
 # Ajaxでのリクエストの際はログインチェック
 
-# デコレータ
+# Decorator
 
 def authenticate(function):
     def wrapper(*args, **kwargs):
@@ -22,6 +22,8 @@ def authenticate(function):
             return redirect('request_login')
         return function(*args, **kwargs)
     return wrapper
+
+# Function
 
 @authenticate
 def home(request):
