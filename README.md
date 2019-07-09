@@ -65,8 +65,6 @@
   - [Django データベース操作 についてのまとめ](https://qiita.com/okoppe8/items/66a8747cf179a538355b)
 
 - メール送信関連
-  - [HerokuのDjangoにSendGridを設定してメールを送る](https://www.mathpython.com/ja/sendgrid/)
-  - [Sendgrid 公式](https://sendgrid.kke.co.jp/docs/Integrate/Frameworks/django.html)
   - [Django で Gmail を送信する](https://qiita.com/ekzemplaro/items/3265f755eb4537b18478)
 
 - ファイルアップロード関連
