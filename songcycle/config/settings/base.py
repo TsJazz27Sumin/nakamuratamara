@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_cleanup', #レコードの削除・更新時にファイルも削除する。https://github.com/un1t/django-cleanup
-    'bootstrap4',
+    'django_cleanup', #レコードの削除・更新時にファイルも削除する。
+    'bootstrap4', 
     'student'
 ]
 
