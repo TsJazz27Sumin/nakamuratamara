@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    $("#try-ajax").click(function () {
+    $("#report").click(function () {
 
-        targetUrl = window.location.href + this.name.replace("/", "");
+        targetUrl = window.location.href + this.id;
 
         $.ajax({
             type: "GET",
             url: targetUrl,
             dataType: "json"
         }).done(function (data) {
-            alert(data.message);
+            $('#application').html(data.message);
         });
     });
 });

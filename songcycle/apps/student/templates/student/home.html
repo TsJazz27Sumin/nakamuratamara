@@ -3,7 +3,9 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
-<link href="{% static 'css/student.css' %}" rel="stylesheet">
+    <link href="{% static 'css/student.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/student.js' %}"></script>
 {% endblock %}
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
                 <h3 class="masthead-brand">Nakamuratamara</h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="{% url 'home' %}">ホーム</a>
-                    <a class="nav-link" href="#">レポート</a>
+                    <a id="report" class="nav-link" href="#">レポート</a>
 
                     {% if authority_name == "admin" %}
                     <a class="nav-link" href="#">アクセスログ</a>
@@ -34,10 +36,12 @@
             </div>
         </header>
 
-        <main role="main" class="inner cover">
-            <h1 class="cover-heading">ようこそ.</h1>
-            <p class="lead">このサイトは、学生のためのレポート共有サイトです。</p>
-        </main>
+        <div id="application" class="application-area">
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading">ようこそ.</h1>
+                <p class="lead">このサイトは、学生のためのレポート共有サイトです。</p>
+            </main>
+        </div>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">

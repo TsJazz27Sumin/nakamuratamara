@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
+from django.http.response import JsonResponse
 from user_agents import parse
 
 from apps.student import forms
@@ -21,6 +22,12 @@ from apps.student.services.loginservice import LoginService
 def home(request):
     context = {'authority_name': request.session['authority']}
     return render(request, 'student/home.html', context)
+
+#@decorator.authenticate("report")
+def report(request):
+    print("!!!");
+    data = {"message" : "Success"}
+    return JsonResponse(data)
 
 #非認証エリア
 

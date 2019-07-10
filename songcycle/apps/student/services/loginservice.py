@@ -66,7 +66,6 @@ class LoginService:
         #     html_content='一時的に有効なログインURLです。<br>' + login_url
         # )
 
-        # # TODO 例外処理
         # sg = SendGridAPIClient(develop.SENDGRID_APIKEY)
         # response = sg.send(message)
 
