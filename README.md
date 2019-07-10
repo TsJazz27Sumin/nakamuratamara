@@ -78,6 +78,7 @@
 - Logging関連
   - [django#logging](https://qiita.com/soup01/items/068b2f3e3fe83026e4b7)
   - [Django ログ出力のまとめ](https://qiita.com/okoppe8/items/3e8ab77c5801a7d21991)
+  - [djangoのloggerの(最低限の)使い方](https://qiita.com/sakamossan/items/a98b949738028ad39a6b)
 
 - 例外処理関連
   - [Djangoで、404ページを作る](https://torina.top/detail/262/)
