@@ -7,12 +7,14 @@ from user_agents import parse
 from apps.student.forms.requestloginform import RequestLoginForm
 from apps.student.services.loginservice import LoginService
 from apps.student.services.accessinformationservice import AccessInformationService
+from apps.student.decorators import decorator
 
 class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
     form_class = RequestLoginForm
     template_name = "student/request_login.html"
 
+    @decorator.no_authenticate("form_valid")
     def form_valid(self, form):
 
         login_service = LoginService()
@@ -35,6 +37,7 @@ class requestLoginView(FormView):
         # 失敗してもログインURLを送信したことにする。
         return render(self.request, 'student/request_login_success.html', {})
     
+    @decorator.no_authenticate("form_invalid")
     def form_invalid(self, form):
 
         access_information_service = AccessInformationService()

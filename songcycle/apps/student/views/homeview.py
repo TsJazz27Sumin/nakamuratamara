@@ -17,18 +17,19 @@ from apps.student.services.loginservice import LoginService
 
 #認証エリア
 
-@decorator.authenticate
+@decorator.authenticate("home")
 def home(request):
     context = {'authority_name': request.session['authority']}
-    print(request.session['authority'])
     return render(request, 'student/home.html', context)
 
 #非認証エリア
 
+@decorator.no_authenticate("logout")
 def logout(request):
     request.session.flush()
     return redirect('request_login')
 
+@decorator.no_authenticate("login")
 def login(request):
 
     login_service = LoginService()
