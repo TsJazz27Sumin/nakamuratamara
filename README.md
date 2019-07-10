@@ -75,6 +75,15 @@
 - セキュリティ関連
   - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
 
+- Logging関連
+ - [django#logging](https://qiita.com/soup01/items/068b2f3e3fe83026e4b7)
+ - [Django ログ出力のまとめ](https://qiita.com/okoppe8/items/3e8ab77c5801a7d21991)
+
+- 例外処理関連
+ - [Djangoで、404ページを作る](https://torina.top/detail/262/)
+ - [【Django】独自の403、404、500 エラーページを作成する](https://canon1ky.hatenablog.com/entry/2018/10/15/215038)
+ - [python – Django – キャッチ例外](https://codeday.me/jp/qa/20190408/579296.html)
+
 - 日付関連
   - [python 現在時刻取得](disclosure.edinet-fsa.go.jp)
 
