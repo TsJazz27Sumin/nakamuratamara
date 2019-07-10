@@ -1,5 +1,5 @@
 # import area
-from student.models.accessinformation import AccessInformation
+from apps.student.models.accessinformation import AccessInformation
 import threading
 
 # CRUDのCUDは、ここに集約する。

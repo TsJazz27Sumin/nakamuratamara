@@ -4,12 +4,16 @@ import threading
 
 from django.utils.crypto import get_random_string
 
-from student.queries.masterquery import MasterQuery
-from student.repositories.applicationuserrepository import ApplicationUserRepository
-from student.repositories.temporarilyloginurlrepository import TemporarilyLoginUrlRepository
-from student.queries.applicationuserquery import ApplicationUserQuery
-from student.queries.temporarilyloginurlquery import TemporarilyLoginUrlQuery
-from student.models.accessinformation import AccessInformation
+from apps.student.queries.masterquery import MasterQuery
+from apps.student.repositories.applicationuserrepository import ApplicationUserRepository
+from apps.student.repositories.temporarilyloginurlrepository import TemporarilyLoginUrlRepository
+from apps.student.queries.applicationuserquery import ApplicationUserQuery
+from apps.student.queries.temporarilyloginurlquery import TemporarilyLoginUrlQuery
+from apps.student.models.accessinformation import AccessInformation
+from config.settings import develop
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import os
 
 class LoginService:
 
@@ -53,6 +57,18 @@ class LoginService:
         # テンポラリーのデータは、1日経ったらcronで消したい。
 
         print(login_url)
+
+        # メールが送信できることは確認できたのでコメントアウト
+        # message = Mail(
+        #     from_email=develop.SENDGRID_FROM,
+        #     to_emails=email,
+        #     subject='ログインURLのお知らせ',
+        #     html_content='一時的に有効なログインURLです。<br>' + login_url
+        # )
+
+        # # TODO 例外処理
+        # sg = SendGridAPIClient(develop.SENDGRID_APIKEY)
+        # response = sg.send(message)
 
     def get_active_user(self, onetime_password):
         valid_time = datetime.now() - timedelta(minutes=self.__master_query.get_temporary_time())

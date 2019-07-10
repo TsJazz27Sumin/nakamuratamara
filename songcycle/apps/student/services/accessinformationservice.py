@@ -4,10 +4,10 @@ import threading
 
 from django.utils.crypto import get_random_string
 
-from student.queries.accessinformationquery import AccessInformationQuery
-from student.functions import function
-from student.queries.masterquery import MasterQuery
-from student.repositories.accessinformationrepository import AccessInformationRepository
+from apps.student.queries.accessinformationquery import AccessInformationQuery
+from apps.student.functions import function
+from apps.student.queries.masterquery import MasterQuery
+from apps.student.repositories.accessinformationrepository import AccessInformationRepository
 
 class AccessInformationService:
 

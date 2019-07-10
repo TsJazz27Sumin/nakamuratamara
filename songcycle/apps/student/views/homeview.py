@@ -4,10 +4,10 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
-from student import forms
-from student.decorators import decorator
-from student.queries.masterquery import MasterQuery
-from student.services.loginservice import LoginService
+from apps.student import forms
+from apps.student.decorators import decorator
+from apps.student.queries.masterquery import MasterQuery
+from apps.student.services.loginservice import LoginService
 
 # def エリア
 

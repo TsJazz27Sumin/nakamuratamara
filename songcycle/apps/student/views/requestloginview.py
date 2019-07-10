@@ -4,9 +4,9 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from user_agents import parse
 
-from student.forms.requestloginform import RequestLoginForm
-from student.services.loginservice import LoginService
-from student.services.accessinformationservice import AccessInformationService
+from apps.student.forms.requestloginform import RequestLoginForm
+from apps.student.services.loginservice import LoginService
+from apps.student.services.accessinformationservice import AccessInformationService
 
 class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/

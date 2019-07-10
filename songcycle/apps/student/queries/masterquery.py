@@ -1,6 +1,6 @@
 import threading
 
-from student.models.masterdata import MasterData
+from apps.student.models.masterdata import MasterData
 
 class MasterQuery:
 

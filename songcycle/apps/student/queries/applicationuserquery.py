@@ -1,7 +1,7 @@
 # import area
-from student.models.applicationuser import ApplicationUser
-from student.functions import function
-from student.queries.masterquery import MasterQuery
+from apps.student.models.applicationuser import ApplicationUser
+from apps.student.functions import function
+from apps.student.queries.masterquery import MasterQuery
 import threading
 
 # CRUDのRは、ここに集約する。

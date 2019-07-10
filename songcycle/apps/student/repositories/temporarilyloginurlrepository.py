@@ -1,5 +1,5 @@
 # import area
-from student.models.temporarilyloginurl import TemporarilyLoginUrl
+from apps.student.models.temporarilyloginurl import TemporarilyLoginUrl
 import threading
 
 # CRUDのCUDは、ここに集約する。
