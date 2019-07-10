@@ -1,6 +1,6 @@
 from django.urls import path
-from student.views import homeview
-from student.views import requestloginview
+from apps.student.views import homeview
+from apps.student.views import requestloginview
 
 urlpatterns = [
     path('request-login/', requestloginview.requestLoginView.as_view(), name="request_login"),

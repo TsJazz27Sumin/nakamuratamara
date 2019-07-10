@@ -1,7 +1,9 @@
-from django.shortcuts import redirect
-from apps.student.queries.masterquery import MasterQuery
 import logging
+
+from django.shortcuts import redirect
 from user_agents import parse
+
+from apps.student.queries.masterquery import MasterQuery
 
 logger = logging.getLogger("student")
 
@@ -47,6 +49,7 @@ def authenticate_admin_only(function_name):
             return redirect('home')
         return wrapper
     return __decorator
+
 
 def __output_ordinary_log(args, function_name):
         request = getattr(args[0], 'request', args[0])

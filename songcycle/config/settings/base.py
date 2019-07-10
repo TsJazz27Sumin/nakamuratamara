@@ -24,10 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5adur&m%2033fsw91q0^g+-&chy6g-t6$1l%ns%r0u)&*e4y1n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# ローカルで404.htmlや500.htmlを出したい場合は以下設定。
+# DEBUG = False
+# ALLOWED_HOSTS = ['127.0.0.1']
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -141,6 +142,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     # TODO:デフォルトの設定はDEBUGフラグで開発・本番の切り替えを行っているが、そもそも別のファイルにするのが主流かつ安全。
+    #　herokuにデプロイ後、例外ログ含めちゃんと出るか確認。
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse',
@@ -161,7 +163,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'level': 'INFO',
-            'filters': ['require_debug_true'],
+            #'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler', 
             'formatter': 'verbose'
         },
