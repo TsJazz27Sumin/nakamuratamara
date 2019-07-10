@@ -9,11 +9,7 @@ def no_authenticate(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
 
-            request = getattr(args[0], 'request', args[0])
-            user_agent = parse(request.META['HTTP_USER_AGENT'])
-            remote_addr = request.META['REMOTE_ADDR']
-
-            logger.info('{} : {} : {}'.format(user_agent, remote_addr, function_name))
+            __output_ordinary_log(args, function_name)
             
             return function(*args, **kwargs)
         return wrapper
@@ -24,16 +20,13 @@ def authenticate(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
 
-            request = getattr(args[0], 'request', args[0])
-            user_agent = parse(request.META['HTTP_USER_AGENT'])
-            remote_addr = request.META['REMOTE_ADDR']
-
-            logger.info('{} : {} : {}'.format(user_agent, remote_addr, function_name))
+            __output_ordinary_log(args, function_name)
 
             if 'authority' not in args[0].session:
                 # 権限が不明な場合は、セッション切れ、もしくは不正アクセスと見なし、強制ログアウト
                 return redirect('request_login')
             return function(*args, **kwargs)
+
         return wrapper
     return __decorator
 
@@ -41,11 +34,7 @@ def authenticate_admin_only(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
 
-            request = getattr(args[0], 'request', args[0])
-            user_agent = parse(request.META['HTTP_USER_AGENT'])
-            remote_addr = request.META['REMOTE_ADDR']
-
-            logger.info('{} : {} : {}'.format(user_agent, remote_addr, function_name))
+            __output_ordinary_log(args, function_name)
 
             if 'authority' not in args[0].session:
                 # 権限が不明な場合は、セッション切れ、もしくは不正アクセスと見なし、強制ログアウト
@@ -58,3 +47,10 @@ def authenticate_admin_only(function_name):
             return redirect('home')
         return wrapper
     return __decorator
+
+def __output_ordinary_log(args, function_name):
+        request = getattr(args[0], 'request', args[0])
+        user_agent = parse(request.META['HTTP_USER_AGENT'])
+        remote_addr = request.META['REMOTE_ADDR']
+
+        logger.info('{} : {} : {}'.format(user_agent, remote_addr, function_name))
