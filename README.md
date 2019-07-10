@@ -88,6 +88,9 @@
 - 日付関連
   - [python 現在時刻取得](disclosure.edinet-fsa.go.jp)
 
+- Util関連
+  - [属性の有無チェック](https://www.python-izm.com/advanced/hasattr/)
+
 - デコレータ関連
   - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
   - [Python デコレータ再入門　 ~デコレータは種類別に覚えよう~](https://qiita.com/macinjoke/items/1be6cf0f1f238b5ba01b)
