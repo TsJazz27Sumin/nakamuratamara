@@ -59,6 +59,7 @@
 - ページ遷移関連
   - [【Django】renderとreverse_lazyの使い分けについて](https://qiita.com/frosty/items/1df28edde34907f53bea)
   - [Django shortcut functions](https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/)
+  - [JavaScriptでURLを操作するメモ](https://qiita.com/PianoScoreJP/items/fa66f357419fece0e531)
 
 - ORM関連
   - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
