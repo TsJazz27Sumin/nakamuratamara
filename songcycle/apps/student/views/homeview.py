@@ -25,8 +25,17 @@ def home(request):
 
 #@decorator.authenticate("report")
 def report(request):
-    print("!!!");
-    data = {"message" : "Success"}
+    data = {"message" : "Success report"}
+    return JsonResponse(data)
+
+#@decorator.authenticate("access_log")
+def access_log(request):
+    data = {"message" : "Success access_log"}
+    return JsonResponse(data)
+
+#@decorator.authenticate("user_maintenance")
+def user_maintenance(request):
+    data = {"message" : "Success user_maintenance"}
     return JsonResponse(data)
 
 #非認証エリア

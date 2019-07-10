@@ -27,8 +27,8 @@
                     <a id="report" class="nav-link" href="#">レポート</a>
 
                     {% if authority_name == "admin" %}
-                    <a class="nav-link" href="#">アクセスログ</a>
-                    <a class="nav-link" href="#">ユーザー管理</a>
+                    <a id="access-log" class="nav-link" href="#">アクセスログ</a>
+                    <a id="user-maintenance" class="nav-link" href="#">ユーザー管理</a>
                     {% endif %}
                     
                     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
