@@ -1,8 +1,10 @@
 from django.contrib import messages
+from django.http import HttpResponse
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
-from django.http.response import JsonResponse
 from user_agents import parse
 
 from apps.student import forms
@@ -20,23 +22,37 @@ from apps.student.services.loginservice import LoginService
 @decorator.authenticate("home")
 def home(request):
     context = {'authority_name': request.session['authority']}
+
     return render(request, 'student/home.html', context)
 
 @decorator.authenticate("report")
 def report(request):
-    data = {"message" : "Success report"}
-    return JsonResponse(data)
+    context = {
+        'title': 'Report',
+        'message': 'Success!',
+    }
+
+    html = render_to_string('student/report.html', context)
+    return HttpResponse(html)
 
 @decorator.authenticate("access_log")
 def access_log(request):
     #TODO : アクセスログ管理は氏名だけleft outer join
-    data = {"message" : "Success access_log"}
-    return JsonResponse(data)
+    context = {
+        'title': 'Access Log',
+        'message': 'Success!',
+    }
+    html = render_to_string('student/access_log.html', context)
+    return HttpResponse(html)
 
 @decorator.authenticate("user_maintenance")
 def user_maintenance(request):
-    data = {"message" : "Success user_maintenance"}
-    return JsonResponse(data)
+    context = {
+        'title': 'User Maintenance',
+        'message': 'Success!',
+    }
+    html = render_to_string('student/user_maintenance.html', context)
+    return HttpResponse(html)
 
 #非認証エリア
 

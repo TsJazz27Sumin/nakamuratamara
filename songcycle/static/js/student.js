@@ -8,10 +8,10 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: targetUrl,
-            dataType: "json"
-        }).done(function (data) {
+            dataType: "html"
+        }).done(function (html) {
             history.pushState('', '', id);
-            $('#application').html(data.message);
+            $('#application').html(html);
         });
     });
 
@@ -24,10 +24,10 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: targetUrl,
-            dataType: "json"
-        }).done(function (data) {
+            dataType: "html"
+        }).done(function (html) {
             history.pushState('', '', id);
-            $('#application').html(data.message);
+            $('#application').html(html);
         });
     });
 
@@ -40,10 +40,10 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: targetUrl,
-            dataType: "json"
-        }).done(function (data) {
+            dataType: "html"
+        }).done(function (html) {
             history.pushState('', '', id);
-            $('#application').html(data.message);
+            $('#application').html(html);
         });
     });
 });
