@@ -30,6 +30,7 @@ def report(request):
 
 #@decorator.authenticate("access_log")
 def access_log(request):
+    #TODO : アクセスログ管理は氏名だけleft outer join
     data = {"message" : "Success access_log"}
     return JsonResponse(data)
 
