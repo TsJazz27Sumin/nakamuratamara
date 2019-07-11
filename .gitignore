@@ -4,7 +4,6 @@ songcycle/config/settings/develop.py
 songcycle/apps/student/migrations/*.py
 songcycle/apps/student/develop/develop_work.sql
 songcycle/apps/student/develop/master.sql
-songcycle/.DS_Store
-songcycle/vscode/*
-.DS_Store
 songcycle/.vscode/*
+songcycle/.DS_Store
+.DS_Store
