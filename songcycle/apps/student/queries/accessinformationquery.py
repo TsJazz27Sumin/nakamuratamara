@@ -18,3 +18,6 @@ class AccessInformationQuery:
 
     def get_fault_count(self, remote_addr, target_date):
         return AccessInformation.objects.filter(remote_addr=remote_addr, access_date=target_date, fault_value__isnull=False).count()
+    
+    def select_all(self):
+        return AccessInformation.objects.all().order_by('access_date_timestamp').reverse()

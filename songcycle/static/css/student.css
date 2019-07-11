@@ -88,8 +88,15 @@ body {
 /*
  * Cover
  */
-.cover {
+ .cover {
   padding: 8rem;
+}
+
+.cover-search-area {
+  padding-top: 8rem;
+  padding-bottom: 0.1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 .cover .btn-lg {
   padding: .75rem 1.25rem;

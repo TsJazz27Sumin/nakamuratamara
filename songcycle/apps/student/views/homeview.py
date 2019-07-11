@@ -10,6 +10,7 @@ from user_agents import parse
 from apps.student import forms
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
+from apps.student.queries.accessinformationquery import AccessInformationQuery
 from apps.student.services.loginservice import LoginService
 
 # def エリア
@@ -38,9 +39,14 @@ def report(request):
 @decorator.authenticate("access_log")
 def access_log(request):
     #TODO : アクセスログ管理は氏名だけleft outer join
+
+    result_list = AccessInformationQuery().select_all()
+
     context = {
         'title': 'Access Log',
         'message': 'Success!',
+        'result_list':result_list,
+        'result_list_count':len(result_list)
     }
     html = render_to_string('student/access_log.html', context)
     return HttpResponse(html)
