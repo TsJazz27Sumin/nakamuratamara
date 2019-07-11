@@ -94,11 +94,15 @@
 
 - Util関連
   - [属性の有無チェック](https://www.python-izm.com/advanced/hasattr/)
+  - [Pythonの UTC ⇔ JST、文字列(UTC) ⇒ JST の変換とかのメモ](https://qiita.com/yoppe/items/4260cf4ddde69287a632)
 
 - デコレータ関連
   - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
   - [Python デコレータ再入門　 ~デコレータは種類別に覚えよう~](https://qiita.com/macinjoke/items/1be6cf0f1f238b5ba01b)
   - [Pythonのデコレータについて](https://qiita.com/mtb_beta/items/d257519b018b8cd0cc2e)
+ 
+- フィルタ関連
+  - [Django、フィルタを作る](https://torina.top/detail/240/)
 
 - アーキテクチャ関連
   - [Djangoプロジェクト構造のカスタマイズ（分割と構造化）](https://qiita.com/aion/items/ca375efac5b90deed382)
