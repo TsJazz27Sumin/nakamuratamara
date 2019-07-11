@@ -14,7 +14,6 @@ from apps.student.services.loginservice import LoginService
 
 # TODO
 # Home画面での切り替えはAjax
-# Ajaxでのリクエストの際はログインチェック
 
 #認証エリア
 
@@ -23,18 +22,18 @@ def home(request):
     context = {'authority_name': request.session['authority']}
     return render(request, 'student/home.html', context)
 
-#@decorator.authenticate("report")
+@decorator.authenticate("report")
 def report(request):
     data = {"message" : "Success report"}
     return JsonResponse(data)
 
-#@decorator.authenticate("access_log")
+@decorator.authenticate("access_log")
 def access_log(request):
     #TODO : アクセスログ管理は氏名だけleft outer join
     data = {"message" : "Success access_log"}
     return JsonResponse(data)
 
-#@decorator.authenticate("user_maintenance")
+@decorator.authenticate("user_maintenance")
 def user_maintenance(request):
     data = {"message" : "Success user_maintenance"}
     return JsonResponse(data)
@@ -60,6 +59,7 @@ def login(request):
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
         request.session['authority'] = MasterQuery().get_value(active_user.authority)
+        request.session['email'] = active_user.email
 
         return redirect('home')
 
