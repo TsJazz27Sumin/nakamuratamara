@@ -24,11 +24,11 @@
                 <h3 class="masthead-brand">Nakamuratamara</h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="{% url 'home' %}">ホーム</a>
-                    <a id="report" class="nav-link" href="#">レポート</a>
+                    <a id="report" class="nav-link" href="{% url 'report' %}">レポート</a>
 
                     {% if authority_name == "admin" %}
-                    <a id="access-log" class="nav-link" href="#">アクセスログ</a>
-                    <a id="user-maintenance" class="nav-link" href="#">ユーザー管理</a>
+                    <a id="access-log" class="nav-link" href="{% url 'access_log' %}">アクセスログ</a>
+                    <a id="user-maintenance" class="nav-link" href="{% url 'user_maintenance' %}">ユーザー管理</a>
                     {% endif %}
                     
                     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>

@@ -1,49 +1,50 @@
 $(document).ready(function () {
+
     $("#report").click(function () {
 
-        //TODO:root urlの判定をどうにかしたい。
-        id = this.id;
-        targetUrl = "http://127.0.0.1:8000/student/home/" + id;
-
+        id = this.id
+        
         $.ajax({
             type: "GET",
-            url: targetUrl,
+            url: this.href,
             dataType: "html"
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
         });
+
+        return false;
     });
 
     $("#access-log").click(function () {
 
-        //TODO:root urlの判定をどうにかしたい。
-        id = this.id;
-        targetUrl = "http://127.0.0.1:8000/student/home/" + id;
-
+        id = this.id
+        
         $.ajax({
             type: "GET",
-            url: targetUrl,
+            url: this.href,
             dataType: "html"
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
         });
+
+        return false;
     });
 
     $("#user-maintenance").click(function () {
 
-        //TODO:root urlの判定をどうにかしたい。
-        id = this.id;
-        targetUrl = "http://127.0.0.1:8000/student/home/" + id;
+        id = this.id
 
         $.ajax({
             type: "GET",
-            url: targetUrl,
+            url: this.href,
             dataType: "html"
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
         });
+
+        return false;
     });
 });
