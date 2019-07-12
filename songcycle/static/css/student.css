@@ -42,10 +42,6 @@ body {
   height: 80%;
 }
 
-.application-area {
-  max-height: 80em;
-}
-
 /*
  * Header
  */
@@ -89,7 +85,7 @@ body {
  * Cover
  */
  .cover {
-  padding: 8rem;
+  padding: 9rem;
 }
 
 .cover-search-area {

@@ -81,7 +81,7 @@ def login(request):
         # TODO
         # OKだったら、セッションにユーザ情報を登録する。
         request.session['authority'] = MasterQuery().get_value(active_user.authority)
-        request.session['email'] = active_user.email
+        request.session['user_id'] = active_user.user_id
 
         return redirect('home')
 

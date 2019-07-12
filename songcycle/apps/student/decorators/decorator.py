@@ -56,8 +56,8 @@ def __output_ordinary_log(args, function_name):
         user_agent = parse(request.META['HTTP_USER_AGENT'])
         remote_addr = request.META['REMOTE_ADDR']
 
-        email = ""
-        if 'email' in request.session:
-            email = request.session['email']
+        user_id = ""
+        if 'user_id' in request.session:
+            user_id = request.session['user_id']
 
-        logger.info('{} : {} : {} : {}'.format(user_agent, remote_addr, function_name, email))
+        logger.info('{} : {} : {} : {}'.format(user_agent, remote_addr, function_name, user_id))
