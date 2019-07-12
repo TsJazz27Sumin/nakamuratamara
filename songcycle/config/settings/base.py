@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import sys
 
+#pycache
+sys.dont_write_bytecode = True
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,7 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -127,10 +130,10 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-MEDIA_URL = '/document/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = (
-    os.path.join(PROJECT_ROOT, 'document')
+    os.path.join(PROJECT_ROOT, 'media')
 )
 
 # セッションの設定

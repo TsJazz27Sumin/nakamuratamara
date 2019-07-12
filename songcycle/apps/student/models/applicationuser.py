@@ -6,7 +6,7 @@ class ApplicationUser(models.Model):
     class Meta:
         app_label = 'student'
 
-    user_id = models.CharField(max_length=5)
+    user_id = models.CharField(max_length=5, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(default="nothing", max_length=100)
     last_name = models.CharField(default="nothing", max_length=100)
@@ -16,3 +16,7 @@ class ApplicationUser(models.Model):
     last_login_date_timestamp = models.DateTimeField (default=timezone.now)
     login_count = models.IntegerField (default=0)
     comment = models.CharField(default="", max_length=100)
+    create_user_id = models.CharField(max_length=5)
+    create_timestamp = models.DateTimeField (default=timezone.now)
+    update_user_id = models.CharField(max_length=5)
+    update_timestamp = models.DateTimeField (default=timezone.now)
