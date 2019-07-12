@@ -11,12 +11,8 @@ from apps.student import forms
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.accessinformationquery import AccessInformationQuery
+from apps.student.queries.reportquery import ReportQuery
 from apps.student.services.loginservice import LoginService
-
-# def エリア
-
-# TODO
-# Home画面での切り替えはAjax
 
 #認証エリア
 
@@ -28,9 +24,25 @@ def home(request):
 
 @decorator.authenticate("report")
 def report(request):
+
+    result_list = ReportQuery().select_all()
+
     context = {
         'title': 'Report',
         'message': 'Success!',
+        'result_list':result_list,
+        'result_list_count':len(result_list)
+    }
+
+    html = render_to_string('student/report.html', context)
+    return HttpResponse(html)
+
+@decorator.authenticate_admin_only("report_create")
+def report_create(request):
+
+    context = {
+        'title': 'Report Create',
+        'message': 'Success!'
     }
 
     html = render_to_string('student/report.html', context)
@@ -78,8 +90,6 @@ def login(request):
     if(active_user is not None):
         login_service.update_login_information(active_user)
 
-        # TODO
-        # OKだったら、セッションにユーザ情報を登録する。
         request.session['authority'] = MasterQuery().get_value(active_user.authority)
         request.session['user_id'] = active_user.user_id
 

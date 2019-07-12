@@ -8,6 +8,7 @@ urlpatterns = [
     path('logout/',homeview.logout, name="logout"),
     path('home/',homeview.home, name="home"),
     path('home/report/',homeview.report, name="report"),
+    path('home/report-create/',homeview.report_create, name="report_create"),
     path('home/access-log/',homeview.access_log, name="access_log"),
     path('home/user-maintenance/',homeview.user_maintenance, name="user_maintenance")
 ]
