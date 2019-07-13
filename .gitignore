@@ -7,3 +7,4 @@ songcycle/apps/student/develop/master.sql
 songcycle/.vscode/*
 songcycle/.DS_Store
 .DS_Store
+songcycle/media/uploads/*
