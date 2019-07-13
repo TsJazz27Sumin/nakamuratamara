@@ -6,11 +6,12 @@
         <div class="col-md-6 mb-3">
           <input type="hidden" id="file-name" required="">
           <input type="hidden" class="form-control" id="file-path" required="">
+          <a id="file-upload-url" type="hidden" href="{% url 'file_upload' %}"></a>
           <button id="report-file" class="btn btn-info btn-md btn-block" type="button">レポートを選択</button>
         </div>
         <div class="col-md-6 mb-3">
-            <label id="file-name-label" class="file-name-label"></label>
-          </div>
+          <label id="file-name-label" class="file-name-label"></label>
+        </div>
       </div>
 
       <div class="row">

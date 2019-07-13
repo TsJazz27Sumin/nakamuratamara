@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.http import HttpResponse
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.views.generic import FormView, TemplateView
@@ -27,11 +28,13 @@ def index(request):
 
 @decorator.authenticate_admin_only_async("create")
 def create(request):
-
-    context = {
-        'title': 'Report Create',
-        'message': 'Success!'
-    }
-
-    html = render_to_string('student/report/create.html', context)
+    html = render_to_string('student/report/create.html', request=request)
     return HttpResponse(html)
+
+@decorator.authenticate_admin_only_async_json_response("file_upload")
+def file_upload(request):
+
+    print("file_upload!!")
+    json_data = {"data":{"message":"Success"}}
+
+    return JsonResponse(json_data)

@@ -2,6 +2,7 @@ import logging
 
 from django.shortcuts import redirect
 from user_agents import parse
+from django.http.response import JsonResponse
 
 from apps.student.queries.masterquery import MasterQuery
 
@@ -88,6 +89,28 @@ def authenticate_admin_only_async(function_name):
             
             # 管理者じゃない場合は、Home画面に戻す。
             return redirect('home')
+        return wrapper
+    return __decorator
+
+def authenticate_admin_only_async_json_response(function_name):
+    def __decorator(function):
+        def wrapper(*args, **kwargs):
+
+            __output_ordinary_log(args, function_name)
+
+            if 'authority' not in args[0].session:
+                json_data = {"data":{"message":"Failed"}}
+                return JsonResponse(json_data)
+            else:
+                if (args[0].is_ajax() == False):
+                    json_data = {"data":{"message":"Failed"}}
+                    return JsonResponse(json_data)
+
+                if(args[0].session['authority'] == "admin"):
+                    return function(*args, **kwargs)     
+            
+            json_data = {"data":{"message":"Failed"}}
+            return JsonResponse(json_data)
         return wrapper
     return __decorator
 

@@ -12,6 +12,7 @@ urlpatterns = [
     path('home/',homeview.home, name="home"),
     path('home/report/',reportview.index, name="report"),
     path('home/report-create/',reportview.create, name="report_create"),
+    path('home/report-file-upload/',reportview.file_upload, name="file_upload"),
     path('home/access-log/',accesslogview.index, name="access_log"),
     path('home/user-maintenance/',usermaintenanceview.index, name="user_maintenance")
 ]

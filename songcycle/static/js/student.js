@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    //ブラウザ操作の戻る禁止
     history.pushState(null, null, null);
 
     $(window).on("popstate", function (event) {
@@ -14,6 +15,40 @@ $(document).ready(function () {
             return false;
     });
 
+    //CSRF
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    //ここからAjaxのトリガー
+
     $("#report").click(function () {
         GetHtmlAsync(this.id, this.id, this.href)
         return false;
@@ -23,12 +58,29 @@ $(document).ready(function () {
     //あらかじめ読み込んでおく。
     var inputTag = null;
     $("#application").on('click', "#report-create", function () {
-        GetHtmlAsync(this.id, "report", this.href)
-        inputTag = createFileInputTag();
+
+        id = this.id;
+        group = "report";
+        url = this.href;
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html"
+        }).done(function (html) {
+            history.pushState('', '', id);
+            $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+
+            var fileUploadUrl = $(html).find('#file-upload-url').attr("href");
+            inputTag = createFileInputTag(fileUploadUrl);
+        });
+        
         return false;
     });
 
-    function createFileInputTag() {
+    function createFileInputTag(fileUploadUrl) {
         var input = document.createElement('input');
         input.type = 'file';
         input.accept = '.pdf,.xls,.xlsx,.doc,.docx, text/plain';
@@ -36,9 +88,16 @@ $(document).ready(function () {
             var file = event.target.files[0];
             var targetFile = file.name + " / " + file.size + " byte";
 
-            //TODO:Ajaxでファイルアップロード。
-            alert("ファイルアップロードに成功しました。");
-            $("#file-name-label").text(targetFile);
+            $.ajax({
+                url  : fileUploadUrl,
+                type : "POST",
+                data : file.name,
+                dataType    : "json"
+            }).done(function(data){
+                $("#file-name-label").text(targetFile);
+            }).fail(function(jqXHR, textStatus, errorThrown){
+                alert("ファイルアップロードに失敗しました。");
+            });
         };
 
         return input;
@@ -58,7 +117,7 @@ $(document).ready(function () {
         return false;
     });
 
-    function GetHtmlAsync(id, group,  url){
+    function GetHtmlAsync(id, group, url){
 
         $.ajax({
             type: "GET",
