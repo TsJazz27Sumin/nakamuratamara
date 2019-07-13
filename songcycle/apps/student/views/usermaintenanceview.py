@@ -14,5 +14,5 @@ def index(request):
         'title': 'User Maintenance',
         'message': 'Success!',
     }
-    html = render_to_string('student/user_maintenance.html', context)
+    html = render_to_string('student/usermaintenance/index.html', context)
     return HttpResponse(html)

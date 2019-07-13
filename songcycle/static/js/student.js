@@ -1,26 +1,26 @@
 $(document).ready(function () {
 
     $("#report").click(function () {
-        GetHtmlAsync(this.id, this.href)
+        GetHtmlAsync(this.id, this.id, this.href)
         return false;
     });
 
     $("#application").on('click', "#report-create", function () {
-        GetHtmlAsync(this.id, this.href)
+        GetHtmlAsync(this.id, "report", this.href)
         return false;
     });
 
     $("#access-log").click(function () {
-        GetHtmlAsync(this.id, this.href)
+        GetHtmlAsync(this.id, this.id, this.href)
         return false;
     });
 
     $("#user-maintenance").click(function () {
-        GetHtmlAsync(this.id, this.href)
+        GetHtmlAsync(this.id, this.id, this.href)
         return false;
     });
 
-    function GetHtmlAsync(id, url){
+    function GetHtmlAsync(id, group,  url){
 
         $.ajax({
             type: "GET",
@@ -30,7 +30,7 @@ $(document).ready(function () {
             history.pushState('', '', id);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
-            $('#' + id).find('p').addClass("active");
+            $('#' + group).find('p').addClass("active");
         });
     };
 });

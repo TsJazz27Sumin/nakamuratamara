@@ -22,7 +22,7 @@ def index(request):
         'result_list_count':len(result_list)
     }
 
-    html = render_to_string('student/report.html', context)
+    html = render_to_string('student/report/index.html', context)
     return HttpResponse(html)
 
 @decorator.authenticate_admin_only_async("create")
@@ -33,5 +33,5 @@ def create(request):
         'message': 'Success!'
     }
 
-    html = render_to_string('student/report_create.html', context)
+    html = render_to_string('student/report/create.html', context)
     return HttpResponse(html)

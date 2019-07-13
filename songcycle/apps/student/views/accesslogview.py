@@ -20,5 +20,5 @@ def index(request):
         'result_list':result_list,
         'result_list_count':len(result_list)
     }
-    html = render_to_string('student/access_log.html', context)
+    html = render_to_string('student/accesslog/index.html', context)
     return HttpResponse(html)
