@@ -13,4 +13,4 @@ class FileUploadForm(forms.Form):
         # Herokuは、ローカルファイルシステムの変更はすべて削除されるので、一時ファイル扱い。
         file_name = default_storage.save("uploads/" + today + upload_file.name, upload_file)
 
-        return default_storage.url(file_name) ,file_name
+        return default_storage.url(file_name)

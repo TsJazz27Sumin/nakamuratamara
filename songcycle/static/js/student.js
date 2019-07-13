@@ -85,7 +85,13 @@ $(document).ready(function () {
         input.type = 'file';
         input.accept = '.pdf,.xls,.xlsx,.doc,.docx, text/plain';
         input.onchange = function(event) {
-            var file = event.target.files[0];
+            var file = event.target.files[0]
+
+            if (file.size > 1073741824){
+                alert("ファイルサイズが大きすぎます。 > " + file.size + "byte");
+                return false;
+            }
+
             var targetFile = file.name + " / " + file.size + " byte";
 
             var fd = new FormData();
@@ -101,13 +107,15 @@ $(document).ready(function () {
                 contentType: false
             }).done(function(json){
                 if(json.data.message === "Success"){
+                    $("#file-path").val(json.data.filePath);
+                    $("#file-name").val(file.name);
                     $("#file-name-label").text(targetFile);
                 }
                 if(json.data.message === "Error"){
                     $("#file-name-label").text("ファイルアップロードに失敗しました。");
                 }
             }).fail(function(jqXHR, textStatus, errorThrown){
-                alert("ファイルアップロードに失敗しました。");
+                $("#file-name-label").text("ファイルアップロードに失敗しました。");
             });
         };
 

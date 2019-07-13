@@ -39,10 +39,8 @@ def file_upload(request):
 
     json_data = None
     if form.is_valid():
-        download_url, file_name = form.save()
-        print(download_url)
-        print(file_name)
-        json_data = {'data':{'message':'Success'}}
+        file_path = form.save()
+        json_data = {'data':{'message':'Success', 'filePath':file_path}}
     else:
         json_data = {'data':{'message':'Error'}}
 
