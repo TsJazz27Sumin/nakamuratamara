@@ -75,6 +75,7 @@
   - [[Django] ファイルアップロード機能の使い方 [基本設定編]](https://qiita.com/okoppe8/items/86776b8df566a4513e96)
   - [Python3 + google-api-python-clientで、Google Drive APIを使ってpdfファイルをアップロードし、OCR処理をする](https://thinkami.hatenablog.com/entry/2018/04/01/173611)
   - [「Google Drive REST API v3」に「アクセストークン」を付与してファイルを検索／ダウンロードする](https://qiita.com/CUTBOSS/items/2ccb543f68f1a6c1aa7d)
+  - [JavaScript でファイル保存・開くダイアログを出して読み書きするまとめ](https://qiita.com/kerupani129/items/99fd7a768538fcd33420)
 
 - セキュリティ関連
   - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
