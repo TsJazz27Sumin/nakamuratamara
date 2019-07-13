@@ -7,6 +7,27 @@ $(document).ready(function () {
         window.alert('画面内のリンク、もしくはボタンを使って操作してください。');
     });
 
+    //POSTの画面でEnterキー操作を制限する。
+    $("#application").on('input,textarea[readonly]').not($('input[type="button"],input[type="submit"]')).keypress(function (e) {
+        if (!e) var e = window.event;
+        if (e.keyCode == 13)
+            return false;
+    });
+
+    $("#report").click(function () {
+        GetHtmlAsync(this.id, this.id, this.href)
+        return false;
+    });
+
+    //後から動的に追加するとchangeイベントが発火しないことがあるので、
+    //あらかじめ読み込んでおく。
+    var inputTag = null;
+    $("#application").on('click', "#report-create", function () {
+        GetHtmlAsync(this.id, "report", this.href)
+        inputTag = createFileInputTag();
+        return false;
+    });
+
     function createFileInputTag() {
         var input = document.createElement('input');
         input.type = 'file';
@@ -24,25 +45,7 @@ $(document).ready(function () {
     };
 
     $("#application").on('click', "#report-file", function(event) {
-        var input = createFileInputTag();
-        input.click();
-    });
-
-    //POSTの画面でEnterキー操作を制限する。
-    $("#application").on('input,textarea[readonly]').not($('input[type="button"],input[type="submit"]')).keypress(function (e) {
-        if (!e) var e = window.event;
-        if (e.keyCode == 13)
-            return false;
-    });
-
-    $("#report").click(function () {
-        GetHtmlAsync(this.id, this.id, this.href)
-        return false;
-    });
-
-    $("#application").on('click', "#report-create", function () {
-        GetHtmlAsync(this.id, "report", this.href)
-        return false;
+        inputTag.click();
     });
 
     $("#access-log").click(function () {
