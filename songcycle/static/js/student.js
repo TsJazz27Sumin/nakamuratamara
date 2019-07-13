@@ -1,5 +1,41 @@
 $(document).ready(function () {
 
+    history.pushState(null, null, null);
+
+    $(window).on("popstate", function (event) {
+        history.pushState(null, null, null);
+        window.alert('画面内のリンク、もしくはボタンを使って操作してください。');
+    });
+
+    const showOpenFileDialog = () => {
+        return new Promise(resolve => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.txt, text/plain';
+            input.onchange = event => { resolve(event.target.files[0]); };
+            input.click();
+        });
+    };
+    
+    const readAsText = file => {
+        return new Promise(resolve => {
+            const reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => { resolve(reader.result); };
+        });
+    };
+    
+    (async () => {
+        const file = await showOpenFileDialog();
+        const content = await readAsText(file);
+        alert(content);
+    })();
+
+
+    $("#application").on('click', "#report-file", function(event) {
+        showOpenFileDialog();
+    });
+
     //POSTの画面でEnterキー操作を制限する。
     $("#application").on('input,textarea[readonly]').not($('input[type="button"],input[type="submit"]')).keypress(function (e) {
         if (!e) var e = window.event;
