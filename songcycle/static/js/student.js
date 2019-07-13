@@ -1,5 +1,12 @@
 $(document).ready(function () {
 
+    //POSTの画面でEnterキー操作を制限する。
+    $("#application").on('input,textarea[readonly]').not($('input[type="button"],input[type="submit"]')).keypress(function (e) {
+        if (!e) var e = window.event;
+        if (e.keyCode == 13)
+            return false;
+    });
+
     $("#report").click(function () {
         GetHtmlAsync(this.id, this.id, this.href)
         return false;
