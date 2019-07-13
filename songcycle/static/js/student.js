@@ -88,13 +88,24 @@ $(document).ready(function () {
             var file = event.target.files[0];
             var targetFile = file.name + " / " + file.size + " byte";
 
+            var fd = new FormData();
+            fd.append('file_source', file);
+
             $.ajax({
                 url  : fileUploadUrl,
                 type : "POST",
-                data : file.name,
-                dataType    : "json"
-            }).done(function(data){
-                $("#file-name-label").text(targetFile);
+                data : fd,
+                dataType : "json",
+                enctype : "multipart/form-data",
+                processData : false,
+                contentType: false
+            }).done(function(json){
+                if(json.data.message === "Success"){
+                    $("#file-name-label").text(targetFile);
+                }
+                if(json.data.message === "Error"){
+                    $("#file-name-label").text("ファイルアップロードに失敗しました。");
+                }
             }).fail(function(jqXHR, textStatus, errorThrown){
                 alert("ファイルアップロードに失敗しました。");
             });

@@ -8,6 +8,7 @@ from django.views.generic import FormView, TemplateView
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
+from apps.student.forms.fileuploadform import FileUploadForm
 
 #TODO:F5対策
 
@@ -34,7 +35,15 @@ def create(request):
 @decorator.authenticate_admin_only_async_json_response("file_upload")
 def file_upload(request):
 
-    print("file_upload!!")
-    json_data = {"data":{"message":"Success"}}
+    form = FileUploadForm(data=request.POST, files=request.FILES)
+
+    json_data = None
+    if form.is_valid():
+        download_url, file_name = form.save()
+        print(download_url)
+        print(file_name)
+        json_data = {'data':{'message':'Success'}}
+    else:
+        json_data = {'data':{'message':'Error'}}
 
     return JsonResponse(json_data)

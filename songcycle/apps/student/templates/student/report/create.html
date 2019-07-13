@@ -1,11 +1,11 @@
 <div class="report-create-area">
     <h4 class="mb-3 report-create-title">Report Create</h4>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST">
       {% csrf_token %}
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input type="hidden" id="file-name" required="">
-          <input type="hidden" class="form-control" id="file-path" required="">
+          <input id="file-name" type="hidden" required="">
+          <input id="file-path" type="hidden" required="">
           <a id="file-upload-url" type="hidden" href="{% url 'file_upload' %}"></a>
           <button id="report-file" class="btn btn-info btn-md btn-block" type="button">レポートを選択</button>
         </div>
