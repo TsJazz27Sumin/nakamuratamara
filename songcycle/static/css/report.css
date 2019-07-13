@@ -17,4 +17,9 @@
 
 .report-create-title{
     padding-bottom:4rem;
+    text-align: left;
+}
+
+.continue-to-register{
+    text-align: right;
 }
