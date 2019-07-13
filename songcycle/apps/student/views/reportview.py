@@ -8,7 +8,9 @@ from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 
-@decorator.authenticate("index")
+#TODO:F5対策
+
+@decorator.authenticate_ajax("index")
 def index(request):
 
     result_list = ReportQuery().select_all()
@@ -23,7 +25,7 @@ def index(request):
     html = render_to_string('student/report.html', context)
     return HttpResponse(html)
 
-@decorator.authenticate_admin_only("create")
+@decorator.authenticate_admin_only_ajax("create")
 def create(request):
 
     context = {
@@ -31,5 +33,5 @@ def create(request):
         'message': 'Success!'
     }
 
-    html = render_to_string('student/report.html', context)
+    html = render_to_string('student/report_create.html', context)
     return HttpResponse(html)

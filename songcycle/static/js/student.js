@@ -1,3 +1,11 @@
+document.addEventListener("keydown", function (e) {
+ 
+    if ((e.which || e.keyCode) == 116 ) {
+        e.preventDefault();
+    }
+ 
+});
+
 $(document).ready(function () {
 
     $("#report").click(function () {
@@ -11,6 +19,8 @@ $(document).ready(function () {
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + id).find('p').addClass("active");
         });
 
         return false;
@@ -27,6 +37,8 @@ $(document).ready(function () {
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + id).find('p').addClass("active");
         });
 
         return false;
@@ -43,6 +55,8 @@ $(document).ready(function () {
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + id).find('p').addClass("active");
         });
 
         return false;
@@ -59,6 +73,8 @@ $(document).ready(function () {
         }).done(function (html) {
             history.pushState('', '', id);
             $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + id).find('p').addClass("active");
         });
 
         return false;

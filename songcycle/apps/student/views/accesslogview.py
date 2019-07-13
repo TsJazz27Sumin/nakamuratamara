@@ -8,7 +8,7 @@ from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.accessinformationquery import AccessInformationQuery
 
-@decorator.authenticate("index")
+@decorator.authenticate_ajax("index")
 def index(request):
     #TODO : アクセスログ管理は氏名だけleft outer join
 
