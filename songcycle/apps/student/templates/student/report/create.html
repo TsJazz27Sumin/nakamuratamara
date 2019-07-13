@@ -4,12 +4,12 @@
       {% csrf_token %}
       <div class="row">
         <div class="col-md-6 mb-3">
+          <input type="hidden" id="file-name" required="">
+          <input type="hidden" class="form-control" id="file-path" required="">
           <button id="report-file" class="btn btn-info btn-md btn-block" type="button">レポートを選択</button>
         </div>
         <div class="col-md-6 mb-3">
-            <input type="hidden" id="file-name" required="">
-            <input type="hidden" class="form-control" id="file-path" required="">
-            <label id="file-name-label" class="file-name-label">２０１９年中村ゼミ生.docx</label>
+            <label id="file-name-label" class="file-name-label"></label>
           </div>
       </div>
 

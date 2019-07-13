@@ -7,33 +7,25 @@ $(document).ready(function () {
         window.alert('画面内のリンク、もしくはボタンを使って操作してください。');
     });
 
-    const showOpenFileDialog = () => {
-        return new Promise(resolve => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.txt, text/plain';
-            input.onchange = event => { resolve(event.target.files[0]); };
-            input.click();
-        });
-    };
-    
-    const readAsText = file => {
-        return new Promise(resolve => {
-            const reader = new FileReader();
-            reader.readAsText(file);
-            reader.onload = () => { resolve(reader.result); };
-        });
-    };
-    
-    (async () => {
-        const file = await showOpenFileDialog();
-        const content = await readAsText(file);
-        alert(content);
-    })();
+    function createFileInputTag() {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.pdf,.xls,.xlsx,.doc,.docx, text/plain';
+        input.onchange = function(event) {
+            var file = event.target.files[0];
+            var targetFile = file.name + " / " + file.size + " byte";
 
+            //TODO:Ajaxでファイルアップロード。
+            alert("ファイルアップロードに成功しました。");
+            $("#file-name-label").text(targetFile);
+        };
+
+        return input;
+    };
 
     $("#application").on('click', "#report-file", function(event) {
-        showOpenFileDialog();
+        var input = createFileInputTag();
+        input.click();
     });
 
     //POSTの画面でEnterキー操作を制限する。
