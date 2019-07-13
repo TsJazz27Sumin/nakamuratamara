@@ -61,6 +61,9 @@
   - [Django shortcut functions](https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/)
   - [JavaScriptでURLを操作するメモ](https://qiita.com/PianoScoreJP/items/fa66f357419fece0e531)
 
+- javascript関連
+  - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
+
 - Ajax関連
   - [django – AjaxでレンダリングされたHTMLを返す](https://codeday.me/jp/qa/20190221/287560.html)
 
@@ -111,8 +114,8 @@
   - [Python で定数を定義する](https://maku77.github.io/python/syntax/const.html)
   - [Python でシングルトンパターンを実装する](https://blog.bitmeister.jp/?p=4806)
   
- - マイグレーション関連
-   - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
+- マイグレーション関連
+  - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
 
 - デプロイ関連
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
