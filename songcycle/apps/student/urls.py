@@ -1,4 +1,7 @@
 from django.urls import path
+from apps.student.views import reportview
+from apps.student.views import accesslogview
+from apps.student.views import usermaintenanceview
 from apps.student.views import homeview
 from apps.student.views import requestloginview
 
@@ -7,8 +10,8 @@ urlpatterns = [
     path('login/',homeview.login, name="login"),
     path('logout/',homeview.logout, name="logout"),
     path('home/',homeview.home, name="home"),
-    path('home/report/',homeview.report, name="report"),
-    path('home/report-create/',homeview.report_create, name="report_create"),
-    path('home/access-log/',homeview.access_log, name="access_log"),
-    path('home/user-maintenance/',homeview.user_maintenance, name="user_maintenance")
+    path('home/report/',reportview.index, name="report"),
+    path('home/report-create/',reportview.create, name="report_create"),
+    path('home/access-log/',accesslogview.index, name="access_log"),
+    path('home/user-maintenance/',usermaintenanceview.index, name="user_maintenance")
 ]
