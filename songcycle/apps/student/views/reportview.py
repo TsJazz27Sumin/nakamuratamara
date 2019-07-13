@@ -10,7 +10,7 @@ from apps.student.queries.reportquery import ReportQuery
 
 #TODO:F5対策
 
-@decorator.authenticate_ajax("index")
+@decorator.authenticate_async("index")
 def index(request):
 
     result_list = ReportQuery().select_all()
@@ -25,7 +25,7 @@ def index(request):
     html = render_to_string('student/report.html', context)
     return HttpResponse(html)
 
-@decorator.authenticate_admin_only_ajax("create")
+@decorator.authenticate_admin_only_async("create")
 def create(request):
 
     context = {

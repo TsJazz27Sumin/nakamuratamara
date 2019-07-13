@@ -32,7 +32,7 @@ def authenticate(function_name):
         return wrapper
     return __decorator
 
-def authenticate_ajax(function_name):
+def authenticate_async(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
 
@@ -69,7 +69,7 @@ def authenticate_admin_only(function_name):
         return wrapper
     return __decorator
 
-def authenticate_admin_only_ajax(function_name):
+def authenticate_admin_only_async(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
 

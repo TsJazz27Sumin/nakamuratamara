@@ -1,26 +1,26 @@
 $(document).ready(function () {
 
     $("#report").click(function () {
-        GetHtmlAjax(this.id, this.href)
+        GetHtmlAsync(this.id, this.href)
         return false;
     });
 
     $("#application").on('click', "#report-create", function () {
-        GetHtmlAjax(this.id, this.href)
+        GetHtmlAsync(this.id, this.href)
         return false;
     });
 
     $("#access-log").click(function () {
-        GetHtmlAjax(this.id, this.href)
+        GetHtmlAsync(this.id, this.href)
         return false;
     });
 
     $("#user-maintenance").click(function () {
-        GetHtmlAjax(this.id, this.href)
+        GetHtmlAsync(this.id, this.href)
         return false;
     });
 
-    function GetHtmlAjax(id, url){
+    function GetHtmlAsync(id, url){
 
         $.ajax({
             type: "GET",

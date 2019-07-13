@@ -8,7 +8,7 @@ from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 
-@decorator.authenticate_ajax("index")
+@decorator.authenticate_async("index")
 def index(request):
     context = {
         'title': 'User Maintenance',
