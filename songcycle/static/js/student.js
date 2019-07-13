@@ -9,66 +9,30 @@ document.addEventListener("keydown", function (e) {
 $(document).ready(function () {
 
     $("#report").click(function () {
-
-        id = this.id
-        
-        $.ajax({
-            type: "GET",
-            url: this.href,
-            dataType: "html"
-        }).done(function (html) {
-            history.pushState('', '', id);
-            $('#application').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + id).find('p').addClass("active");
-        });
-
+        GetHtmlAjax(this.id, this.href)
         return false;
     });
 
     $("#application").on('click', "#report-create", function () {
-
-        id = this.id
-        
-        $.ajax({
-            type: "GET",
-            url: this.href,
-            dataType: "html"
-        }).done(function (html) {
-            history.pushState('', '', id);
-            $('#application').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + id).find('p').addClass("active");
-        });
-
+        GetHtmlAjax(this.id, this.href)
         return false;
     });
 
     $("#access-log").click(function () {
-
-        id = this.id
-        
-        $.ajax({
-            type: "GET",
-            url: this.href,
-            dataType: "html"
-        }).done(function (html) {
-            history.pushState('', '', id);
-            $('#application').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + id).find('p').addClass("active");
-        });
-
+        GetHtmlAjax(this.id, this.href)
         return false;
     });
 
     $("#user-maintenance").click(function () {
+        GetHtmlAjax(this.id, this.href)
+        return false;
+    });
 
-        id = this.id
+    function GetHtmlAjax(id, url){
 
         $.ajax({
             type: "GET",
-            url: this.href,
+            url: url,
             dataType: "html"
         }).done(function (html) {
             history.pushState('', '', id);
@@ -76,7 +40,5 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + id).find('p').addClass("active");
         });
-
-        return false;
-    });
+    };
 });
