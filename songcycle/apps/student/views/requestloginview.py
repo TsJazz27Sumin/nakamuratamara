@@ -12,7 +12,7 @@ from apps.student.decorators import decorator
 class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
     form_class = RequestLoginForm
-    template_name = "student/request_login.html"
+    template_name = "student/login/index.html"
 
     @decorator.no_authenticate("form_valid")
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class requestLoginView(FormView):
             # pandasでcsvにしてメール送信してデイリーでログ監視したい。
         
         # 失敗してもログインURLを送信したことにする。
-        return render(self.request, 'student/request_login_success.html', {})
+        return render(self.request, 'student/login/success.html', {})
     
     @decorator.no_authenticate("form_invalid")
     def form_invalid(self, form):
@@ -50,4 +50,4 @@ class requestLoginView(FormView):
         access_information_service.add_fault(http_accept_language, user_agent, remote_addr, email)
 
         # 失敗してもログインURLを送信したことにする。
-        return render(self.request, 'student/request_login_success.html', {})
+        return render(self.request, 'student/login/success.html', {})
