@@ -63,6 +63,7 @@
 
 - javascript関連
   - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
+  - [jQuery FormでPOST/GETの内容をたった一行で取得する方法](http://www.searchlight8.com/jquery-form-ajax-post-get/)
 
 - Ajax関連
   - [django – AjaxでレンダリングされたHTMLを返す](https://codeday.me/jp/qa/20190221/287560.html)
