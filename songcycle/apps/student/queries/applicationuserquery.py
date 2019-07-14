@@ -21,7 +21,13 @@ class ApplicationUserQuery:
         return cls.__singleton
 
     def is_active_user(self, email):
-        return ApplicationUser.objects.filter(email=email, active=self.__master_query.get_active_user_status_sub_code()).count() == 1
+        acitve_code = self.__master_query.get_active_user_status_sub_code()
+        return ApplicationUser.objects.filter(email=email, active=acitve_code).count() == 1
 
     def get_active_user(self, email):
-        return ApplicationUser.objects.filter(email=email, active=self.__master_query.get_active_user_status_sub_code()).first()
+        acitve_code = self.__master_query.get_active_user_status_sub_code()
+        return ApplicationUser.objects.filter(email=email, active=acitve_code).first()
+
+    def get_active_users(self):
+        acitve_code = self.__master_query.get_active_user_status_sub_code()
+        return ApplicationUser.objects.filter(active=acitve_code).all()

@@ -16,8 +16,6 @@ class MasterQuery:
 
     def get_value(self, target):
 
-        print(target)
-
         if(len(target) == 5):
            return MasterData.objects.filter(code=target[:3], sub_code=target[3:]).first().value
         

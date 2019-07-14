@@ -8,6 +8,7 @@ from django.views.generic import FormView, TemplateView
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
+from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.forms.fileuploadform import FileUploadForm
 
 #TODO:F5対策
@@ -29,7 +30,19 @@ def index(request):
 
 @decorator.authenticate_admin_only_async("create")
 def create(request):
-    html = render_to_string('student/report/create.html', request=request)
+
+    active_users = ApplicationUserQuery().get_active_users()
+
+    choices = []
+
+    for active_user in active_users:
+        choices.append((active_user.user_id, active_user.first_name + active_user.last_name))
+
+    context = {
+        'choices': choices,
+    }
+
+    html = render_to_string('student/report/create.html', context=context, request=request)
     return HttpResponse(html)
 
 @decorator.authenticate_admin_only_async_json_response("file_upload")
