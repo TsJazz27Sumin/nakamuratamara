@@ -85,6 +85,7 @@
   - [Drive API Python Quickstart](https://developers.google.com/drive/api/v3/quickstart/python?hl=ja)
   - [Drive API Python Document](https://developers.google.com/resources/api-libraries/documentation/drive/v3/python/latest/drive_v3.files.html)
   - [Google Driveにpythonでデータを登録する & Siderを使ってチェックしてみる](https://qiita.com/akiko-pusu/items/f05a5dcba544e97c057c)
+  - [How to fix “403 insufficient authentication scopes” when uploading file ](https://stackoverflow.com/questions/56099575/how-to-fix-403-insufficient-authentication-scopes-when-uploading-file-python)
 
 - セキュリティ関連
   - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
