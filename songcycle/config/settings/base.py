@@ -136,6 +136,10 @@ MEDIA_ROOT = (
     os.path.join(PROJECT_ROOT, 'media')
 )
 
+CREDENTIAL_ROOT = (
+    os.path.join(PROJECT_ROOT, 'config/credential/')
+)
+
 # セッションの設定
 SESSION_COOKIE_AGE = 3600 # 60分
 SESSION_SAVE_EVERY_REQUEST = True # 1リクエストごとにセッション情報を更新

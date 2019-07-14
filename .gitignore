@@ -8,3 +8,5 @@ songcycle/.vscode/*
 songcycle/.DS_Store
 .DS_Store
 songcycle/media/uploads/*
+songcycle/config/credential/credentials.json
+songcycle/token.pickle

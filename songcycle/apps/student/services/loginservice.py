@@ -46,7 +46,7 @@ class LoginService:
         return self.__application_user_query.is_active_user(email)
 
     def send_login_url(self, email):
-
+        
         onetime_password = get_random_string(200)
         login_url = self.__master_query.get_root_login_url() + onetime_password
 

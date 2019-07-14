@@ -58,7 +58,7 @@ class AccessInformationService:
             device_type = "bot"
 
         self.__access_information_repository.insert(
-            __master_query.get_event_type_request_login(),
+            self.__master_query.get_event_type_request_login(),
             function.get_value(http_accept_language,""),
             function.get_value(user_agent.browser.family,""),
             function.get_value(user_agent.browser.version_string,""),
