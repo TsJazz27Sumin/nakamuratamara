@@ -72,8 +72,9 @@ def report_save(request):
         file_path = form.cleaned_data['file_path']
         auther_user_id = form.cleaned_data['auther_user_id']
         comment = form.cleaned_data['comment']
+        login_user_id = request.session['user_id']
 
-        result = ReportService().report_save(file_name, file_path, auther_user_id, comment)
+        result = ReportService().report_save(file_name, file_path, auther_user_id, comment, login_user_id)
 
         if(result):
             json_data = {'data':{'message':'Success'}}

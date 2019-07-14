@@ -6,6 +6,7 @@ from apps.student.functions import function
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.queries.numberingmasterquery import NumberingMasterQuery
 from apps.student.services.googleapiservice import GoogleApiService
+from apps.student.repositories.reportrepository import ReportRepository
 
 class ReportService:
 
@@ -13,6 +14,7 @@ class ReportService:
     __applicationuserrquery = None
     __numberingmasterquery = None
     __googleapiservice = None
+    __reportrepository = None
     __new_lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
@@ -22,10 +24,11 @@ class ReportService:
             cls.__applicationuserrquery = ApplicationUserQuery()
             cls.__numberingmasterquery = NumberingMasterQuery()
             cls.__googleapiservice = GoogleApiService()
+            cls.__reportrepository = ReportRepository()
         cls.__new_lock.release()
         return cls.__singleton
 
-    def report_save(self, file_name, file_path, auther_user_id, comment):
+    def report_save(self, file_name, file_path, auther_user_id, comment, login_user_id):
         
         if(self.__applicationuserrquery.is_exist_user(auther_user_id) == False):
             json_data = {'data':{'message':'Error'}}
@@ -36,5 +39,7 @@ class ReportService:
 
         google_file_id = self.__googleapiservice.upload＿file(file_path, file_name)
         report_id = self.__numberingmasterquery.get_report_id()
+
+        self.__reportrepository.insert(report_id, auther_user_id, file_name, google_file_id, comment, login_user_id)
 
         return True
