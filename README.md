@@ -108,6 +108,7 @@
   - [属性の有無チェック](https://www.python-izm.com/advanced/hasattr/)
   - [Pythonの UTC ⇔ JST、文字列(UTC) ⇒ JST の変換とかのメモ](https://qiita.com/yoppe/items/4260cf4ddde69287a632)
   - [プルダウンリスト（Select）とマルチセレクトボックス。初期化と値の受取など。／Django2.0＋Bootstrap4](https://arakan-pgm-ai.hatenablog.com/entry/2019/02/14/090000)
+  - [Pythonで文字列・数値をゼロ埋め（ゼロパディング）](https://note.nkmk.me/python-zero-padding/)
 
 - デコレータ関連
   - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
