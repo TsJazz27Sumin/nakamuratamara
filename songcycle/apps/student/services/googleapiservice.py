@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 from config.settings.base import CREDENTIAL_ROOT, PROJECT_ROOT
+from config.settings.develop import GOOGLE_TARGET_FOLDER_ID
 
 
 class GoogleApiService:
@@ -63,6 +64,7 @@ class GoogleApiService:
         body = {
         'name': file_name,
         'mimeType': self.__mime_type,
+        'parents' : [GOOGLE_TARGET_FOLDER_ID]
         }
 
         result = service.files().create(
@@ -70,4 +72,4 @@ class GoogleApiService:
             media_body=media_body
         ).execute()
 
-        print(result)
+        return result['id']
