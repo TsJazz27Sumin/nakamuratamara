@@ -30,7 +30,7 @@ class ReportService:
         # https://developers.google.com/drive/api/v3/quickstart/python?hl=ja
         # 初回の認証は必要な様子。
 
-        self.__googleapiservice.test()
+        self.__googleapiservice.upload＿file(file_path, file_name)
 
         #report_idの採番
 

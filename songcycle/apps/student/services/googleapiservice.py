@@ -1,17 +1,21 @@
 from __future__ import print_function
-import pickle
+
 import os.path
+import pickle
 import threading
 
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 
-from config.settings.base import CREDENTIAL_ROOT
+from config.settings.base import CREDENTIAL_ROOT, PROJECT_ROOT
+
 
 class GoogleApiService:
 
-    __scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+    __scopes = ['https://www.googleapis.com/auth/drive']
+    __mime_type = 'application/vnd.google-apps.document'
 
     __singleton = None
     __new_lock = threading.Lock()
@@ -23,7 +27,7 @@ class GoogleApiService:
         cls.__new_lock.release()
         return cls.__singleton
 
-    def __get_service(self):
+    def __get_service(self, scope):
         """Shows basic usage of the Drive v3 API.
         Prints the names and ids of the first 10 files the user has access to.
         """
@@ -40,7 +44,7 @@ class GoogleApiService:
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    CREDENTIAL_ROOT + 'credentials.json', self.__scopes)
+                    CREDENTIAL_ROOT + 'credentials.json', scope)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
@@ -49,19 +53,21 @@ class GoogleApiService:
         service = build('drive', 'v3', credentials=creds)
 
         return service
-
-    def test(self):
+    
+    def upload＿file(self, file_path, file_name):
         
-        service = self.__get_service()
+        service = self.__get_service(self.__scopes)
 
-        # Call the Drive v3 API
-        results = service.files().list(
-            pageSize=10, fields="nextPageToken, files(id, name)").execute()
-        items = results.get('files', [])
+        media_body = MediaFileUpload(PROJECT_ROOT + file_path, mimetype=self.__mime_type, resumable=True)
 
-        if not items:
-            print('No files found.')
-        else:
-            print('Files:')
-            for item in items:
-                print(u'{0} ({1})'.format(item['name'], item['id']))
+        body = {
+        'name': file_name,
+        'mimeType': self.__mime_type,
+        }
+
+        result = service.files().create(
+            body=body,
+            media_body=media_body
+        ).execute()
+
+        print(result)
