@@ -23,6 +23,10 @@ class ApplicationUserQuery:
     def is_active_user(self, email):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(email=email, active=acitve_code).count() == 1
+    
+    def is_active_user(self, user_id):
+        acitve_code = self.__master_query.get_active_user_status_sub_code()
+        return ApplicationUser.objects.filter(user_id=user_id, active=acitve_code).count() == 1
 
     def get_active_user(self, email):
         acitve_code = self.__master_query.get_active_user_status_sub_code()

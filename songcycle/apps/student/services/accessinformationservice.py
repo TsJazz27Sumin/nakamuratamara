@@ -12,6 +12,7 @@ from apps.student.repositories.accessinformationrepository import AccessInformat
 class AccessInformationService:
 
     __singleton = None
+    __master_query = None
     __access_information_query = None
     __access_information_repository = None
     __new_lock = threading.Lock()
@@ -22,6 +23,7 @@ class AccessInformationService:
             cls.__singleton = super(AccessInformationService, cls).__new__(cls)
             cls.__access_information_query = AccessInformationQuery()
             cls.__access_information_repository = AccessInformationRepository()
+            cls.__master_query = MasterQuery()
         cls.__new_lock.release()
         return cls.__singleton
 
@@ -56,7 +58,7 @@ class AccessInformationService:
             device_type = "bot"
 
         self.__access_information_repository.insert(
-            MasterQuery().get_event_type_request_login(),
+            __master_query.get_event_type_request_login(),
             function.get_value(http_accept_language,""),
             function.get_value(user_agent.browser.family,""),
             function.get_value(user_agent.browser.version_string,""),

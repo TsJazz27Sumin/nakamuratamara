@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.views.generic import FormView, TemplateView
 
 from apps.student.decorators import decorator
+from apps.student.services.reportservice import ReportService
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
@@ -67,8 +68,17 @@ def report_save(request):
 
     json_data = None
     if form.is_valid():
-        json_data = {'data':{'message':'Success'}}
-    else:
-        json_data = {'data':{'message':'Error'}}
+        file_name = form.cleaned_data['file_name']
+        file_path = form.cleaned_data['file_path']
+        auther_user_id = form.cleaned_data['auther_user_id']
+        comment = form.cleaned_data['comment']
+
+        result = ReportService().report_save(file_name, file_path, auther_user_id, comment)
+
+        if(result):
+            json_data = {'data':{'message':'Success'}}
+            return JsonResponse(json_data)
+
+    json_data = {'data':{'message':'Error'}}
 
     return JsonResponse(json_data)
