@@ -10,6 +10,7 @@ from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.forms.fileuploadform import FileUploadForm
+from apps.student.forms.reportsaveform import ReportSaveForm
 
 #TODO:F5対策
 
@@ -54,6 +55,19 @@ def file_upload(request):
     if form.is_valid():
         file_path = form.save()
         json_data = {'data':{'message':'Success', 'filePath':file_path}}
+    else:
+        json_data = {'data':{'message':'Error'}}
+
+    return JsonResponse(json_data)
+
+@decorator.authenticate_admin_only_async_json_response("save")
+def report_save(request):
+
+    form = ReportSaveForm(data=request.POST)
+
+    json_data = None
+    if form.is_valid():
+        json_data = {'data':{'message':'Success'}}
     else:
         json_data = {'data':{'message':'Error'}}
 

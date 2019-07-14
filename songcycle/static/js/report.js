@@ -71,4 +71,26 @@ $(document).ready(function () {
     $("#application").on('click', "#report-file", function(event) {
         inputTag.click();
     });
+
+    $("#application").on('click', "#report-save", function(event) {
+        
+        var form = $('#report-save-form');
+        var reportSaveForm = form.serialize();
+
+        $.ajax({
+            url  : form[0].action,
+            type : "POST",
+            data : reportSaveForm,
+            dataType : "json",
+        }).done(function(json){
+            if(json.data.message === "Success"){
+                alert(json.data.message);
+            }
+            if(json.data.message === "Error"){
+                alert(json.data.message);
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            alert("Error");
+        });
+    });
 });

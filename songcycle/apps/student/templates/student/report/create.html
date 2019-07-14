@@ -1,11 +1,11 @@
 <div class="report-create-area">
     <h4 class="mb-3 report-create-title">Report Create</h4>
-    <form action="" method="POST">
+    <form id="report-save-form" action="{% url 'report_save' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input id="file-name" type="hidden" required="">
-          <input id="file-path" type="hidden" required="">
+          <input id="file-name" name="file_name" type="hidden" required="">
+          <input id="file-path" name="file_path" type="hidden" required="">
           <a id="file-upload-url" type="hidden" href="{% url 'file_upload' %}"></a>
           <button id="report-file" class="btn btn-info btn-md btn-block" type="button">レポートを選択</button>
         </div>
@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="col-md-12 mb-3">
-          <select class="custom-select d-block w-100" id="auther-user" required="">
+          <select class="custom-select d-block w-100" id="auther-user" name="auther_user_id" required="">
             <option value="">このレポートの作者を選択してください。</option>
             {% for key,val in choices %}
             <option value={{ key }}>{{val}}</option>
@@ -27,12 +27,12 @@
 
       <div class="mb-3">
         <div class="input-group"> 
-          <input type="text" class="form-control" id="comment" placeholder="コメントがあれば記入してください。">
+          <input id="comment" name="comment" type="text" class="form-control" placeholder="コメントがあれば記入してください。">
         </div>
       </div>
 
       <hr class="mb-4">
-      <button class="btn btn-success btn-lg btn-block" type="submit">登録する</button>
+      <button id="report-save" class="btn btn-success btn-lg btn-block" type="button">登録する</button>
     </form>
     <div class="continue-to-register">
       <a id="report-create" class="lead" href="{% url 'report_create' %}">続けて登録する</a>
