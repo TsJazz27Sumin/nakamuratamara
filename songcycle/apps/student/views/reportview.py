@@ -65,8 +65,8 @@ def file_upload(request):
 def report_save(request):
 
     form = ReportSaveForm(data=request.POST)
-
     json_data = None
+
     if form.is_valid():
         file_name = form.cleaned_data['file_name']
         file_path = form.cleaned_data['file_path']

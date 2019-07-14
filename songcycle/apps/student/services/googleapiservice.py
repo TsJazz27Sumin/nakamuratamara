@@ -23,7 +23,7 @@ class GoogleApiService:
         cls.__new_lock.release()
         return cls.__singleton
 
-    def test(self):
+    def __get_service(self):
         """Shows basic usage of the Drive v3 API.
         Prints the names and ids of the first 10 files the user has access to.
         """
@@ -47,6 +47,12 @@ class GoogleApiService:
                 pickle.dump(creds, token)
 
         service = build('drive', 'v3', credentials=creds)
+
+        return service
+
+    def test(self):
+        
+        service = self.__get_service()
 
         # Call the Drive v3 API
         results = service.files().list(

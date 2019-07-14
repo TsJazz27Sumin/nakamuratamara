@@ -77,12 +77,17 @@ $(document).ready(function () {
         var form = $('#report-save-form');
         var reportSaveForm = form.serialize();
 
+        overlay()
+
         $.ajax({
             url  : form[0].action,
             type : "POST",
             data : reportSaveForm,
             dataType : "json",
         }).done(function(json){
+
+            overlayClear()
+
             if(json.data.message === "Success"){
                 alert(json.data.message);
             }
@@ -90,6 +95,9 @@ $(document).ready(function () {
                 alert(json.data.message);
             }
         }).fail(function(jqXHR, textStatus, errorThrown){
+
+            overlayClear()
+
             alert("Error");
         });
     });

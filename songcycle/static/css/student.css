@@ -112,3 +112,15 @@ body {
 .mastfoot {
   color: #212529;
 }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: #808284;
+  z-index: 1;
+  pointer-events: none;
+ }
+
+ .disable-button {
+  background: #616366;
+ }
