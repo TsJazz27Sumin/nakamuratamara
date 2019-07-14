@@ -30,4 +30,4 @@ class ApplicationUserQuery:
 
     def get_active_users(self):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
-        return ApplicationUser.objects.filter(active=acitve_code).all()
+        return ApplicationUser.objects.filter(active=acitve_code).all().order_by('user_id')
