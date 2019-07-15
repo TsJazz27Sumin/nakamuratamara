@@ -58,3 +58,14 @@ class ReportService:
         self.__reportrepository.delete(report)
 
         return True
+
+    def download_report(self, report_id):
+    
+        report = self.__reportquery.get_one(report_id);
+
+        if (report == None):
+            return True
+
+        file = self.__googleapiservice.download＿file(report.google_file_id)
+        
+        return file

@@ -38,7 +38,7 @@ $(document).ready(function () {
     function createFileInputTag(fileUploadUrl) {
         var input = document.createElement('input');
         input.type = 'file';
-        input.accept = '.pdf,.xls,.xlsx,.doc,.docx, text/plain';
+        input.accept = '.doc,.docx, text/plain';
         input.onchange = function(event) {
             var file = event.target.files[0]
 
@@ -125,6 +125,39 @@ $(document).ready(function () {
 
         group = "report";
         link = $(this).find('[name="report-delete-link"]')[0];
+
+        var fd = new FormData();
+        fd.append('report_id', link.id);
+
+        overlay()
+        $.ajax({
+            type: "POST",
+            url: link.href,
+            data:fd,
+            dataType: "html",
+            processData : false,
+            contentType: false
+        }).done(function (html) {
+            overlayClear(true)
+            
+            $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+
+        }).fail(function(jqXHR, textStatus, errorThrown){
+
+            overlayClear(false)
+
+            alert("このエラーが起きた場合は、管理者に問い合わせてください。");
+        });
+        
+        return false;
+    });
+
+    $("#application").on('click', "#report-download", function () {
+
+        group = "report";
+        link = $(this).find('[name="report-download-link"]')[0];
 
         var fd = new FormData();
         fd.append('report_id', link.id);

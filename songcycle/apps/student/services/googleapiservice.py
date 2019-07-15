@@ -82,5 +82,18 @@ class GoogleApiService:
             fileId=google_file_id
         ).execute()
 
-        print(result)
         return True
+
+    def download＿file(self, google_file_id):
+        
+        service = self.__get_service(self.__scopes)
+
+        file = service.files().export(
+            fileId=google_file_id,
+            mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ).execute()
+
+        with open(PROJECT_ROOT + 'sample.docx', 'wb') as f:
+            f.write(file)
+
+        return file

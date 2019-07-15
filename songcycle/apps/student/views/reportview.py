@@ -124,6 +124,18 @@ def delete_report(request):
 
     return index(request)
 
+@decorator.authenticate_admin_only_async("download_report")
+def download_report(request):
+
+    form = ReportIdForm(data=request.POST)
+
+    if form.is_valid():
+        report_id = form.cleaned_data['report_id']
+
+        file = ReportService().download_report(report_id)
+
+    return index(request)
+
 def __get_choices():
     choices = []
     active_users = ApplicationUserQuery().get_active_users()
