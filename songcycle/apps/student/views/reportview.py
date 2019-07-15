@@ -21,10 +21,9 @@ def index(request):
     result_list = ReportQuery().select_all()
 
     context = {
-        'title': 'Report',
-        'message': 'Success!',
         'result_list':result_list,
-        'result_list_count':len(result_list)
+        'result_list_count':len(result_list),
+        'authority_name': request.session['authority']
     }
 
     html = render_to_string('student/report/index.html', context)
@@ -78,10 +77,13 @@ def save_report(request):
 
         for field in form:
             for error in field.errors:
+                # 今んとこ先生が使うので、メッセージは英語のまま。
                 if "file_path" in field.name:
-                    error_message_list.append("レポートを選択してください。")
+                    error_message_list.append("Report File:" + error)
                 if "auther_user_id" in field.name:
-                    error_message_list.append("著作者を選択してください。")
+                    error_message_list.append("Author:" + error)
+                if "comment" in field.name:
+                    error_message_list.append("Comment:" + error)
 
         error_message = '\n'.join(error_message_list)
         json_data = {'data':{'result':'false', 'message':error_message}}

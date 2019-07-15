@@ -7,7 +7,7 @@
           <input id="file-name" name="file_name" type="hidden" required="">
           <input id="file-path" name="file_path" type="hidden" required="">
           <a id="file-upload-url" type="hidden" href="{% url 'file_upload' %}"></a>
-          <button id="report-file" class="btn btn-info btn-md btn-block" type="button">レポートを選択</button>
+          <button id="report-file" class="btn btn-info btn-md btn-block" type="button">Select Report File</button>
         </div>
         <div class="col-md-6 mb-3">
           <label id="file-name-label" class="file-name-label"></label>
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-12 mb-3">
           <select class="custom-select d-block w-100" id="auther-user" name="auther_user_id" required="">
-            <option value="">このレポートの作者を選択してください。</option>
+            <option value="">Select Report Author...</option>
             {% for key,val in choices %}
             <option value={{ key }}>{{val}}</option>
             {% endfor %}
@@ -27,16 +27,16 @@
 
       <div class="mb-3">
         <div class="input-group"> 
-          <input id="comment" name="comment" type="text" class="form-control" placeholder="コメントがあれば記入してください。" value="">
+          <input id="comment" name="comment" type="text" class="form-control" placeholder="If you have comment, Please input." value="">
         </div>
       </div>
 
       <div id="report-save-area">
         <hr class="mb-4">
-        <button id="report-save" class="btn btn-success btn-lg btn-block" type="button">登録する</button>
+        <button id="report-save" class="btn btn-success btn-lg btn-block" type="button">Save</button>
       </div>
     </form>
     <div id="seq-report-create" class="continue-to-register-none">
-      <a id="report-create" class="lead" href="{% url 'report_create' %}">続けて登録する</a>
+      <a id="report-create" class="lead" href="{% url 'report_create' %}">Continue to register</a>
     </div>
   </div>

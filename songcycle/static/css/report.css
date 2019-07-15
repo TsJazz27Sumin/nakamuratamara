@@ -27,3 +27,37 @@
 .continue-to-register{
     text-align: right;
 }
+
+.report-create-link{
+    float: right;
+    padding-right:1.9rem;
+}
+
+.cover-report{
+    padding:2rem;
+}
+
+.report-table-area{
+    max-height:50%;
+    padding:2rem;
+}
+
+.auther-user{
+    width:200px;
+}
+
+.file-name{
+    width:300px;
+}
+
+.down-load-count{
+    width:100px;
+}
+
+.request-download{
+    width:100px;
+}
+
+.delete-report{
+    width:100px;
+}
