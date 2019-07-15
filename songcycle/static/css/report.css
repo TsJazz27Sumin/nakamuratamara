@@ -42,6 +42,10 @@
     padding:2rem;
 }
 
+.target-year{
+    width:50px;
+}
+
 .auther-user{
     width:200px;
 }

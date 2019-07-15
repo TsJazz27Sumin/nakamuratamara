@@ -1,12 +1,13 @@
 <main role="main" class="inner cover-report">
     {% if authority_name == "admin" %}
-    <a id="report-create" class="lead report-create-link" href="{% url 'report_create' %}">レポート新規登録</a>
+    <a id="report-create" class="lead report-create-link" href="{% url 'report_create' %}">To Report Create</a>
     {% endif %}
 
     <div class="table-responsive report-table-area">
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
+                    <th class="target-year">年度</th>
                     <th class="auther-user">作者</th>
                     <th class="file-name">レポート名</th>
                     <th class="down-load-count">ダウンロード数</th>
@@ -19,6 +20,7 @@
             <tbody>
                 {% for result in result_list %}
                 <tr>
+                    <td class="target-year">{{result.target_year}}</td>
                     <td class="auther-user">{{result.auther_user_id}} * TODO:JOIN</td>
                     <td class="file-name">{{result.file_name}}</td>
                     <td class="down-load-count">0 * TODO:COUNT JOIN</td>
@@ -32,7 +34,7 @@
                     {% if authority_name == "admin" %}
                     <td class="delete-report">
                         <button id="report-delete" class="btn btn-primary btn-sm btn-block" type="button">
-                            削除
+                            Delete
                             <a id="{{result.report_id}}" name="report-delete-link" type="hidden" href="{% url 'report_delete' %}"></a>
                         </button>
                     </td>

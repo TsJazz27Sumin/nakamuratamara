@@ -31,7 +31,7 @@ class ReportService:
         cls.__new_lock.release()
         return cls.__singleton
 
-    def save_report(self, file_name, file_path, auther_user_id, comment, login_user_id):
+    def save_report(self, file_name, file_path, auther_user_id, target_year, comment, login_user_id):
         
         if(self.__applicationuserrquery.is_exist_user(auther_user_id) == False):
             json_data = {'data':{'message':'Error'}}
@@ -43,7 +43,7 @@ class ReportService:
         google_file_id = self.__googleapiservice.create＿file(file_path, file_name)
         report_id = self.__numberingmasterquery.get_report_id()
 
-        self.__reportrepository.insert(report_id, auther_user_id, file_name, google_file_id, comment, login_user_id)
+        self.__reportrepository.insert(report_id, auther_user_id, file_name, google_file_id, target_year, comment, login_user_id)
 
         return report_id
     

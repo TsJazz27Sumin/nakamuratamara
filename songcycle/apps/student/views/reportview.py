@@ -65,6 +65,7 @@ def save_report(request):
         file_name = form.cleaned_data['file_name']
         file_path = form.cleaned_data['file_path']
         auther_user_id = form.cleaned_data['auther_user_id']
+        target_year = form.cleaned_data['target_year']
         comment = form.cleaned_data['comment']
         login_user_id = request.session['user_id']
 
@@ -72,7 +73,7 @@ def save_report(request):
             json_data = {'data':{'result':'false', 'message':'Already same name file uploaded.'}}
             return JsonResponse(json_data)
 
-        report_id = ReportService().save_report(file_name, file_path, auther_user_id, comment, login_user_id)
+        report_id = ReportService().save_report(file_name, file_path, auther_user_id, target_year, comment, login_user_id)
 
         if(report_id is not None):
             json_data = {'data':{'result':'true', 'message':'Success'}}

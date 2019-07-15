@@ -16,13 +16,14 @@ class ReportRepository:
         cls.__new_lock.release()
         return cls.__singleton
 
-    def insert(self, report_id, auther_user_id, file_name, google_file_id, comment, login_user_id):
+    def insert(self, report_id, auther_user_id, file_name, google_file_id, target_year, comment, login_user_id):
         
         report = Report(
             report_id = report_id,
             auther_user_id = auther_user_id,
             file_name = file_name,
             google_file_id = google_file_id,
+            target_year = target_year,
             comment = comment,
             create_user_id = login_user_id,
             update_user_id = login_user_id,
