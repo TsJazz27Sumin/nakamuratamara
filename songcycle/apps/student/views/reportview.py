@@ -79,19 +79,24 @@ def save_report(request):
 
     else:
         error_message_list = []
+        error_item_list = []
 
         for field in form:
             for error in field.errors:
                 # 今んとこ先生が使うので、メッセージは英語のまま。
                 if "file_path" in field.name:
                     error_message_list.append("Report File:" + error)
+                    error_item_list.append("report-file")
                 if "auther_user_id" in field.name:
                     error_message_list.append("Author:" + error)
+                    error_item_list.append("auther-user")
                 if "comment" in field.name:
                     error_message_list.append("Comment:" + error)
+                    error_item_list.append("comment-area")
 
-        error_message = '\n'.join(error_message_list)
-        json_data = {'data':{'result':'false', 'message':error_message}}
+        error_message = ','.join(error_message_list)
+        error_item = ','.join(error_item_list)
+        json_data = {'data':{'result':'false', 'errorMessage':error_message, 'errorItem':error_item}}
 
     return JsonResponse(json_data)
 

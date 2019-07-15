@@ -27,10 +27,23 @@ function overlayClear(isDisabledRefresh){
     }
 };
 
-function str_to_bool(value){
+function strToBool(value){
     if(value === "true"){
         return true;
     }
 
     return false;
-}
+};
+
+function addSuccessMessage(id){
+    $(id).after('<p class="font-weight-bold text-success">Success!!!</p>');
+};
+
+function addErrorMessage(errorItem, errorMessage){
+    errorItemList = errorItem.split(',');
+    errorMessageList = errorMessage.split(',');
+
+    for(var i = 0; i < errorItemList.length; i++){
+        $("#" + errorItemList[i]).after('<p name="error-message" class="text-danger">' + errorMessageList[i] + '</p>');
+    }
+};

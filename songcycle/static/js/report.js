@@ -74,6 +74,8 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-save", function(event) {
         
+        $('[name="error-message"]').remove();
+
         var form = $('#report-save-form');
         var reportSaveForm = form.serialize();
 
@@ -88,20 +90,18 @@ $(document).ready(function () {
 
             data = json.data;
 
-            if(str_to_bool(data.result)){
+            if(strToBool(data.result)){
                 overlayClear(false)
                 $("#report-file").prop("disabled", true);
                 
-                //TODO:alertじゃなくてダイアログを使いたい。
-                alert(data.message);
+                addSuccessMessage("#report-save-area");
 
                 $('#report-save-area').remove();
                 $('#seq-report-create').removeClass("continue-to-register-none");
                 $('#seq-report-create').addClass("continue-to-register");
             } else {
-                overlayClear(true)
-                //TODO:alertじゃなくてダイアログを使いたい。
-                alert(data.message);
+                overlayClear(true);
+                addErrorMessage(data.errorItem, data.errorMessage);
             }
 
         }).fail(function(jqXHR, textStatus, errorThrown){
