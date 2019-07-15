@@ -74,6 +74,7 @@
 - ORM関連
   - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
   - [Django データベース操作 についてのまとめ](https://qiita.com/okoppe8/items/66a8747cf179a538355b)
+  - [DjangoでIN演算子を使ったクエリを生成する方法](https://qiita.com/nakkun/items/86a94e65fe6785325f54)
 
 - メール送信関連
   - [Django で Gmail を送信する](https://qiita.com/ekzemplaro/items/3265f755eb4537b18478)
@@ -110,6 +111,7 @@
   - [Pythonの UTC ⇔ JST、文字列(UTC) ⇒ JST の変換とかのメモ](https://qiita.com/yoppe/items/4260cf4ddde69287a632)
   - [プルダウンリスト（Select）とマルチセレクトボックス。初期化と値の受取など。／Django2.0＋Bootstrap4](https://arakan-pgm-ai.hatenablog.com/entry/2019/02/14/090000)
   - [Pythonで文字列・数値をゼロ埋め（ゼロパディング）](https://note.nkmk.me/python-zero-padding/)
+  - [Djangoのテンプレートで、キーに変数を指定して辞書にアクセス](http://y0m0r.hateblo.jp/entry/20140424/1398354294)
 
 - デコレータ関連
   - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
