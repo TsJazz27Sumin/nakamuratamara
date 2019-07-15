@@ -1,3 +1,5 @@
+{% load lookup %}
+
 <main role="main" class="inner cover-report">
     {% if authority_name == "admin" %}
     <a id="report-create" class="lead report-create-link" href="{% url 'report_create' %}">To Report Create</a>
@@ -21,7 +23,7 @@
                 {% for result in result_list %}
                 <tr>
                     <td class="target-year">{{result.target_year}}</td>
-                    <td class="auther-user">{{result.auther_user_id}} * TODO:JOIN</td>
+                    <td class="auther-user">{{ user_name_dictionary|lookup:result.auther_user_id }}</td>
                     <td class="file-name">{{result.file_name}}</td>
                     <td class="down-load-count">0 * TODO:COUNT JOIN</td>
                     <td class="request-download">

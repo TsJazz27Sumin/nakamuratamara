@@ -21,8 +21,15 @@ def index(request):
 
     result_list = ReportQuery().select_all()
 
+    user_ids = []
+    for result in result_list:
+        user_ids.append(result.auther_user_id)
+    
+    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids)
+    print(user_name_dictionary)
     context = {
         'result_list':result_list,
+        'user_name_dictionary':user_name_dictionary,
         'result_list_count':len(result_list),
         'authority_name': request.session['authority']
     }

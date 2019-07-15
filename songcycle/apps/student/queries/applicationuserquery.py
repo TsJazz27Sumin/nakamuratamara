@@ -35,3 +35,12 @@ class ApplicationUserQuery:
     def get_active_users(self):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(active=acitve_code).all().order_by('user_id')
+    
+    def get_users_name(self, user_ids):
+        users = ApplicationUser.objects.filter(user_id__in=user_ids).all().order_by('user_id')
+        user_name_dictionary = {}
+
+        for user in users:
+            user_name_dictionary[user.user_id] = user.first_name + " " + user.last_name
+
+        return user_name_dictionary

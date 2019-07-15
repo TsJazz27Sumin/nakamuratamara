@@ -17,7 +17,7 @@ class ReportQuery:
         return cls.__singleton
 
     def select_all(self):
-        return Report.objects.all().order_by('create_timestamp').reverse()
+        return Report.objects.all().order_by('target_year', 'create_timestamp').reverse()
     
     def get_one(self, report_id):
         return Report.objects.filter(report_id=report_id).first()
