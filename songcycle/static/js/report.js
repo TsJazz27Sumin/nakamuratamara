@@ -19,6 +19,15 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
+            var now = new Date();
+            var y = now.getFullYear();
+
+            $('[name="target-years"]').each(function() {
+                if($(this).val() == y){
+                    $(this).attr("selected","selected");
+                }
+            });
+
             var fileUploadUrl = $(html).find('#file-upload-url').attr("href");
             inputTag = createFileInputTag(fileUploadUrl);
         });

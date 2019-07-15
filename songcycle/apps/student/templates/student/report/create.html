@@ -25,6 +25,17 @@
         </div>
       </div>
 
+      <div class="row">
+          <div class="col-md-12 mb-3">
+            <select class="custom-select d-block w-100" id="target-year" name="target_year" required="">
+              <option value="">Select Year...</option>
+              {% for key,val in target_years %}
+              <option name="target-years" value="{{ key }}">{{val}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
       <div class="mb-3">
         <div id="comment-area" class="input-group"> 
           <input id="comment" name="comment" type="text" class="form-control" placeholder="If you have comment, Please input." value="" maxlength=100>

@@ -34,7 +34,8 @@ def index(request):
 def create(request):
 
     context = {
-        'choices': __get_choices()
+        'choices': __get_choices(),
+        'target_years':__get_target_years()
     }
 
     html = render_to_string('student/report/create.html', context=context, request=request)
@@ -90,6 +91,9 @@ def save_report(request):
                 if "auther_user_id" in field.name:
                     error_message_list.append("Author:" + error)
                     error_item_list.append("auther-user")
+                if "target_year" in field.name:
+                    error_message_list.append("Year:" + error)
+                    error_item_list.append("target-year")
                 if "comment" in field.name:
                     error_message_list.append("Comment:" + error)
                     error_item_list.append("comment-area")
@@ -120,4 +124,12 @@ def __get_choices():
         choices.append((active_user.user_id, active_user.first_name + active_user.last_name))
     
     return choices
+
+def __get_target_years():
+    target_years = []
+
+    for i in range(2019, 2039):
+        target_years.append((i, i))
+    
+    return target_years
 
