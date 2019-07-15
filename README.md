@@ -69,6 +69,7 @@
   - [django – AjaxでレンダリングされたHTMLを返す](https://codeday.me/jp/qa/20190221/287560.html)
   - [DjangoでAjaxする時の注意点](https://qiita.com/yat1ma30/items/c7545896295761a34c77)
   - [Djangoで、Ajax](https://narito.ninja/blog/detail/88/)
+  - [AjaxにおけるprocessDataとcontentTypeについて](https://ryoutaku-jo.hatenablog.com/entry/2019/01/16/224131)
 
 - ORM関連
   - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
