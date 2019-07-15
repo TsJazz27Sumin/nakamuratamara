@@ -33,15 +33,8 @@ def index(request):
 @decorator.authenticate_admin_only_async("create")
 def create(request):
 
-    active_users = ApplicationUserQuery().get_active_users()
-
-    choices = []
-
-    for active_user in active_users:
-        choices.append((active_user.user_id, active_user.first_name + active_user.last_name))
-
     context = {
-        'choices': choices,
+        'choices': __get_choices()
     }
 
     html = render_to_string('student/report/create.html', context=context, request=request)
@@ -61,8 +54,8 @@ def file_upload(request):
 
     return JsonResponse(json_data)
 
-@decorator.authenticate_admin_only_async_json_response("save")
-def report_save(request):
+@decorator.authenticate_admin_only_async_json_response("save_report")
+def save_report(request):
 
     form = ReportSaveForm(data=request.POST)
     json_data = None
@@ -74,12 +67,47 @@ def report_save(request):
         comment = form.cleaned_data['comment']
         login_user_id = request.session['user_id']
 
-        result = ReportService().report_save(file_name, file_path, auther_user_id, comment, login_user_id)
+        report_id = ReportService().save_report(file_name, file_path, auther_user_id, comment, login_user_id)
 
-        if(result):
-            json_data = {'data':{'message':'Success'}}
+        if(report_id is not None):
+            json_data = {'data':{'result':'true', 'message':'Success'}}
             return JsonResponse(json_data)
 
-    json_data = {'data':{'message':'Error'}}
+    else:
+        error_message_list = []
+
+        for field in form:
+            for error in field.errors:
+                if "file_path" in field.name:
+                    error_message_list.append("レポートを選択してください。")
+                if "auther_user_id" in field.name:
+                    error_message_list.append("著作者を選択してください。")
+
+        error_message = '\n'.join(error_message_list)
+        json_data = {'data':{'result':'false', 'message':error_message}}
 
     return JsonResponse(json_data)
+
+@decorator.authenticate_admin_only_async_json_response("delete_report")
+def delete_report(request):
+
+    report_id = request.POST['report_id']
+    json_data = None
+
+    result = ReportService().delete_report(report_id)
+
+    if(result):
+        json_data = {'data':{'message':'Success'}}
+        return JsonResponse(json_data)
+
+    return JsonResponse(json_data)
+
+def __get_choices():
+    choices = []
+    active_users = ApplicationUserQuery().get_active_users()
+
+    for active_user in active_users:
+        choices.append((active_user.user_id, active_user.first_name + active_user.last_name))
+    
+    return choices
+

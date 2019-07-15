@@ -55,7 +55,7 @@ class GoogleApiService:
 
         return service
     
-    def upload＿file(self, file_path, file_name):
+    def create＿file(self, file_path, file_name):
         
         service = self.__get_service(self.__scopes)
 
@@ -73,3 +73,14 @@ class GoogleApiService:
         ).execute()
 
         return result['id']
+
+    def delete＿file(self, google_file_id):
+        
+        service = self.__get_service(self.__scopes)
+
+        result = service.files().delete(
+            fileId=google_file_id
+        ).execute()
+
+        print(result)
+        return True

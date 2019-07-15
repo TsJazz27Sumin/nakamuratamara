@@ -86,19 +86,29 @@ $(document).ready(function () {
             dataType : "json",
         }).done(function(json){
 
-            overlayClear()
+            data = json.data;
 
-            if(json.data.message === "Success"){
-                alert(json.data.message);
+            if(str_to_bool(data.result)){
+                overlayClear(false)
+                $("#report-file").prop("disabled", true);
+                
+                //TODO:alertじゃなくてダイアログを使いたい。
+                alert(data.message);
+
+                $('#report-save-area').remove();
+                $('#seq-report-create').removeClass("continue-to-register-none");
+                $('#seq-report-create').addClass("continue-to-register");
+            } else {
+                overlayClear(true)
+                //TODO:alertじゃなくてダイアログを使いたい。
+                alert(data.message);
             }
-            if(json.data.message === "Error"){
-                alert(json.data.message);
-            }
+
         }).fail(function(jqXHR, textStatus, errorThrown){
 
-            overlayClear()
+            overlayClear(false)
 
-            alert("Error");
+            alert("このエラーが起きた場合は、管理者に問い合わせてください。");
         });
     });
 });

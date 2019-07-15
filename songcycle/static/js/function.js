@@ -11,15 +11,26 @@ function overlay(){
     });
 };
 
-function overlayClear(){
+function overlayClear(isDisabledRefresh){
     $("#body-area").removeClass("overlay");
-    $("input").each( function() {
-        $(this).attr('disabled',false);
-    });
-    $("select").each( function() {
-        $(this).attr('disabled',false);
-    });
-    $("button").each( function() {
-        $(this).removeClass("disable-button");
-    });
+
+    if (isDisabledRefresh){
+        $("input").each( function() {
+            $(this).attr('disabled',false);
+        });
+        $("select").each( function() {
+            $(this).attr('disabled',false);
+        });
+        $("button").each( function() {
+            $(this).removeClass("disable-button");
+        });
+    }
 };
+
+function str_to_bool(value){
+    if(value === "true"){
+        return true;
+    }
+
+    return false;
+}

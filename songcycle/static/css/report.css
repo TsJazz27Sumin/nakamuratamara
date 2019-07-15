@@ -20,6 +20,10 @@
     text-align: left;
 }
 
+.continue-to-register-none{
+    display:none;
+}
+
 .continue-to-register{
     text-align: right;
 }

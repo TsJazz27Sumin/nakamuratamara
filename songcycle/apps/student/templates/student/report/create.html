@@ -31,10 +31,12 @@
         </div>
       </div>
 
-      <hr class="mb-4">
-      <button id="report-save" class="btn btn-success btn-lg btn-block" type="button">登録する</button>
+      <div id="report-save-area">
+        <hr class="mb-4">
+        <button id="report-save" class="btn btn-success btn-lg btn-block" type="button">登録する</button>
+      </div>
     </form>
-    <div class="continue-to-register">
+    <div id="seq-report-create" class="continue-to-register-none">
       <a id="report-create" class="lead" href="{% url 'report_create' %}">続けて登録する</a>
     </div>
   </div>

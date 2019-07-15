@@ -29,3 +29,7 @@ class ReportRepository:
         )
 
         report.save()
+    
+    def delete(self, report):
+        report.delete()
+
