@@ -93,7 +93,4 @@ class GoogleApiService:
             mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ).execute()
 
-        with open(PROJECT_ROOT + 'sample.docx', 'wb') as f:
-            f.write(file)
-
         return file

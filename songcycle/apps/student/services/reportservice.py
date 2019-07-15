@@ -68,4 +68,4 @@ class ReportService:
 
         file = self.__googleapiservice.download＿file(report.google_file_id)
         
-        return file
+        return file, report.file_name

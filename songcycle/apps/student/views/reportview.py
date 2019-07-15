@@ -124,17 +124,19 @@ def delete_report(request):
 
     return index(request)
 
-@decorator.authenticate_admin_only_async("download_report")
+@decorator.authenticate_admin_only("download_report")
 def download_report(request):
 
-    form = ReportIdForm(data=request.POST)
+    report_id = request.GET.get("report_id")
 
-    if form.is_valid():
-        report_id = form.cleaned_data['report_id']
+    file, file_name = ReportService().download_report(report_id)
 
-        file = ReportService().download_report(report_id)
+    response = HttpResponse(file, content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    response["Content-Disposition"] = "filename=" + file_name
 
-    return index(request)
+    #TODO: ダウンロード履歴の登録
+
+    return response
 
 def __get_choices():
     choices = []

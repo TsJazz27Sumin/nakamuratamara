@@ -159,31 +159,8 @@ $(document).ready(function () {
         group = "report";
         link = $(this).find('[name="report-download-link"]')[0];
 
-        var fd = new FormData();
-        fd.append('report_id', link.id);
-
-        overlay()
-        $.ajax({
-            type: "POST",
-            url: link.href,
-            data:fd,
-            dataType: "html",
-            processData : false,
-            contentType: false
-        }).done(function (html) {
-            overlayClear(true)
-            
-            $('#application').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + group).find('p').addClass("active");
-
-        }).fail(function(jqXHR, textStatus, errorThrown){
-
-            overlayClear(false)
-
-            alert("このエラーが起きた場合は、管理者に問い合わせてください。");
-        });
-        
-        return false;
+        var a = document.createElement("a");
+        a.href = link;
+        a.click();
     });
 });
