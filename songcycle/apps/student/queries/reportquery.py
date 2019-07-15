@@ -21,3 +21,6 @@ class ReportQuery:
     
     def get_one(self, report_id):
         return Report.objects.filter(report_id=report_id).first()
+    
+    def exist_same_file_name(self, file_name):
+        return Report.objects.filter(file_name=file_name).count() > 0
