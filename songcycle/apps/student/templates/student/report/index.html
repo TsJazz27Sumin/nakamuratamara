@@ -23,11 +23,18 @@
                     <td class="file-name">{{result.file_name}}</td>
                     <td class="down-load-count">0</td>
                     <td class="request-download">
-                        <button id="report-download" class="btn btn-info btn-sm btn-block" type="button">ダウンロード</button>
+                        <button id="report-download" class="btn btn-info btn-sm btn-block" type="button">
+                            ダウンロード
+                            <a id="{{result.report_id}}" name="report-download-link" type="hidden" href="{% url 'report_create' %}"></a>
+                        </button>
+                        
                     </td>
                     {% if authority_name == "admin" %}
                     <td class="delete-report">
-                        <button id="report-delete" class="btn btn-primary btn-sm btn-block" type="button">削除</button>
+                        <button id="report-delete" class="btn btn-primary btn-sm btn-block" type="button">
+                            削除
+                            <a id="{{result.report_id}}" name="report-delete-link" type="hidden" href="{% url 'report_delete' %}"></a>
+                        </button>
                     </td>
                     {% endif %}
                 </tr>

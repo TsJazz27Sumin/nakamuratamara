@@ -12,6 +12,7 @@ from apps.student.queries.reportquery import ReportQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.forms.fileuploadform import FileUploadForm
 from apps.student.forms.reportsaveform import ReportSaveForm
+from apps.student.forms.report_id import ReportIdForm
 
 #TODO:F5対策
 
@@ -90,19 +91,17 @@ def save_report(request):
 
     return JsonResponse(json_data)
 
-@decorator.authenticate_admin_only_async_json_response("delete_report")
+@decorator.authenticate_admin_only_async("delete_report")
 def delete_report(request):
 
-    report_id = request.POST['report_id']
-    json_data = None
+    form = ReportIdForm(data=request.POST)
 
-    result = ReportService().delete_report(report_id)
+    if form.is_valid():
+        report_id = form.cleaned_data['report_id']
 
-    if(result):
-        json_data = {'data':{'message':'Success'}}
-        return JsonResponse(json_data)
+        ReportService().delete_report(report_id)
 
-    return JsonResponse(json_data)
+    return index(request)
 
 def __get_choices():
     choices = []

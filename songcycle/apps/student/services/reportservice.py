@@ -49,7 +49,7 @@ class ReportService:
     
     def delete_report(self, report_id):
 
-        report = __reportquery.get_one(report_id);
+        report = self.__reportquery.get_one(report_id);
 
         if (report == None):
             return True
