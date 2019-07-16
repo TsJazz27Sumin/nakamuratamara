@@ -6,7 +6,7 @@
     {% endif %}
 
     <div class="table-responsive report-table-area">
-        <table class="table table-striped table-dark">
+        <table class="table table-striped student-table table-bordered">
             <thead>
                 <tr>
                     <th class="target-year">年度</th>
@@ -27,7 +27,7 @@
                     <td class="file-name">{{result.file_name}}</td>
                     <td class="down-load-count">0 * TODO:COUNT JOIN</td>
                     <td class="request-download">
-                        <button id="report-download" class="btn btn-info btn-sm btn-block" type="button">
+                        <button id="report-download" class="btn button-sakura btn-sm btn-block" type="button">
                             ダウンロード
                             <a name="report-download-link" type="hidden" href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
                         </button>
@@ -35,7 +35,7 @@
                     </td>
                     {% if authority_name == "admin" %}
                     <td class="delete-report">
-                        <button id="report-delete" class="btn btn-primary btn-sm btn-block" type="button">
+                        <button id="report-delete" class="btn button-chinese-pink btn-sm btn-block" type="button">
                             Delete
                             <a id="{{result.report_id}}" name="report-delete-link" type="hidden" href="{% url 'report_delete' %}"></a>
                         </button>

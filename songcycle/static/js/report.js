@@ -38,7 +38,7 @@ $(document).ready(function () {
     function createFileInputTag(fileUploadUrl) {
         var input = document.createElement('input');
         input.type = 'file';
-        input.accept = '.doc,.docx, text/plain';
+        input.accept = '.docx, text/plain';
         input.onchange = function(event) {
             var file = event.target.files[0]
 

@@ -4,6 +4,7 @@
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
   <link href="{% static 'css/login.css' %}" rel="stylesheet">
+  <link href="{% static 'css/student.css' %}" rel="stylesheet">
 {% endblock %}
 
 <!doctype html>
@@ -22,7 +23,7 @@
         <p>
             <input class="form-control" type="text" name="email" autofocus="" placeholder="email" required="" id="id_email">
         </p>
-        <button class="btn btn-md btn-primary btn-block" type="submit">Request Login URL</button>
+        <button class="btn btn-md button-sakura btn-block" type="submit">Request Login URL</button>
         <p class="mt-5 mb-3 text-muted">&copy; nakamuratamara 2019</p>
     </form>
 </body>

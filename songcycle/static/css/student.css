@@ -124,3 +124,25 @@ body {
  .disable-button {
   background: #616366;
  }
+
+ .button-chinese-pink{
+  color: #ffffff;
+  background-color: #f9c1cf;
+  border-color: #f9c1cf;
+ }
+
+ .button-sakura{
+  color: #ffffff;
+  background-color: #ffdbed;
+  border-color: #ffdbed;
+ }
+
+ .button-royal-blue{
+  color: #ffffff;
+  background-color: #4169e1;
+  border-color: #4169e1;
+ }
+
+ .student-table{
+  background-color: #ffffff !important;
+ }
