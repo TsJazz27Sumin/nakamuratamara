@@ -42,8 +42,8 @@ $(document).ready(function () {
         input.onchange = function(event) {
             var file = event.target.files[0]
 
-            if (file.size > 1073741824){
-                alert("ファイルサイズが大きすぎます。 > " + file.size + "byte");
+            if (file.size > 10485760){
+                addErrorMessage('report-file', 'This file is too big. Limitation is 10MB.');
                 return false;
             }
 
