@@ -164,6 +164,9 @@ $(document).ready(function () {
         a.download = "test.docx";
         a.click();
 
-        $("#report").click();
+        //ダウンロード数をカウントアップするために遅延実行。
+        setTimeout(function(){
+            $("#report").click();
+       },5000);
     });
 });

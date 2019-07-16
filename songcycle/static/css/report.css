@@ -28,9 +28,30 @@
     text-align: right;
 }
 
+.search-sec {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 3.0rem;
+}
+
+.search-year{
+    width: 220px;
+}
+
+.search-report{
+    width: 550px;
+}
+
+.search-button-sakura{
+    color: #ffffff;
+    background-color: #ffdbed;
+    border-color: #ffdbed;
+    width: 130px;
+}
+
 .report-create-link{
     float: right;
-    padding-right:1.9rem;
+    padding-right:2.8rem;
 }
 
 .cover-report{

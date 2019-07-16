@@ -1,8 +1,27 @@
 {% load lookup %}
 
 <main role="main" class="inner cover-report">
+    <section class="search-sec">
+        <form action="#" method="post" novalidate="novalidate">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="search-year p-0">
+                            <input type="text" class="form-control search-slt" placeholder="年度">
+                        </div>
+                        <div class="search-report p-0">
+                            <input type="text" class="form-control search-slt" placeholder="レポート名">
+                        </div>
+                        <div class="col-md-0 p-0 ">
+                            <button type="button" class="btn search-button-sakura wrn-btn">検索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
     {% if authority_name == "admin" %}
-    <a id="report-create" class="lead report-create-link" href="{% url 'report_create' %}">To Report Create</a>
+    <a id="report-create" class="lead report-create-link" href="{% url 'report_create' %}">Report Create</a>
     {% endif %}
 
     <div class="table-responsive report-table-area">
