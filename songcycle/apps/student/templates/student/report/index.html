@@ -25,7 +25,7 @@
                     <td class="target-year">{{result.target_year}}</td>
                     <td class="auther-user">{{ user_name_dictionary|lookup:result.auther_user_id }}</td>
                     <td class="file-name">{{result.file_name}}</td>
-                    <td class="down-load-count">0 * TODO:COUNT JOIN</td>
+                    <td class="down-load-count">{{ count_dictionary|lookup:result.report_id }}</td>
                     <td class="request-download">
                         <button id="report-download" class="btn button-royal-blue btn-sm btn-block" type="button">
                             ダウンロード

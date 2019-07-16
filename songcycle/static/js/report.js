@@ -161,6 +161,9 @@ $(document).ready(function () {
 
         var a = document.createElement("a");
         a.href = link;
+        a.download = "test.docx";
         a.click();
+
+        $("#report").click();
     });
 });

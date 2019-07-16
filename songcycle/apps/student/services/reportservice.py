@@ -8,6 +8,8 @@ from apps.student.queries.numberingmasterquery import NumberingMasterQuery
 from apps.student.services.googleapiservice import GoogleApiService
 from apps.student.repositories.reportrepository import ReportRepository
 from apps.student.queries.reportquery import ReportQuery
+from apps.student.queries.downloadinformationquery import DownloadInformationQuery
+from apps.student.repositories.downloadinformationrepository import DownloadInformationRepository
 
 class ReportService:
 
@@ -17,6 +19,8 @@ class ReportService:
     __googleapiservice = None
     __reportrepository = None
     __reportquery = None
+    __downloadinformationrepository = None
+    __downloadinformationquery = None
     __new_lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
@@ -28,6 +32,8 @@ class ReportService:
             cls.__googleapiservice = GoogleApiService()
             cls.__reportrepository = ReportRepository()
             cls.__reportquery = ReportQuery()
+            cls.__downloadinformationrepository = DownloadInformationRepository()
+            cls.__downloadinformationquery = DownloadInformationQuery()
         cls.__new_lock.release()
         return cls.__singleton
 
@@ -57,9 +63,14 @@ class ReportService:
         self.__googleapiservice.delete＿file(report.google_file_id)
         self.__reportrepository.delete(report)
 
+        download_informations = self.__downloadinformationquery.select_all_by_report_id(report_id)
+
+        for download_information in download_informations:
+            self.__downloadinformationrepository.delete(download_information)
+
         return True
 
-    def download_report(self, report_id):
+    def download_report(self, report_id, user_id):
     
         report = self.__reportquery.get_one(report_id);
 
@@ -67,5 +78,7 @@ class ReportService:
             return True
 
         file = self.__googleapiservice.download＿file(report.google_file_id)
+
+        self.__downloadinformationrepository.insert(report_id, user_id)
         
         return file, report.file_name

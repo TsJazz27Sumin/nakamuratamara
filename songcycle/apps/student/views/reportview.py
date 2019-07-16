@@ -10,6 +10,7 @@ from apps.student.services.reportservice import ReportService
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
+from apps.student.queries.downloadinformationquery import DownloadInformationQuery
 from apps.student.forms.fileuploadform import FileUploadForm
 from apps.student.forms.reportsaveform import ReportSaveForm
 from apps.student.forms.report_id import ReportIdForm
@@ -22,14 +23,23 @@ def index(request):
     result_list = ReportQuery().select_all()
 
     user_ids = []
+    report_ids = []
     for result in result_list:
         user_ids.append(result.auther_user_id)
+        report_ids.append(result.report_id)
     
-    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids)
+    user_ids_uniq = list(set(user_ids))
+    
+    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
+    count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
+    
     print(user_name_dictionary)
+    print(count_dictionary)
+
     context = {
         'result_list':result_list,
         'user_name_dictionary':user_name_dictionary,
+        'count_dictionary':count_dictionary,
         'result_list_count':len(result_list),
         'authority_name': request.session['authority']
     }
@@ -127,9 +137,10 @@ def delete_report(request):
 @decorator.authenticate_admin_only("download_report")
 def download_report(request):
 
+    user_id = request.session['user_id']
     report_id = request.GET.get("report_id")
 
-    file, file_name = ReportService().download_report(report_id)
+    file, file_name = ReportService().download_report(report_id, user_id)
 
     response = HttpResponse(file, content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     response["Content-Disposition"] = "filename=" + file_name
