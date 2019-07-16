@@ -143,6 +143,23 @@ body {
   border-color: #4169e1;
  }
 
+ .button-dark-blue{
+  color: #ffffff;
+  background-color: #204ac8;
+  border-color: #204ac8;
+ }
+
  .student-table{
   background-color: #ffffff !important;
  }
+
+ .table thead th {
+  vertical-align: bottom;
+  border-bottom: #ffdbed;
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #ffdbed;
+}
