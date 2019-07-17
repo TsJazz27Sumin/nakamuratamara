@@ -2,18 +2,19 @@
 
 <main role="main" class="inner cover-report">
     <section class="search-sec">
-        <form action="#" method="post" novalidate="novalidate">
+        <form id="report-search-form" action="{% url 'report_search' %}" method="POST">
+            {% csrf_token %}
             <div class="row">
                 <div class="col-md-11">
                     <div class="row">
                         <div class="search-year p-0">
-                            <input type="text" class="form-control search-slt" placeholder="年度">
+                            <input id="target-year" name="target_year" type="text" maxlength=4 class="form-control search-slt" placeholder="年度">
                         </div>
                         <div class="search-report p-0">
-                            <input type="text" class="form-control search-slt" placeholder="レポート名">
+                            <input id="file-name" name="file_name" type="text" maxlength=100 class="form-control search-slt" placeholder="レポート名">
                         </div>
                         <div class="col-md-0 p-0 ">
-                            <button type="button" class="btn search-button-sakura wrn-btn">検索</button>
+                            <button id="report-search" type="button" class="btn search-button-sakura wrn-btn">検索</button>
                         </div>
                     </div>
                 </div>

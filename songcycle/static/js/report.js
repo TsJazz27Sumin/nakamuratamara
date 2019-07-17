@@ -5,9 +5,9 @@ $(document).ready(function () {
     var inputTag = null;
     $("#application").on('click', "#report-create", function () {
 
-        id = this.id;
-        group = "report";
-        url = this.href;
+        var id = this.id;
+        var group = "report";
+        var url = this.href;
 
         $.ajax({
             type: "GET",
@@ -97,7 +97,7 @@ $(document).ready(function () {
             dataType : "json",
         }).done(function(json){
 
-            data = json.data;
+            var data = json.data;
 
             if(strToBool(data.result)){
                 overlayClear(false)
@@ -123,8 +123,8 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-delete", function () {
 
-        group = "report";
-        link = $(this).find('[name="report-delete-link"]')[0];
+        var group = "report";
+        var link = $(this).find('[name="report-delete-link"]')[0];
 
         var fd = new FormData();
         fd.append('report_id', link.id);
@@ -156,8 +156,7 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-download", function () {
 
-        group = "report";
-        link = $(this).find('[name="report-download-link"]')[0];
+        var link = $(this).find('[name="report-download-link"]')[0];
 
         var a = document.createElement("a");
         a.href = link;
@@ -168,5 +167,22 @@ $(document).ready(function () {
         setTimeout(function(){
             $("#report").click();
        },5000);
+    });
+
+    $("#application").on('click', "#report-search", function () {
+
+        var reportSearchForm = $(this.form).serialize();
+        var group = "report";
+
+        $.ajax({
+            type: "POST",
+            url: this.form.action,
+            data:reportSearchForm,
+            dataType: "html"
+        }).done(function (html) {
+            $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+        });
     });
 });

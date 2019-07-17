@@ -19,6 +19,9 @@ class ReportQuery:
     def select_all(self):
         return Report.objects.all().order_by('target_year', 'create_timestamp').reverse()
     
+    def select(self, target_year, file_name):
+        return Report.objects.filter(target_year__icontains=target_year, file_name__icontains=file_name).all().order_by('target_year', 'create_timestamp').reverse()
+    
     def get_one(self, report_id):
         return Report.objects.filter(report_id=report_id).first()
     

@@ -16,6 +16,7 @@ urlpatterns = [
     path('home/report-save/',reportview.save_report, name="report_save"),
     path('home/report-delete/',reportview.delete_report, name="report_delete"),
     path('home/report-download/',reportview.download_report, name="report_download"),
+    path('home/report-search/',reportview.search, name="report_search"),
     path('home/access-log/',accesslogview.index, name="access_log"),
     path('home/user-maintenance/',usermaintenanceview.index, name="user_maintenance")
 ]

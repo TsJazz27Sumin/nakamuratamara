@@ -13,38 +13,44 @@ from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.queries.downloadinformationquery import DownloadInformationQuery
 from apps.student.forms.fileuploadform import FileUploadForm
 from apps.student.forms.reportsaveform import ReportSaveForm
-from apps.student.forms.report_id import ReportIdForm
-
-#TODO:F5対策
+from apps.student.forms.reportid import ReportIdForm
+from apps.student.forms.reportsearchform import ReportSearchForm
 
 @decorator.authenticate_async("index")
 def index(request):
 
     result_list = ReportQuery().select_all()
 
-    user_ids = []
-    report_ids = []
-    for result in result_list:
-        user_ids.append(result.auther_user_id)
-        report_ids.append(result.report_id)
-    
-    user_ids_uniq = list(set(user_ids))
-    
+    return __to_search_view(request, request.session['authority'], result_list)
+
+@decorator.authenticate_async("search")
+def search(request):
+
+    form = ReportSearchForm(data=request.POST)
+
+    result_list = []
+    if form.is_valid():
+        print(form.cleaned_data)
+        target_year = form.cleaned_data['target_year']
+        file_name = form.cleaned_data['file_name']
+        result_list = ReportQuery().select(target_year, file_name)
+
+    return __to_search_view(request, request.session['authority'], result_list)
+
+def __to_search_view(request, authority, result_list):
+    user_ids_uniq, report_ids = __get_ids(result_list)
     user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
     count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
-    
-    print(user_name_dictionary)
-    print(count_dictionary)
 
     context = {
         'result_list':result_list,
         'user_name_dictionary':user_name_dictionary,
         'count_dictionary':count_dictionary,
         'result_list_count':len(result_list),
-        'authority_name': request.session['authority']
+        'authority_name': authority
     }
 
-    html = render_to_string('student/report/index.html', context)
+    html = render_to_string('student/report/index.html', context, request=request)
     return HttpResponse(html)
 
 @decorator.authenticate_admin_only_async("create")
@@ -145,8 +151,6 @@ def download_report(request):
     response = HttpResponse(file, content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     response["Content-Disposition"] = "filename=" + file_name
 
-    #TODO: ダウンロード履歴の登録
-
     return response
 
 def __get_choices():
@@ -166,3 +170,14 @@ def __get_target_years():
     
     return target_years
 
+def __get_ids(result_list):
+
+    user_ids = []
+    report_ids = []
+    for result in result_list:
+        user_ids.append(result.auther_user_id)
+        report_ids.append(result.report_id)
+    
+    user_ids_uniq = list(set(user_ids))
+
+    return user_ids_uniq, report_ids
