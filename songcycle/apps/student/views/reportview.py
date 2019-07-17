@@ -43,6 +43,7 @@ def search(request):
 
     context = {
         'result_list':result_list,
+        'result_list_count':len(result_list),
         'user_name_dictionary':user_name_dictionary,
         'count_dictionary':count_dictionary,
         'result_list_count':len(result_list),
