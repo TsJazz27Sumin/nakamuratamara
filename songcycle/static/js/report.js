@@ -1,5 +1,23 @@
 $(document).ready(function () {
 
+    $("#report").click(function () {
+
+        $.ajax({
+            type: "GET",
+            url: this.href,
+            dataType: "html"
+        }).done(function (html) {
+            history.pushState('', '', this.id);
+            $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + this.id).find('p').addClass("active");
+
+            $("#report-search").click();
+        });
+
+        return false;
+    });
+
     //後から動的に追加するとchangeイベントが発火しないことがあるので、
     //あらかじめ読み込んでおく。
     var inputTag = null;
@@ -140,7 +158,7 @@ $(document).ready(function () {
         }).done(function (html) {
             overlayClear(true)
             
-            $('#application').html(html);
+            $('#search-result').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
@@ -165,7 +183,7 @@ $(document).ready(function () {
 
         //ダウンロード数をカウントアップするために遅延実行。
         setTimeout(function(){
-            $("#report").click();
+            $("#report-search").click();
        },5000);
     });
 
@@ -180,7 +198,7 @@ $(document).ready(function () {
             data:reportSearchForm,
             dataType: "html"
         }).done(function (html) {
-            $('#application').html(html);
+            $('#search-result').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
         });

@@ -1,0 +1,42 @@
+{% load lookup %}
+<div class="table-responsive report-table-area">
+    <table class="table student-table">
+        <thead>
+            <tr>
+                <th class="target-year">年度</th>
+                <th class="auther-user">作者</th>
+                <th class="file-name">レポート名</th>
+                <th class="down-load-count">ダウンロード数</th>
+                <th class="request-download"></th>
+                {% if authority_name == "admin" %}
+                <th class="delete-report"></th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in result_list %}
+            <tr>
+                <td class="target-year">{{result.target_year}}</td>
+                <td class="auther-user">{{ user_name_dictionary|lookup:result.auther_user_id }}</td>
+                <td class="file-name">{{result.file_name}}</td>
+                <td class="down-load-count">{{ count_dictionary|lookup:result.report_id }}</td>
+                <td class="request-download">
+                    <button id="report-download" class="btn button-royal-blue btn-sm btn-block" type="button">
+                        ダウンロード
+                        <a name="report-download-link" type="hidden" href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
+                    </button>
+                    
+                </td>
+                {% if authority_name == "admin" %}
+                <td class="delete-report">
+                    <button id="report-delete" class="btn button-dark-blue btn-sm btn-block" type="button">
+                        Delete
+                        <a id="{{result.report_id}}" name="report-delete-link" type="hidden" href="{% url 'report_delete' %}"></a>
+                    </button>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -19,9 +19,12 @@ from apps.student.forms.reportsearchform import ReportSearchForm
 @decorator.authenticate_async("index")
 def index(request):
 
-    result_list = ReportQuery().select_all()
+    context = {
+        'authority_name': request.session['authority']
+    }
 
-    return __to_search_view(request, request.session['authority'], result_list)
+    html = render_to_string('student/report/index.html', context, request=request)
+    return HttpResponse(html)
 
 @decorator.authenticate_async("search")
 def search(request):
@@ -30,14 +33,10 @@ def search(request):
 
     result_list = []
     if form.is_valid():
-        print(form.cleaned_data)
         target_year = form.cleaned_data['target_year']
         file_name = form.cleaned_data['file_name']
         result_list = ReportQuery().select(target_year, file_name)
 
-    return __to_search_view(request, request.session['authority'], result_list)
-
-def __to_search_view(request, authority, result_list):
     user_ids_uniq, report_ids = __get_ids(result_list)
     user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
     count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
@@ -47,10 +46,10 @@ def __to_search_view(request, authority, result_list):
         'user_name_dictionary':user_name_dictionary,
         'count_dictionary':count_dictionary,
         'result_list_count':len(result_list),
-        'authority_name': authority
+        'authority_name': request.session['authority']
     }
 
-    html = render_to_string('student/report/index.html', context, request=request)
+    html = render_to_string('student/report/search_result.html', context, request=request)
     return HttpResponse(html)
 
 @decorator.authenticate_admin_only_async("create")
@@ -138,7 +137,7 @@ def delete_report(request):
 
         ReportService().delete_report(report_id)
 
-    return index(request)
+    return search(request)
 
 @decorator.authenticate_admin_only("download_report")
 def download_report(request):

@@ -49,11 +49,6 @@ $(document).ready(function () {
 
     //ここからAjaxのトリガー
 
-    $("#report").click(function () {
-        GetHtmlAsync(this.id, this.id, this.href)
-        return false;
-    });
-
     $("#access-log").click(function () {
         GetHtmlAsync(this.id, this.id, this.href)
         return false;
