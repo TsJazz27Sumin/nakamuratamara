@@ -133,7 +133,7 @@ body {
 
  .button-sakura{
   color: #ffffff;
-  background-color: #ffdbed;
+  background-color: rgb(255, 51, 102);
   border-color: #ffdbed;
  }
 
@@ -153,9 +153,18 @@ body {
   background-color: #ffffff !important;
  }
 
- .table thead th {
+ .student-table thead th {
+  background-color:#000 !important;
+  color: #fff;
   vertical-align: bottom;
   border-bottom: #ffdbed;
+
+  /* 縦スクロール時に固定する */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* tbody内のセルより手前に表示する */
+  z-index: 1;
 }
 
 .table td, .table th {

@@ -12,6 +12,7 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + this.id).find('p').addClass("active");
 
+            //初期検索をclickイベント発火させて実現しているが、もっと良い方法がありそうな気がする。
             $("#report-search").click();
         });
 
