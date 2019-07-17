@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    //TODO:js側のライブラリ管理ツール導入
+    //TODO:es6対応
+
     //ブラウザ操作の戻る禁止
     history.pushState(null, null, null);
 

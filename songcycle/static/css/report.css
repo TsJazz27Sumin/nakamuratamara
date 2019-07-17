@@ -29,7 +29,6 @@
 }
 
 .search-sec {
-    padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 3.0rem;
 }
@@ -50,6 +49,11 @@
 }
 
 .report-create-link{
+    float: right;
+    padding-right:2.8rem;
+}
+
+.report-pagination{
     float: right;
     padding-right:2.8rem;
 }

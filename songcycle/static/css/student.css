@@ -32,6 +32,7 @@ body {
 body {
   display: -ms-flexbox;
   display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
 }
 
 .cover-heading {
@@ -154,8 +155,8 @@ body {
  }
 
  .student-table thead th {
-  background-color:#000 !important;
-  color: #fff;
+  background-color:#fff !important;
+  color: #212529;
   vertical-align: bottom;
   border-bottom: #ffdbed;
 
