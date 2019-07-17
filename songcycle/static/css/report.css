@@ -51,6 +51,7 @@
 .report-create-link{
     float: right;
     padding-right:2.8rem;
+    padding-bottom: 2rem;
 }
 
 .list-count{
@@ -60,6 +61,7 @@
 
 .report-pagination{
     float: right;
+    padding-top:1rem;
     padding-right:2.8rem;
 }
 
@@ -68,8 +70,10 @@
 }
 
 .report-table-area{
-    max-height:50%;
-    padding:2rem;
+    max-height:45%;
+    padding-right:2rem;
+    padding-left:2rem;
+    padding-bottom: 2rem;
 }
 
 .target-year{
