@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     //TODO:js側のライブラリ管理ツール導入
-    //TODO:es6対応
 
     //ブラウザ操作の戻る禁止
     history.pushState(null, null, null);
@@ -20,11 +19,11 @@ $(document).ready(function () {
 
     //CSRF
     function getCookie(name) {
-        var cookieValue = null;
+        let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
+            const cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
+                let cookie = jQuery.trim(cookies[i]);
                 // Does this cookie string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -35,7 +34,7 @@ $(document).ready(function () {
         return cookieValue;
     }
 
-    var csrftoken = getCookie('csrftoken');
+    let csrftoken = getCookie('csrftoken');
 
     function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection

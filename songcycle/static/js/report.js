@@ -21,12 +21,12 @@ $(document).ready(function () {
 
     //後から動的に追加するとchangeイベントが発火しないことがあるので、
     //あらかじめ読み込んでおく。
-    var inputTag = null;
+    let inputTag = null;
     $("#application").on('click', "#report-create", function () {
 
-        var id = this.id;
-        var group = "report";
-        var url = this.href;
+        const id = this.id;
+        const group = "report";
+        const url = this.href;
 
         $.ajax({
             type: "GET",
@@ -38,8 +38,8 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
-            var now = new Date();
-            var y = now.getFullYear();
+            const now = new Date();
+            const y = now.getFullYear();
 
             $('[name="target-years"]').each(function() {
                 if($(this).val() == y){
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 }
             });
 
-            var fileUploadUrl = $(html).find('#file-upload-url').attr("href");
+            const fileUploadUrl = $(html).find('#file-upload-url').attr("href");
             inputTag = createFileInputTag(fileUploadUrl);
         });
         
@@ -55,20 +55,20 @@ $(document).ready(function () {
     });
 
     function createFileInputTag(fileUploadUrl) {
-        var input = document.createElement('input');
+        let input = document.createElement('input');
         input.type = 'file';
         input.accept = '.docx, text/plain';
         input.onchange = function(event) {
-            var file = event.target.files[0]
+            const file = event.target.files[0]
 
             if (file.size > 10485760){
                 addErrorMessage('report-file', 'This file is too big. Limitation is 10MB.');
                 return false;
             }
 
-            var targetFile = file.name + " / " + file.size + " byte";
+            const targetFile = file.name + " / " + file.size + " byte";
 
-            var fd = new FormData();
+            let fd = new FormData();
             fd.append('file_source', file);
 
             $.ajax({
@@ -104,8 +104,8 @@ $(document).ready(function () {
         
         $('[name="error-message"]').remove();
 
-        var form = $('#report-save-form');
-        var reportSaveForm = form.serialize();
+        let form = $('#report-save-form');
+        const reportSaveForm = form.serialize();
 
         overlay()
 
@@ -116,7 +116,7 @@ $(document).ready(function () {
             dataType : "json",
         }).done(function(json){
 
-            var data = json.data;
+            const data = json.data;
 
             if(strToBool(data.result)){
                 overlayClear(false)
@@ -142,10 +142,10 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-delete", function () {
 
-        var group = "report";
-        var link = $(this).find('[name="report-delete-link"]')[0];
+        const group = "report";
+        const link = $(this).find('[name="report-delete-link"]')[0];
 
-        var fd = new FormData();
+        let fd = new FormData();
         fd.append('report_id', link.id);
 
         overlay()
@@ -175,9 +175,9 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-download", function () {
 
-        var link = $(this).find('[name="report-download-link"]')[0];
+        const link = $(this).find('[name="report-download-link"]')[0];
 
-        var a = document.createElement("a");
+        let a = document.createElement("a");
         a.href = link;
         a.download = "test.docx";
         a.click();
@@ -190,8 +190,8 @@ $(document).ready(function () {
 
     $("#application").on('click', "#report-search", function () {
 
-        var reportSearchForm = $(this.form).serialize();
-        var group = "report";
+        const reportSearchForm = $(this.form).serialize();
+        const group = "report";
 
         $.ajax({
             type: "POST",
@@ -203,7 +203,7 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
-            var $pagination = $('#report-pagination-area');
+            let $pagination = $('#report-pagination-area');
             $pagination.append('<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>');
             $pagination.append('<li class="page-item active"><a class="page-link" href="#">1</a></li>');
             $pagination.append('<li class="page-item"><a class="page-link" href="#">2</a></li>');
