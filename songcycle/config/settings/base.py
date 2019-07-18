@@ -43,9 +43,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup', #レコードの削除・更新時にファイルも削除する。
-    'bootstrap4', 
+    'bootstrap4',
+    'compressor', 
     'student'
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (                                                                                                                                     
+    ('text/es6+javascript', 'babel -o {outfile} {infile}'),                                                                                                   
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,9 +137,7 @@ sys.path.append(os.path.join(PROJECT_ROOT, "apps"))
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 MEDIA_URL = '/media/'
 
