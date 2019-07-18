@@ -85,6 +85,7 @@
   - [Djangoで素のSQLを実行する方法](https://intellectual-curiosity.tokyo/2018/12/12/django%E3%81%A7%E7%B4%A0%E3%81%AEsql%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
   - [Django データベース操作 についてのまとめ](https://qiita.com/okoppe8/items/66a8747cf179a538355b)
   - [DjangoでIN演算子を使ったクエリを生成する方法](https://qiita.com/nakkun/items/86a94e65fe6785325f54)
+  - [DjangoのモデルでLimit,Offset,filterを利用してを値を取得する方法](https://www.nblog09.com/w/2019/02/03/django-limit/)
 
 - メール送信関連
   - [Django で Gmail を送信する](https://qiita.com/ekzemplaro/items/3265f755eb4537b18478)
