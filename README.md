@@ -61,6 +61,11 @@
   - [Django shortcut functions](https://docs.djangoproject.com/en/2.2/topics/http/shortcuts/)
   - [JavaScriptでURLを操作するメモ](https://qiita.com/PianoScoreJP/items/fa66f357419fece0e531)
 
+- css関連
+  - [Glyphicons](https://getbootstrap.com/docs/3.3/components/)
+  - [Python Django チュートリアル(6)](https://qiita.com/maisuto/items/86add9263a641899b1e3)
+  - [Django2でStylusを使う](https://blog.takao-hayashi.org/posts/django2%E3%81%A7stylus%E3%82%92%E4%BD%BF%E3%81%86/)
+
 - javascript関連
   - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
   - [jQuery FormでPOST/GETの内容をたった一行で取得する方法](http://www.searchlight8.com/jquery-form-ajax-post-get/)
@@ -142,7 +147,3 @@
  
 - visual studio code 関連
   - [VS CodeでPythonの中間ファイル(.pyc)を非表示にする](https://www.sukerou.com/2019/03/vs-codepythonpyc.html)
-
-- アイコン関連
-  - [Glyphicons](https://getbootstrap.com/docs/3.3/components/)
-  - [Python Django チュートリアル(6)](https://qiita.com/maisuto/items/86add9263a641899b1e3)
