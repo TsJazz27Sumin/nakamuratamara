@@ -64,6 +64,9 @@
 - javascript関連
   - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
   - [jQuery FormでPOST/GETの内容をたった一行で取得する方法](http://www.searchlight8.com/jquery-form-ajax-post-get/)
+  - [Django Compressor + Babel で Django でも簡単に ES6 コードを扱う方法](https://blog.ymyzk.com/2015/05/django-compressor-babel-ecmascript-6/)
+  - [Node.js / npm をインストール (Mac環境)](https://qiita.com/PolarBear/items/62c0416492810b7ecf7c)
+  - [ES2015(ES6) 入門](https://qiita.com/soarflat/items/b251caf9cb59b72beb9b)
 
 - Ajax関連
   - [django – AjaxでレンダリングされたHTMLを返す](https://codeday.me/jp/qa/20190221/287560.html)
@@ -139,3 +142,6 @@
  
 - visual studio code 関連
   - [VS CodeでPythonの中間ファイル(.pyc)を非表示にする](https://www.sukerou.com/2019/03/vs-codepythonpyc.html)
+
+- アイコン関連
+  - [Glyphicons](https://getbootstrap.com/docs/3.3/components/)
