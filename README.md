@@ -145,3 +145,4 @@
 
 - アイコン関連
   - [Glyphicons](https://getbootstrap.com/docs/3.3/components/)
+  - [Python Django チュートリアル(6)](https://qiita.com/maisuto/items/86add9263a641899b1e3)
