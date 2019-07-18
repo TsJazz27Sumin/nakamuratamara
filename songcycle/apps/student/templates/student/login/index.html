@@ -1,10 +1,10 @@
+{% load compile_static %}
 {% load static %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
-  <link href="{% static 'css/login.css' %}" rel="stylesheet">
-  <link href="{% static 'css/student.css' %}" rel="stylesheet">
+<link href="{% static 'css/login.styl'|compile %}" rel="stylesheet">
 {% endblock %}
 
 <!doctype html>

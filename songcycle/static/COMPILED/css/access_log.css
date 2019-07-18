@@ -1,0 +1,51 @@
+.access-log-area {
+  max-height: 55%;
+}
+.access-log-area .access-log-table {
+  width: 2500px;
+}
+.access-log-area .access-log-table .event_type {
+  width: 250px;
+}
+.access-log-area .access-log-table .http_accept_language {
+  width: 250px;
+}
+.access-log-area .access-log-table .browser {
+  width: 250px;
+}
+.access-log-area .access-log-table .browser_version {
+  width: 250px;
+}
+.access-log-area .access-log-table .os {
+  width: 250px;
+}
+.access-log-area .access-log-table .os_version {
+  width: 250px;
+}
+.access-log-area .access-log-table .device {
+  width: 250px;
+}
+.access-log-area .access-log-table .device_brand {
+  width: 250px;
+}
+.access-log-area .access-log-table .device_type {
+  width: 250px;
+}
+.access-log-area .access-log-table .remote_addr {
+  width: 250px;
+}
+.access-log-area .access-log-table .access_date {
+  width: 250px;
+}
+.access-log-area .access-log-table .access_date_timestamp {
+  width: 250px;
+}
+.access-log-area .access-log-table .success_value {
+  width: 250px;
+}
+.access-log-area .access-log-table .fault_value {
+  width: 250px;
+}
+.access-log-area .access-log-table .comment {
+  width: 250px;
+}

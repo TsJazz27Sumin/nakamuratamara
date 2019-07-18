@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_cleanup', #レコードの削除・更新時にファイルも削除する。
     'bootstrap4',
     'compressor', 
+    'static_precompiler',
     'student'
 ]
 

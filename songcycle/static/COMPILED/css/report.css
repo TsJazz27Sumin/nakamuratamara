@@ -1,0 +1,77 @@
+.report-create-area {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  padding-right: 15rem;
+  padding-left: 15rem;
+  color: #212529;
+}
+.report-create-area .report-file {
+  padding-right: 3rem;
+}
+.report-create-area .file-name-label {
+  padding-top: 0.3rem;
+}
+.report-create-area .report-create-title {
+  padding-bottom: 4rem;
+  text-align: left;
+}
+.report-create-area .continue-to-register-none {
+  display: none;
+}
+.report-create-area .continue-to-register {
+  text-align: right;
+}
+.cover-report {
+  padding: 2rem;
+}
+.cover-report .search-sec {
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+}
+.cover-report .search-sec .search-year {
+  width: 220px;
+}
+.cover-report .search-sec .search-report {
+  width: 550px;
+}
+.cover-report .search-sec .search-button-sakura {
+  color: #fff;
+  background-color: #f36;
+  border-color: #ffdbed;
+  width: 130px;
+  padding: 0.65rem;
+}
+.cover-report .report-create-link {
+  float: right;
+  padding-right: 2.8rem;
+  padding-bottom: 2rem;
+}
+.cover-report .report-table-area {
+  max-height: 45%;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+.cover-report .report-table-area .target-year {
+  width: 50px;
+}
+.cover-report .report-table-area .auther-user {
+  width: 100px;
+}
+.cover-report .report-table-area .file-name {
+  width: 400px;
+}
+.cover-report .report-table-area .down-load-count {
+  width: 100px;
+}
+.cover-report .report-table-area .request-download {
+  width: 100px;
+}
+.cover-report .report-table-area .delete-report {
+  width: 100px;
+}
+.cover-report .report-pagination {
+  float: right;
+  padding-top: 1rem;
+  padding-right: 2.8rem;
+}
