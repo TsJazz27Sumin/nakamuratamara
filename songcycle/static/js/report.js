@@ -203,12 +203,41 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
-            let $pagination = $('#report-pagination-area');
-            $pagination.append('<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>');
-            $pagination.append('<li class="page-item active"><a class="page-link" href="#">1</a></li>');
-            $pagination.append('<li class="page-item"><a class="page-link" href="#">2</a></li>');
-            $pagination.append('<li class="page-item"><a class="page-link" href="#">3</a></li>');
-            $pagination.append('<li class="page-item"><a class="page-link" href="#">Next</a></li>');
+            createPagingComponent('result-list-count', 'current-page', 'offset', 'report-pagination-area');
         });
+    });
+
+    $("#application").on('click', '[name="paging"]', function () {
+
+        const group = "report";
+        const link = $('#paging-url')[0].href;
+
+        let fd = new FormData();
+        fd.append('current_page', $('#current-page')[0].value);
+
+        if(this.id === "previous"){
+            fd.append('previous', true);
+        } else if(this.id === "next"){
+            fd.append('next', true);
+        } else {
+            fd.append('target_page', this.id);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: link,
+            data:fd,
+            dataType: "html",
+            processData : false,
+            contentType: false
+        }).done(function (html) {
+            $('#search-result').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+
+            createPagingComponent('result-list-count', 'current-page', 'offset', 'report-pagination-area');
+        });
+
+        return false;
     });
 });

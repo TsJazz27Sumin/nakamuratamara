@@ -15,6 +15,9 @@ from apps.student.forms.fileuploadform import FileUploadForm
 from apps.student.forms.reportsaveform import ReportSaveForm
 from apps.student.forms.reportid import ReportIdForm
 from apps.student.forms.reportsearchform import ReportSearchForm
+from apps.student.forms.pagingform import PagingForm
+
+__offset = 2
 
 @decorator.authenticate_async("index")
 def index(request):
@@ -32,10 +35,16 @@ def search(request):
     form = ReportSearchForm(data=request.POST)
 
     result_list = []
+    result_list_count = 0
     if form.is_valid():
         target_year = form.cleaned_data['target_year']
         file_name = form.cleaned_data['file_name']
-        result_list = ReportQuery().select(target_year, file_name)
+
+        result_list_count = ReportQuery().count(target_year, file_name)
+        result_list = ReportQuery().select(target_year, file_name, 1, __offset)
+
+        request.session['target_year'] = target_year
+        request.session['file_name'] = file_name
 
     user_ids_uniq, report_ids = __get_ids(result_list)
     user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
@@ -43,10 +52,62 @@ def search(request):
 
     context = {
         'result_list':result_list,
-        'result_list_count':len(result_list),
+        'result_list_count': result_list_count,
+        'current_page': 1,
+        'offset': __offset,
         'user_name_dictionary':user_name_dictionary,
         'count_dictionary':count_dictionary,
-        'result_list_count':len(result_list),
+        'authority_name': request.session['authority']
+    }
+
+    html = render_to_string('student/report/search_result.html', context, request=request)
+    return HttpResponse(html)
+
+@decorator.authenticate_async("paging")
+def paging(request):
+
+    form = PagingForm(data=request.POST)
+
+    result_list = []
+    result_list_count = 0
+    if form.is_valid():
+        current_page = form.cleaned_data['current_page']
+        previous = form.cleaned_data['previous']
+        next = form.cleaned_data['next']
+        target_page = form.cleaned_data['target_page']
+
+        page = current_page
+        if(previous):
+            page -= 1
+        elif(next):
+            page += 1
+        else:
+            page = target_page
+        
+        target_year = request.session['target_year']
+        file_name = request.session['file_name']
+
+        result_list_count = ReportQuery().count(target_year, file_name)
+        result_list = ReportQuery().select(target_year, file_name, page, __offset)
+    else:
+        error_message_list = []
+        error_item_list = []
+
+        for field in form:
+            for error in field.errors:
+                print(error)
+
+    user_ids_uniq, report_ids = __get_ids(result_list)
+    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
+    count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
+
+    context = {
+        'result_list':result_list,
+        'result_list_count': result_list_count,
+        'current_page': page,
+        'offset': __offset,
+        'user_name_dictionary':user_name_dictionary,
+        'count_dictionary':count_dictionary,
         'authority_name': request.session['authority']
     }
 

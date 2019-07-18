@@ -47,3 +47,23 @@ function addErrorMessage(errorItem, errorMessage){
         $("#" + errorItemList[i]).after('<p name="error-message" class="text-danger">' + errorMessageList[i] + '</p>');
     }
 };
+
+function createPagingComponent(resultListCountId, currentPageId, offsetId, paginationId){
+
+    const resultListCount = $('#' + resultListCountId).val();
+    const currentPage = $('#' + currentPageId).val();
+    const offset = $('#' + offsetId).val();
+    let $pagination = $('#' + paginationId);
+
+    let totalPage = Math.ceil(resultListCount / offset);
+
+    if (totalPage > 1){
+        $pagination.append('<li class="page-item ' + (currentPage == 1 ? 'disabled':'') + '">' + (currentPage == 1 ? '<span class="page-link" >Previous</span>':'<a id="previous" name="paging" class="page-link" href="#" tabindex="-1">Previous</a>') + '</li>');
+        
+        for (let i = 1; i <= totalPage; i++){
+            $pagination.append('<li class="page-item ' + (currentPage == i ? 'active':'') + '"><a id="' + i + '" name="paging" class="page-link" href="#">' + i + '</a></li>');
+        }
+        
+        $pagination.append('<li class="page-item ' + (currentPage == totalPage ? 'disabled':'') + '">' + (currentPage == totalPage ? '<span class="page-link" >Next</span>':'<a id="next" name="paging" class="page-link" href="#">Next</a>') + '</li>');
+    }
+};
