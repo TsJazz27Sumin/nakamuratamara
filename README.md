@@ -65,6 +65,7 @@
   - [Glyphicons](https://getbootstrap.com/docs/3.3/components/)
   - [Python Django チュートリアル(6)](https://qiita.com/maisuto/items/86add9263a641899b1e3)
   - [Django2でStylusを使う](https://blog.takao-hayashi.org/posts/django2%E3%81%A7stylus%E3%82%92%E4%BD%BF%E3%81%86/)
+  - [django-static-precompiler 1.8.2](https://pypi.org/project/django-static-precompiler/)
 
 - javascript関連
   - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
