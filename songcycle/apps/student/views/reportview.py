@@ -40,6 +40,8 @@ def search(request):
         target_year = form.cleaned_data['target_year']
         file_name = form.cleaned_data['file_name']
 
+        ReportQuery().custom_query()
+
         result_list_count = ReportQuery().count(target_year, file_name)
         result_list = ReportQuery().select(target_year, file_name, 1, __offset)
 
