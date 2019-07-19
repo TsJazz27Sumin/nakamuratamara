@@ -11,6 +11,12 @@ class ReportQuery(BaseQuery):
 
     __singleton = None
     __new_lock = threading.Lock()
+    __sort_item_disctionary = {
+            "target-year-sort" : 'sr.target_year',
+            "auther-user-sort" : 'sa.full_name',
+            "file-name-sort" : 'sr.file_name',
+            "down-load-count-sort" : 'download_count',
+        }
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
@@ -59,7 +65,7 @@ class ReportQuery(BaseQuery):
 
         return count[0]
 
-    def custom_query(self, target_year, full_name, file_name, page, limit):
+    def custom_query(self, target_year, full_name, file_name, page, limit, sort_item, descending_order):
 
         sql = 'select sr.report_id,' \
               '       sr.target_year,' \
@@ -80,7 +86,7 @@ class ReportQuery(BaseQuery):
               '	where sr.target_year like @target_year' \
               '	  and sa.full_name like @full_name' \
               '	  and sr.file_name like @file_name' \
-              '	order by sr.target_year desc,' \
+              '	order by @sort @desc,' \
               '	         sr.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 
@@ -90,6 +96,8 @@ class ReportQuery(BaseQuery):
             "file_name" : super().to_like_value(file_name),
             "limit" : str(limit),
             "offset" : str(page),
+            "sort" : self.__sort_item_disctionary[sort_item],
+            "desc" : "desc" if descending_order == True else "asc"
         }
 
         print(super().to_with_param_sql(sql, param_disctionary))

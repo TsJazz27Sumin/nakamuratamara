@@ -43,7 +43,7 @@ def search(request):
         file_name = form.cleaned_data['file_name']
 
         result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit, 'target-year-sort', True)
 
         request.session['target_year'] = target_year
         request.session['full_name'] = full_name
@@ -52,6 +52,8 @@ def search(request):
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
+        'current_sort_item':'targetYearSort',
+        'current_descending_order':True,
         'current_page': offset + 1,
         'limit': __limit,
         'authority_name': request.session['authority']
@@ -93,7 +95,7 @@ def __paging(request, current_page, previous, next, target_page):
     file_name = request.session['file_name']
 
     result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-    result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
+    result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit, 'target-year-sort', True)
 
     context = {
         'result_list':result_list,
