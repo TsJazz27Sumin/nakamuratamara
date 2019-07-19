@@ -17,7 +17,7 @@ from apps.student.forms.reportid import ReportIdForm
 from apps.student.forms.reportsearchform import ReportSearchForm
 from apps.student.forms.pagingform import PagingForm
 
-__offset = 2
+__limit = 2
 
 @decorator.authenticate_async("index")
 def index(request):
@@ -36,30 +36,24 @@ def search(request):
 
     result_list = []
     result_list_count = 0
+    page = 1
     if form.is_valid():
         target_year = form.cleaned_data['target_year']
+        full_name = form.cleaned_data['full_name']
         file_name = form.cleaned_data['file_name']
 
-        ReportQuery().custom_query(target_year, file_name)
-
-        result_list_count = ReportQuery().custom_count(target_year, file_name)
-        result_list = ReportQuery().custom_query(target_year, file_name)
-        #ReportQuery().select(target_year, file_name, 1, __offset)
+        result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, page, __limit)
 
         request.session['target_year'] = target_year
+        request.session['full_name'] = full_name
         request.session['file_name'] = file_name
-
-    #user_ids_uniq, report_ids = __get_ids(result_list)
-    #user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
-    #count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
 
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
-        'current_page': 1,
-        'offset': __offset,
-        #'user_name_dictionary':user_name_dictionary,
-        #'count_dictionary':count_dictionary,
+        'current_page': page,
+        'limit': __limit,
         'authority_name': request.session['authority']
     }
 
@@ -88,10 +82,11 @@ def paging(request):
             page = target_page
         
         target_year = request.session['target_year']
+        full_name = request.session['full_name']
         file_name = request.session['file_name']
 
-        result_list_count = ReportQuery().count(target_year, file_name)
-        result_list = ReportQuery().select(target_year, file_name, page, __offset)
+        result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, page, __limit)
     else:
         error_message_list = []
         error_item_list = []
@@ -100,17 +95,11 @@ def paging(request):
             for error in field.errors:
                 print(error)
 
-    user_ids_uniq, report_ids = __get_ids(result_list)
-    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
-    count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
-
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
         'current_page': page,
-        'offset': __offset,
-        'user_name_dictionary':user_name_dictionary,
-        'count_dictionary':count_dictionary,
+        'limit': __limit,
         'authority_name': request.session['authority']
     }
 

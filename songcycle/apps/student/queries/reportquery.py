@@ -36,22 +36,27 @@ class ReportQuery:
     def exist_same_file_name(self, file_name):
         return Report.objects.filter(file_name=file_name).count() > 0
 
-    def custom_count(self, target_year, file_name):
+    def custom_count(self, target_year, full_name, file_name):
     
         sql = 'select count(sr.report_id) count' \
               '  from student_report sr' \
               ' inner join student_applicationuser sa ' \
               '    on sr.auther_user_id = sa.user_id' \
-              '	where sr.target_year like %s' \
-              '	  and sr.file_name like %s' \
+              '	where sr.target_year like @target_year' \
+              '	  and sa.full_name like @full_name' \
+              '	  and sr.file_name like @file_name' \
+
+        sql = sql.replace("@target_year", self.__to_like_value(target_year))
+        sql = sql.replace("@full_name", self.__to_like_value(full_name))
+        sql = sql.replace("@file_name", self.__to_like_value(file_name))
 
         with connection.cursor() as cursor:
-            cursor.execute(sql, [self.__to_like_value(target_year), self.__to_like_value(file_name)])
+            cursor.execute(sql)
             count = cursor.fetchone()
 
         return count[0]
 
-    def custom_query(self, target_year, file_name):
+    def custom_query(self, target_year, full_name, file_name, page, limit):
 
         sql = 'select sr.report_id,' \
               '       sr.target_year,' \
@@ -69,11 +74,22 @@ class ReportQuery:
               '				        from student_downloadinformation sd' \
               '                    group by report_id) sdc ' \
               '	on sr.report_id = sdc.report_id' \
-              '	where sr.target_year like %s' \
-              '	  and sr.file_name like %s' \
+              '	where sr.target_year like @target_year' \
+              '	  and sa.full_name like @full_name' \
+              '	  and sr.file_name like @file_name' \
+              '	order by sr.target_year' \
+              '	  limit @limit offset @offset' \
+
+        sql = sql.replace("@target_year", self.__to_like_value(target_year))
+        sql = sql.replace("@full_name", self.__to_like_value(full_name))
+        sql = sql.replace("@file_name", self.__to_like_value(file_name))
+        sql = sql.replace("@limit", str(limit))
+        sql = sql.replace("@offset", str(page))
+
+        print(sql)
 
         with connection.cursor() as cursor:
-            cursor.execute(sql, [self.__to_like_value(target_year), self.__to_like_value(file_name)])
+            cursor.execute(sql)
             result_data = self.__namedtuplefetchall(cursor)
         
         return result_data
@@ -84,6 +100,6 @@ class ReportQuery:
         desc = cursor.description
         nt_result = namedtuple('Result', [col[0] for col in desc])
         return [nt_result(*row) for row in cursor.fetchall()]
-    
+
     def __to_like_value(self, value):
-        return '%' + value + '%'
+        return "'%" + value + "%'"

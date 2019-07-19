@@ -29,7 +29,10 @@
   padding-left: 3rem;
 }
 .cover-report .search-sec .search-year {
-  width: 220px;
+  width: 80px;
+}
+.cover-report .search-sec .search-full-name {
+  width: 140px;
 }
 .cover-report .search-sec .search-report {
   width: 550px;

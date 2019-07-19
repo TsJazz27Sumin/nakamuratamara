@@ -203,7 +203,7 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
-            createPagingComponent('result-list-count', 'current-page', 'offset', 'report-pagination-area');
+            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
         });
     });
 
@@ -235,7 +235,7 @@ $(document).ready(function () {
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
 
-            createPagingComponent('result-list-count', 'current-page', 'offset', 'report-pagination-area');
+            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
         });
 
         return false;

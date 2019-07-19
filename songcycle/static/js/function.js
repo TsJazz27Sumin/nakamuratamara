@@ -48,14 +48,14 @@ function addErrorMessage(errorItem, errorMessage){
     }
 };
 
-function createPagingComponent(resultListCountId, currentPageId, offsetId, paginationId){
+function createPagingComponent(resultListCountId, currentPageId, limitId, paginationId){
 
     const resultListCount = $('#' + resultListCountId).val();
     const currentPage = $('#' + currentPageId).val();
-    const offset = $('#' + offsetId).val();
+    const limit = $('#' + limitId).val();
     let $pagination = $('#' + paginationId);
 
-    let totalPage = Math.ceil(resultListCount / offset);
+    let totalPage = Math.ceil(resultListCount / limit);
 
     if (totalPage > 1){
         $pagination.append('<li class="page-item ' + (currentPage == 1 ? 'disabled':'') + '">' + (currentPage == 1 ? '<span class="page-link" >Previous</span>':'<a id="previous" name="paging" class="page-link" href="#" tabindex="-1">Previous</a>') + '</li>');
