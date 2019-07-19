@@ -55,6 +55,9 @@
   padding-left: 2rem;
   padding-bottom: 2rem;
 }
+.cover-report .report-table-area .sort-header:hover {
+  color: #4169e1;
+}
 .cover-report .report-table-area .target-year {
   width: 50px;
 }

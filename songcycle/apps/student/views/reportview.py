@@ -11,10 +11,10 @@ from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.queries.downloadinformationquery import DownloadInformationQuery
-from apps.student.forms.fileuploadform import FileUploadForm
-from apps.student.forms.reportsaveform import ReportSaveForm
-from apps.student.forms.reportid import ReportIdForm
-from apps.student.forms.reportsearchform import ReportSearchForm
+from apps.student.forms.report.fileuploadform import FileUploadForm
+from apps.student.forms.report.reportsaveform import ReportSaveForm
+from apps.student.forms.report.reportid import ReportIdForm
+from apps.student.forms.report.reportsearchform import ReportSearchForm
 from apps.student.forms.pagingform import PagingForm
 
 __limit = 2
@@ -37,13 +37,16 @@ def search(request):
     result_list = []
     result_list_count = 0
     offset = 0
+    current_sort_item = 'target-year-sort'
+    current_descending_order = True
+
     if form.is_valid():
         target_year = form.cleaned_data['target_year']
         full_name = form.cleaned_data['full_name']
         file_name = form.cleaned_data['file_name']
 
         result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit, 'target-year-sort', True)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit, current_sort_item, current_descending_order)
 
         request.session['target_year'] = target_year
         request.session['full_name'] = full_name
@@ -56,6 +59,8 @@ def search(request):
         'current_descending_order':True,
         'current_page': offset + 1,
         'limit': __limit,
+        'current_sort_item': current_sort_item,
+        'current_descending_order': current_descending_order,
         'authority_name': request.session['authority']
     }
 

@@ -243,4 +243,8 @@ $(document).ready(function () {
 
         return false;
     });
+
+    $("#application").on('click', '[name="sort-item"]', function () {
+        alert("!");
+    });
 });

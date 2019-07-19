@@ -11,13 +11,13 @@
     <table class="table student-table">
         <thead>
             <tr>
-                <th id="target-year-sort" class="target-year" name="sort-item">年度<span class="glyphicon glyphicon-arrow-up"></span></th>
-                <th id="auther-user-sort" class="auther-user" name="sort-item">作者</th>
-                <th id="file-name-sort" class="file-name" name="sort-item">レポート名</th>
-                <th id="down-load-count-sort" class="down-load-count" name="sort-item">DL数</th>
+                <th id="target-year-sort" class="target-year sort-header" name="sort-item">年度<span class="glyphicon glyphicon-arrow-up"></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="sort-item">作者</th>
+                <th id="file-name-sort" class="file-name sort-header" name="sort-item">レポート名</th>
+                <th id="down-load-count-sort" class="down-load-count sort-header" name="sort-item">DL数</th>
                 <th class="request-download"></th>
                 {% if authority_name == "admin" %}
-                <th class="delete-report" name="sort-item"></th>
+                <th class="delete-report"></th>
                 {% endif %}
             </tr>
         </thead>
