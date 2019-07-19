@@ -28,7 +28,7 @@ function overlayClear(isDisabledRefresh){
 };
 
 function strToBool(value){
-    if(value === "true"){
+    if(value.toLowerCase() === "true"){
         return true;
     }
 
@@ -67,3 +67,14 @@ function createPagingComponent(resultListCountId, currentPageId, limitId, pagina
         $pagination.append('<li class="page-item ' + (currentPage == totalPage ? 'disabled':'') + '">' + (currentPage == totalPage ? '<span class="page-link" >Next</span>':'<a id="next" name="paging" class="page-link" href="#">Next</a>') + '</li>');
     }
 };
+
+function setOrderIcon(){
+    $currentSortItemSpan = $('#' + $('#current-sort-item').val()).find('span');
+    currentDescendingOrder = $('#current-descending-order').val();
+    
+    if(strToBool(currentDescendingOrder)){
+        $currentSortItemSpan.addClass('glyphicon glyphicon-arrow-up');
+    } else {
+        $currentSortItemSpan.addClass('glyphicon glyphicon-arrow-down');
+    }
+}

@@ -207,6 +207,7 @@ $(document).ready(function () {
             $('#' + group).find('p').addClass("active");
 
             createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
+            setOrderIcon();
         });
     });
 

@@ -36,8 +36,8 @@
                 <a id="report" class="nav-link" href="{% url 'report' %}"><p name="function-title">レポート</p></a>
 
                 {% if authority_name == "admin" %}
-                <a id="access-log" class="nav-link" href="{% url 'access_log' %}"><p name="function-title">アクセスログ</p></a>
                 <a id="user-maintenance" class="nav-link" href="{% url 'user_maintenance' %}"><p name="function-title">ユーザー管理</p></a>
+                <a id="access-log" class="nav-link" href="{% url 'access_log' %}"><p name="function-title">アクセスログ</p></a>
                 {% endif %}
                 
                 <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
