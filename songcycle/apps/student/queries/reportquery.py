@@ -2,11 +2,12 @@
 from django.db import connection
 from collections import namedtuple
 from apps.student.models.report import Report
+from apps.student.queries.basequery import BaseQuery
 import threading
 
 # CRUDのRは、ここに集約する。
 
-class ReportQuery:
+class ReportQuery(BaseQuery):
 
     __singleton = None
     __new_lock = threading.Lock()
@@ -46,12 +47,14 @@ class ReportQuery:
               '	  and sa.full_name like @full_name' \
               '	  and sr.file_name like @file_name' \
 
-        sql = sql.replace("@target_year", self.__to_like_value(target_year))
-        sql = sql.replace("@full_name", self.__to_like_value(full_name))
-        sql = sql.replace("@file_name", self.__to_like_value(file_name))
+        param_disctionary = {
+            "target_year" : super().to_like_value(target_year),
+            "full_name" : super().to_like_value(full_name),
+            "file_name" : super().to_like_value(file_name),
+        }
 
         with connection.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(super().to_with_param_sql(sql, param_disctionary))
             count = cursor.fetchone()
 
         return count[0]
@@ -81,26 +84,18 @@ class ReportQuery:
               '	         sr.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 
-        sql = sql.replace("@target_year", self.__to_like_value(target_year))
-        sql = sql.replace("@full_name", self.__to_like_value(full_name))
-        sql = sql.replace("@file_name", self.__to_like_value(file_name))
-        sql = sql.replace("@limit", str(limit))
-        sql = sql.replace("@offset", str(page))
+        param_disctionary = {
+            "target_year" : super().to_like_value(target_year),
+            "full_name" : super().to_like_value(full_name),
+            "file_name" : super().to_like_value(file_name),
+            "limit" : str(limit),
+            "offset" : str(page),
+        }
 
-        print(sql)
+        print(super().to_with_param_sql(sql, param_disctionary))
 
         with connection.cursor() as cursor:
-            cursor.execute(sql)
-            result_data = self.__namedtuplefetchall(cursor)
+            cursor.execute(super().to_with_param_sql(sql, param_disctionary))
+            result_data = super().namedtuplefetchall(cursor)
         
         return result_data
-
-    def __namedtuplefetchall(self, cursor):
-        #TODO:Baseクラス的な奴にしたい。
-        "Return all rows from a cursor as a namedtuple"
-        desc = cursor.description
-        nt_result = namedtuple('Result', [col[0] for col in desc])
-        return [nt_result(*row) for row in cursor.fetchall()]
-
-    def __to_like_value(self, value):
-        return "'%" + value + "%'"
