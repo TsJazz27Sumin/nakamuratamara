@@ -36,14 +36,14 @@ def search(request):
 
     result_list = []
     result_list_count = 0
-    page = 1
+    offset = 0
     if form.is_valid():
         target_year = form.cleaned_data['target_year']
         full_name = form.cleaned_data['full_name']
         file_name = form.cleaned_data['file_name']
 
         result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-        result_list = ReportQuery().custom_query(target_year, full_name, file_name, page, __limit)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
 
         request.session['target_year'] = target_year
         request.session['full_name'] = full_name
@@ -52,7 +52,7 @@ def search(request):
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
-        'current_page': page,
+        'current_page': offset + 1,
         'limit': __limit,
         'authority_name': request.session['authority']
     }
@@ -72,21 +72,25 @@ def paging(request):
         previous = form.cleaned_data['previous']
         next = form.cleaned_data['next']
         target_page = form.cleaned_data['target_page']
-
-        page = current_page
+        
+        print(previous)
+        print(next)
+        print(target_page)
+        
+        offset = 0
         if(previous):
-            page -= 1
+            target_page = current_page - 1
         elif(next):
-            page += 1
-        else:
-            page = target_page
+            target_page = current_page + 1
+            
+        offset = (target_page - 1) * __limit
         
         target_year = request.session['target_year']
         full_name = request.session['full_name']
         file_name = request.session['file_name']
 
         result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-        result_list = ReportQuery().custom_query(target_year, full_name, file_name, page, __limit)
+        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
     else:
         error_message_list = []
         error_item_list = []
@@ -98,7 +102,7 @@ def paging(request):
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
-        'current_page': page,
+        'current_page': target_page,
         'limit': __limit,
         'authority_name': request.session['authority']
     }

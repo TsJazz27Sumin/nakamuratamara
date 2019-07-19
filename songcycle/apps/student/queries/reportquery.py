@@ -77,7 +77,8 @@ class ReportQuery:
               '	where sr.target_year like @target_year' \
               '	  and sa.full_name like @full_name' \
               '	  and sr.file_name like @file_name' \
-              '	order by sr.target_year' \
+              '	order by sr.target_year desc,' \
+              '	         sr.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 
         sql = sql.replace("@target_year", self.__to_like_value(target_year))
