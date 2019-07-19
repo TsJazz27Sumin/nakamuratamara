@@ -147,6 +147,7 @@ $(document).ready(function () {
 
         let fd = new FormData();
         fd.append('report_id', link.id);
+        fd.append('current_page', $('#current-page')[0].value);
 
         overlay()
         $.ajax({
@@ -162,6 +163,8 @@ $(document).ready(function () {
             $('#search-result').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
+
+            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
 
         }).fail(function(jqXHR, textStatus, errorThrown){
 

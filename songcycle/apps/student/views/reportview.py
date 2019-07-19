@@ -65,39 +65,35 @@ def paging(request):
 
     form = PagingForm(data=request.POST)
 
-    result_list = []
-    result_list_count = 0
     if form.is_valid():
         current_page = form.cleaned_data['current_page']
         previous = form.cleaned_data['previous']
         next = form.cleaned_data['next']
         target_page = form.cleaned_data['target_page']
-        
-        print(previous)
-        print(next)
-        print(target_page)
-        
-        offset = 0
-        if(previous):
-            target_page = current_page - 1
-        elif(next):
-            target_page = current_page + 1
-            
-        offset = (target_page - 1) * __limit
-        
-        target_year = request.session['target_year']
-        full_name = request.session['full_name']
-        file_name = request.session['file_name']
 
-        result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
-        result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
+        return __paging(request, current_page, previous, next, target_page)
     else:
-        error_message_list = []
-        error_item_list = []
+        return None
 
-        for field in form:
-            for error in field.errors:
-                print(error)
+def __paging(request, current_page, previous, next, target_page):
+    result_list = []
+    result_list_count = 0
+
+    offset = 0
+
+    if(previous):
+        target_page = current_page - 1
+    elif(next):
+        target_page = current_page + 1
+
+    offset = (target_page - 1) * __limit
+    
+    target_year = request.session['target_year']
+    full_name = request.session['full_name']
+    file_name = request.session['file_name']
+
+    result_list_count = ReportQuery().custom_count(target_year, full_name, file_name)
+    result_list = ReportQuery().custom_query(target_year, full_name, file_name, offset, __limit)
 
     context = {
         'result_list':result_list,
@@ -192,10 +188,13 @@ def delete_report(request):
 
     if form.is_valid():
         report_id = form.cleaned_data['report_id']
+        current_page = form.cleaned_data['current_page']
 
         ReportService().delete_report(report_id)
 
-    return search(request)
+        return __paging(request, current_page, False, False, current_page)
+    else:
+        return None
 
 @decorator.authenticate_admin_only("download_report")
 def download_report(request):
