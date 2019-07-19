@@ -40,25 +40,26 @@ def search(request):
         target_year = form.cleaned_data['target_year']
         file_name = form.cleaned_data['file_name']
 
-        ReportQuery().custom_query()
+        ReportQuery().custom_query(target_year, file_name)
 
-        result_list_count = ReportQuery().count(target_year, file_name)
-        result_list = ReportQuery().select(target_year, file_name, 1, __offset)
+        result_list_count = ReportQuery().custom_count(target_year, file_name)
+        result_list = ReportQuery().custom_query(target_year, file_name)
+        #ReportQuery().select(target_year, file_name, 1, __offset)
 
         request.session['target_year'] = target_year
         request.session['file_name'] = file_name
 
-    user_ids_uniq, report_ids = __get_ids(result_list)
-    user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
-    count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
+    #user_ids_uniq, report_ids = __get_ids(result_list)
+    #user_name_dictionary = ApplicationUserQuery().get_users_name(user_ids_uniq)
+    #count_dictionary = DownloadInformationQuery().get_count_dictionary(report_ids)
 
     context = {
         'result_list':result_list,
         'result_list_count': result_list_count,
         'current_page': 1,
         'offset': __offset,
-        'user_name_dictionary':user_name_dictionary,
-        'count_dictionary':count_dictionary,
+        #'user_name_dictionary':user_name_dictionary,
+        #'count_dictionary':count_dictionary,
         'authority_name': request.session['authority']
     }
 

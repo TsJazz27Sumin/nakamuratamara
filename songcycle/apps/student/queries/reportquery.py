@@ -35,12 +35,27 @@ class ReportQuery:
     
     def exist_same_file_name(self, file_name):
         return Report.objects.filter(file_name=file_name).count() > 0
+
+    def custom_count(self, target_year, file_name):
     
-    def custom_query(self):
+        sql = 'select count(sr.report_id) count' \
+              '  from student_report sr' \
+              ' inner join student_applicationuser sa ' \
+              '    on sr.auther_user_id = sa.user_id' \
+              '	where sr.target_year like %s' \
+              '	  and sr.file_name like %s' \
+
+        with connection.cursor() as cursor:
+            cursor.execute(sql, [self.__to_like_value(target_year), self.__to_like_value(file_name)])
+            count = cursor.fetchone()
+
+        return count[0]
+
+    def custom_query(self, target_year, file_name):
 
         sql = 'select sr.report_id,' \
               '       sr.target_year,' \
-              '       sa.first_name || sa.last_name user_name,' \
+              '       sa.full_name,' \
               '       sr.file_name,' \
               '       case ' \
               '        when sdc.download_count is null ' \
@@ -53,15 +68,15 @@ class ReportQuery:
               '  left outer join (select report_id, count(report_id) download_count' \
               '				        from student_downloadinformation sd' \
               '                    group by report_id) sdc ' \
-              '	on sr.report_id = sdc.report_id'
+              '	on sr.report_id = sdc.report_id' \
+              '	where sr.target_year like %s' \
+              '	  and sr.file_name like %s' \
 
         with connection.cursor() as cursor:
-            #cursor.execute("SELECT * FROM weather_data WHERE location_id = %s", [str(pk)])
-            cursor.execute(sql)
+            cursor.execute(sql, [self.__to_like_value(target_year), self.__to_like_value(file_name)])
             result_data = self.__namedtuplefetchall(cursor)
-
-        for data in result_data:
-            print(data)
+        
+        return result_data
 
     def __namedtuplefetchall(self, cursor):
         #TODO:Baseクラス的な奴にしたい。
@@ -69,3 +84,6 @@ class ReportQuery:
         desc = cursor.description
         nt_result = namedtuple('Result', [col[0] for col in desc])
         return [nt_result(*row) for row in cursor.fetchall()]
+    
+    def __to_like_value(self, value):
+        return '%' + value + '%'
