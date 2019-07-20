@@ -10,7 +10,7 @@ from apps.student.forms.pagingform import PagingForm
 from apps.student.forms.report.reportsortform import ReportSortForm
 from apps.student.functions import function
 
-#TODO:Paging確認のため、とりあえずこの数字。
+# TODO:Paging確認のため、とりあえずこの数字。
 __limit = 2
 
 

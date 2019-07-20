@@ -116,6 +116,7 @@ class ReportQuery(BaseQuery):
             "desc": "desc" if self._str_to_bool(descending_order) else "asc"
         }
 
+        # TODO:あとで消す。
         print(self.to_with_param_sql(sql, param_disctionary))
 
         with connection.cursor() as cursor:

@@ -1,16 +1,29 @@
 # import area
+from django.db import connection
+
 from apps.student.models.applicationuser import ApplicationUser
 from apps.student.queries.masterquery import MasterQuery
+from apps.student.queries.basequery import BaseQuery
 import threading
 
 # CRUDのRは、ここに集約する。
 
 
-class ApplicationUserQuery:
+class ApplicationUserQuery(BaseQuery):
 
     __singleton = None
     __master_query = None
     __new_lock = threading.Lock()
+    __sort_item_disctionary = {
+        "user-id-sort": 'sa.user_id',
+        "email-sort": 'sa.email',
+        "user-name-sort": 'sa.full_name',
+        "authority-sort": 'sa.authority',
+        "active-sort": 'sa.active',
+        "first_login_date_timestamp-sort": 'sa.first_login_date_timestamp',
+        "last_login_date_timestamp-sort": 'sa.last_login_date_timestamp',
+        "login_count-sort": 'sa.login_count',
+    }
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
@@ -50,3 +63,62 @@ class ApplicationUserQuery:
                 " " + user.last_name
 
         return user_name_dictionary
+
+    def custom_count(self, email, full_name):
+    
+        sql = 'select count(sa.user_id) count' \
+              '  from student_applicationuser sa' \
+              '	where sa.email like @email' \
+              '	  and sa.full_name like @full_name' \
+
+        param_disctionary = {
+            "email": self.to_like_value(email),
+            "full_name": self.to_like_value(full_name),
+        }
+
+        with connection.cursor() as cursor:
+            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
+            count = cursor.fetchone()
+
+        return count[0]
+
+    def custom_query(
+            self,
+            email,
+            full_name,
+            page,
+            limit,
+            sort_item,
+            descending_order):
+
+        sql = 'select sa.email,' \
+              '       sa.full_name,' \
+              '       sa.authority,' \
+              '       sa.active,' \
+              '       sa.first_login_date_timestamp,' \
+              '       sa.last_login_date_timestamp,' \
+              '       sa.login_count' \
+              '  from student_applicationuser sa' \
+              '	where sa.email like @email' \
+              '	  and sa.full_name like @full_name' \
+              '	order by @sort @desc,' \
+              '	         sa.create_timestamp desc' \
+              '	  limit @limit offset @offset' \
+
+        param_disctionary = {
+            "email": self.to_like_value(email),
+            "full_name": self.to_like_value(full_name),
+            "limit": str(limit),
+            "offset": str(page),
+            "sort": self.__sort_item_disctionary[sort_item],
+            "desc": "desc" if self._str_to_bool(descending_order) else "asc"
+        }
+
+        # TODO:あとで消す。
+        print(self.to_with_param_sql(sql, param_disctionary))
+
+        with connection.cursor() as cursor:
+            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
+            result_data = self.namedtuplefetchall(cursor)
+
+        return result_data
