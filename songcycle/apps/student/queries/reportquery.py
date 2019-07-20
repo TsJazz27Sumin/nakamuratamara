@@ -91,7 +91,8 @@ class ReportQuery(BaseQuery):
               '        when sdc.download_count is null ' \
               '         then 0 ' \
               '        else sdc.download_count' \
-              '       end download_count' \
+              '       end download_count,' \
+              '       sr.comment' \
               '  from student_report sr' \
               ' inner join student_applicationuser sa ' \
               '    on sr.auther_user_id = sa.user_id' \

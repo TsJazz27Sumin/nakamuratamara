@@ -60,6 +60,28 @@
 .cover-report .report-table-area .file-name {
   width: 400px;
 }
+.cover-report .report-table-area .file-name .text:hover + .comment {
+  display: block;
+}
+.cover-report .report-table-area .file-name .comment {
+  display: none;
+  position: absolute;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: #4169e1;
+  color: #fff;
+  font-weight: bold;
+}
+.cover-report .report-table-area .file-name .comment:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  bottom: -19px;
+  margin-left: 10px;
+  border: solid transparent;
+  border-color: rgba(51,204,153,0);
+}
 .cover-report .report-table-area .down-load-count {
   width: 100px;
 }

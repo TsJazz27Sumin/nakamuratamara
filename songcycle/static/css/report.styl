@@ -73,6 +73,32 @@
 
         .file-name{
             width:400px;
+
+            .text:hover + .comment {
+                display: block;
+            }
+
+            .comment {
+                display: none;
+                position: absolute;
+                padding: 16px;
+                border-radius: 5px;
+                background-color: #4169e1;
+                //TODO:色は共通定義を作って整理したい。
+                color: #fff;
+                font-weight: bold;
+            }
+            
+            .comment:after {
+                position: absolute;
+                width: 0;
+                height: 0;
+                left: 0;
+                bottom: -19px;
+                margin-left: 10px;
+                border: solid transparent;
+                border-color: rgba(51, 204, 153, 0);
+            }
         }
 
         .down-load-count{
