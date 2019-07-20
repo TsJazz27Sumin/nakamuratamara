@@ -3,6 +3,7 @@ import threading
 
 # CRUDのCUDは、ここに集約する。
 
+
 class ApplicationUserRepository:
 
     __singleton = None
@@ -10,8 +11,9 @@ class ApplicationUserRepository:
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
-            cls.__singleton = super(ApplicationUserRepository, cls).__new__(cls)
+        if cls.__singleton is None:
+            cls.__singleton = super(
+                ApplicationUserRepository, cls).__new__(cls)
         cls.__new_lock.release()
         return cls.__singleton
 

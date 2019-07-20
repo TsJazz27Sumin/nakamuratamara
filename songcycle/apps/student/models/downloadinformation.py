@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class DownloadInformation(models.Model):
 
     class Meta:
@@ -8,5 +9,4 @@ class DownloadInformation(models.Model):
 
     report_id = models.CharField(max_length=7)
     user_id = models.CharField(max_length=5)
-    download_timestamp = models.DateTimeField (default=timezone.now)
-
+    download_timestamp = models.DateTimeField(default=timezone.now)

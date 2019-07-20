@@ -1,8 +1,8 @@
 # import area
 from collections import namedtuple
-import threading
 
 # CRUDのRは、ここに集約する。
+
 
 class BaseQuery:
 
@@ -18,7 +18,7 @@ class BaseQuery:
             sql = sql.replace('@' + key, param_disctionary[key])
 
         return sql
-    
+
     def to_like_value(self, value):
         return "'%" + value + "%'"
 

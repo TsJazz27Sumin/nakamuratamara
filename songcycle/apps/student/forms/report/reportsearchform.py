@@ -1,5 +1,6 @@
 from django import forms
 
+
 class ReportSearchForm(forms.Form):
 
     target_year = forms.CharField(required=False, max_length=4)

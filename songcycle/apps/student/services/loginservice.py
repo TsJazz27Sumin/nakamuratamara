@@ -15,6 +15,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import os
 
+
 class LoginService:
 
     __singleton = None
@@ -27,13 +28,13 @@ class LoginService:
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
+        if cls.__singleton is None:
             cls.__singleton = super(LoginService, cls).__new__(cls)
             cls.__master_query = MasterQuery()
             cls.__application_user_query = ApplicationUserQuery()
             cls.__application_user_repository = ApplicationUserRepository()
             cls.__temporarily_login_url_query = TemporarilyLoginUrlQuery()
-            cls.__temporarily_login_url_repository =TemporarilyLoginUrlRepository()
+            cls.__temporarily_login_url_repository = TemporarilyLoginUrlRepository()
         cls.__new_lock.release()
         return cls.__singleton
 
@@ -46,14 +47,13 @@ class LoginService:
         return self.__application_user_query.is_active_user(email)
 
     def send_login_url(self, email):
-        
+
         onetime_password = get_random_string(200)
         login_url = self.__master_query.get_root_login_url() + onetime_password
 
         self.__temporarily_login_url_repository.insert(email, onetime_password)
 
-        # TODO 
-        # OKだったら、テンポラリーのログインURLを送信する。
+        # TODO
         # テンポラリーのデータは、1日経ったらcronで消したい。
 
         print(login_url)
@@ -74,13 +74,14 @@ class LoginService:
 
         if(onetime_password is None):
             return None
-        
-        temporarily_login_url = self.__temporarily_login_url_query.is_valid_onetime_password(onetime_password, valid_time)
+
+        temporarily_login_url = self.__temporarily_login_url_query.is_valid_onetime_password(
+            onetime_password, valid_time)
 
         if(temporarily_login_url is not None):
             email = temporarily_login_url.request_email
             active_user = self.__application_user_query.get_active_user(email)
 
             return active_user
-        
+
         return None

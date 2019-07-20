@@ -4,6 +4,7 @@ import threading
 
 # CRUDのCUDは、ここに集約する。
 
+
 class DownloadInformationRepository:
 
     __singleton = None
@@ -11,20 +12,21 @@ class DownloadInformationRepository:
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
-            cls.__singleton = super(DownloadInformationRepository, cls).__new__(cls)
+        if cls.__singleton is None:
+            cls.__singleton = super(
+                DownloadInformationRepository,
+                cls).__new__(cls)
         cls.__new_lock.release()
         return cls.__singleton
 
     def insert(self, report_id, user_id):
-        
+
         report = DownloadInformation(
-            report_id = report_id,
-            user_id = user_id,
+            report_id=report_id,
+            user_id=user_id,
         )
 
         report.save()
-    
+
     def delete(self, donwloadinformation):
         donwloadinformation.delete()
-

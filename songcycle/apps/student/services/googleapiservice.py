@@ -23,7 +23,7 @@ class GoogleApiService:
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
+        if cls.__singleton is None:
             cls.__singleton = super(GoogleApiService, cls).__new__(cls)
         cls.__new_lock.release()
         return cls.__singleton
@@ -54,17 +54,20 @@ class GoogleApiService:
         service = build('drive', 'v3', credentials=creds)
 
         return service
-    
+
     def create＿file(self, file_path, file_name):
-        
+
         service = self.__get_service(self.__scopes)
 
-        media_body = MediaFileUpload(PROJECT_ROOT + file_path, mimetype=self.__mime_type, resumable=True)
+        media_body = MediaFileUpload(
+            PROJECT_ROOT + file_path,
+            mimetype=self.__mime_type,
+            resumable=True)
 
         body = {
-        'name': file_name,
-        'mimeType': self.__mime_type,
-        'parents' : [GOOGLE_TARGET_FOLDER_ID]
+            'name': file_name,
+            'mimeType': self.__mime_type,
+            'parents': [GOOGLE_TARGET_FOLDER_ID]
         }
 
         result = service.files().create(
@@ -75,7 +78,7 @@ class GoogleApiService:
         return result['id']
 
     def delete＿file(self, google_file_id):
-        
+
         service = self.__get_service(self.__scopes)
 
         result = service.files().delete(
@@ -85,7 +88,7 @@ class GoogleApiService:
         return True
 
     def download＿file(self, google_file_id):
-        
+
         service = self.__get_service(self.__scopes)
 
         file = service.files().export(

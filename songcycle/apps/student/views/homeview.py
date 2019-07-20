@@ -1,14 +1,11 @@
-from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.template.loader import render_to_string
-from django.views.generic import FormView, TemplateView
 
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.services.loginservice import LoginService
 
 #認証エリア
+
 
 @decorator.authenticate("home")
 def home(request):
@@ -18,10 +15,12 @@ def home(request):
 
 #非認証エリア
 
+
 @decorator.no_authenticate("logout")
 def logout(request):
     request.session.flush()
     return redirect('request_login')
+
 
 @decorator.no_authenticate("login")
 def login(request):
@@ -34,7 +33,8 @@ def login(request):
     if(active_user is not None):
         login_service.update_login_information(active_user)
 
-        request.session['authority'] = MasterQuery().get_value(active_user.authority)
+        request.session['authority'] = MasterQuery(
+        ).get_value(active_user.authority)
         request.session['user_id'] = active_user.user_id
 
         return redirect('home')

@@ -2,6 +2,7 @@ import threading
 
 from apps.student.models.numberingmaster import NumberingMaster
 
+
 class NumberingMasterQuery:
 
     __singleton = None
@@ -9,7 +10,7 @@ class NumberingMasterQuery:
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
+        if cls.__singleton is None:
             cls.__singleton = super(NumberingMasterQuery, cls).__new__(cls)
         cls.__new_lock.release()
         return cls.__singleton
@@ -21,5 +22,5 @@ class NumberingMasterQuery:
 
         master.value += 1
         NumberingMaster.save(master)
-        
+
         return report_id
