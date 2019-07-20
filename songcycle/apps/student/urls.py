@@ -2,7 +2,7 @@ from django.urls import path
 from apps.student.views import reportsearchview
 from apps.student.views import reportcreateview
 from apps.student.views import accesslogview
-from apps.student.views import usermaintenanceview
+from apps.student.views import usermsearchview
 from apps.student.views import homeview
 from apps.student.views import requestloginview
 
@@ -22,5 +22,7 @@ urlpatterns = [
     path('home/report-file-upload/', reportcreateview.file_upload, name="file_upload"),
     path('home/report-save/', reportcreateview.save_report, name="report_save"),
     path('home/access-log/', accesslogview.index, name="access_log"),
-    path('home/user-maintenance/', usermaintenanceview.index, name="user_maintenance")
+    path('home/user-maintenance/', usermsearchview.index, name="user_m"),
+    path('home/user-maintenance-search/', usermsearchview.search, name="user_m_search"),
+    path('home/user-maintenance-create/', usermsearchview.search, name="user_m_create"),
 ]

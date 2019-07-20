@@ -1,4 +1,24 @@
-<main role="main" class="inner cover">
-    <h1 class="cover-heading">{{ title }}</h1>
-    <p class="lead">{{ message }}</p>
+<main role="main" class="inner cover-user-m">
+    <section class="search-sec">
+        <form id="user-m-search-form" action="{% url 'user_m_search' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="search-email p-0">
+                            <input id="email" name="email" type="text" maxlength=100 class="form-control search-slt" placeholder="メールアドレス">
+                        </div>
+                        <div class="search-full-name p-0">
+                            <input id="target-full-name" name="full_name" type="text" maxlength=100 class="form-control search-slt" placeholder="ユーザー名">
+                        </div>
+                        <div class="col-md-0 p-0 ">
+                            <button id="user-m-search" type="button" class="btn search-button-sakura wrn-btn"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <a id="user-m-create" class="lead user-m-create-link" href="{% url 'user_m_create' %}">User Create</a>
+    <div id="search-result"></div>
 </main>

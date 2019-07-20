@@ -1,0 +1,73 @@
+.user-m-create-area {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  padding-right: 15rem;
+  padding-left: 15rem;
+  color: #212529;
+}
+.user-m-create-area .user-m-file {
+  padding-right: 3rem;
+}
+.user-m-create-area .file-name-label {
+  padding-top: 0.3rem;
+}
+.user-m-create-area .user-m-create-title {
+  padding-bottom: 4rem;
+  text-align: left;
+}
+.user-m-create-area .continue-to-register-none {
+  display: none;
+}
+.user-m-create-area .continue-to-register {
+  text-align: right;
+}
+.cover-user-m {
+  padding: 2rem;
+}
+.cover-user-m .search-sec {
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+}
+.cover-user-m .search-sec .search-email {
+  width: 300px;
+}
+.cover-user-m .search-sec .search-full-name {
+  width: 300px;
+}
+.cover-user-m .user-m-create-link {
+  float: right;
+  padding-right: 2.8rem;
+  padding-bottom: 2rem;
+}
+.cover-user-m .user-m-table-area {
+  max-height: 45%;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+.cover-user-m .user-m-table-area .sort-header:hover {
+  color: #4169e1;
+}
+.cover-user-m .user-m-table-area .target-year {
+  width: 50px;
+}
+.cover-user-m .user-m-table-area .auther-user {
+  width: 100px;
+}
+.cover-user-m .user-m-table-area .file-name {
+  width: 400px;
+}
+.cover-user-m .user-m-table-area .down-load-count {
+  width: 100px;
+}
+.cover-user-m .user-m-table-area .request-download {
+  width: 100px;
+}
+.cover-user-m .user-m-table-area .delete-user-m {
+  width: 100px;
+}
+.cover-user-m .user-m-pagination {
+  float: right;
+  padding-top: 1rem;
+  padding-right: 2.8rem;
+}
