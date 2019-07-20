@@ -128,18 +128,18 @@ function sort(group, id){
     });
 };
 
-function paging(group){
+function paging(group, id){
     const link = $('#paging-url')[0].href;
 
     let fd = new FormData();
     fd.append('current_page', $('#current-page')[0].value);
 
-    if(this.id === "previous"){
+    if(id === "previous"){
         fd.append('previous', true);
-    } else if(this.id === "next"){
+    } else if(id === "next"){
         fd.append('next', true);
     } else {
-        fd.append('target_page', this.id);
+        fd.append('target_page', id);
     }
 
     $.ajax({

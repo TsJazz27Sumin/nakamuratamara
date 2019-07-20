@@ -57,7 +57,7 @@ $(document).ready(function () {
     });
 
     $("#application").on('click', '[name="paging"]', function () {
-        paging("report");
+        paging("report", this.id);
         return false;
     });
 

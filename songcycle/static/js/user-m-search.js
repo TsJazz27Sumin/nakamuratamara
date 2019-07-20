@@ -42,7 +42,7 @@ $(document).ready(function () {
     });
 
     $("#application").on('click', '[name="paging"]', function () {
-        paging("user-m");
+        paging("user-m", this.id);
         return false;
     });
 
