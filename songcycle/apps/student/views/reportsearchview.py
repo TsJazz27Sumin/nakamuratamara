@@ -111,8 +111,6 @@ def __search(
         'current_descending_order': target_descending_order,
         'current_page': offset + 1,
         'limit': __limit,
-        'current_sort_item': target_sort_item,
-        'current_descending_order': target_descending_order,
         'authority_name': request.session['authority']
     }
 

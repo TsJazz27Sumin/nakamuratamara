@@ -1,5 +1,4 @@
 # import area
-from django.db import connection
 from apps.student.models.report import Report
 from apps.student.queries.basequery import BaseQuery
 import threading
@@ -61,17 +60,15 @@ class ReportQuery(BaseQuery):
               '	  and sa.full_name like @full_name' \
               '	  and sr.file_name like @file_name' \
 
-        param_disctionary = {
-            "target_year": self.to_like_value(target_year),
-            "full_name": self.to_like_value(full_name),
-            "file_name": self.to_like_value(file_name),
-        }
+        param_list = [
+            {"target_year": self.to_like_value(target_year)},
+            {"full_name": self.to_like_value(full_name)},
+            {"file_name": self.to_like_value(file_name)}
+        ]
 
-        with connection.cursor() as cursor:
-            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
-            count = cursor.fetchone()
+        result = self.fetchone(sql, param_list)
 
-        return count[0]
+        return result[0]
 
     def custom_query(
             self,
@@ -107,21 +104,14 @@ class ReportQuery(BaseQuery):
               '	         sr.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 
-        param_disctionary = {
-            "target_year": self.to_like_value(target_year),
-            "full_name": self.to_like_value(full_name),
-            "file_name": self.to_like_value(file_name),
-            "limit": str(limit),
-            "offset": str(page),
-            "sort": self.__sort_item_disctionary[sort_item],
-            "desc": "desc" if self._str_to_bool(descending_order) else "asc"
-        }
+        param_list = [
+            {"target_year": self.to_like_value(target_year)},
+            {"full_name": self.to_like_value(full_name)},
+            {"file_name": self.to_like_value(file_name)},
+            {"sort": self.__sort_item_disctionary[sort_item]},
+            {"desc": "desc" if self._str_to_bool(descending_order) else "asc"},
+            {"limit": str(limit)},
+            {"offset": str(page)}
+        ]
 
-        # TODO:あとで消す。
-        print(self.to_with_param_sql(sql, param_disctionary))
-
-        with connection.cursor() as cursor:
-            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
-            result_data = self.namedtuplefetchall(cursor)
-
-        return result_data
+        return self.fetchall(sql, param_list)

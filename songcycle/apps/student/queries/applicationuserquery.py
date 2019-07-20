@@ -71,16 +71,14 @@ class ApplicationUserQuery(BaseQuery):
               '	where sa.email like @email' \
               '	  and sa.full_name like @full_name' \
 
-        param_disctionary = {
-            "email": self.to_like_value(email),
-            "full_name": self.to_like_value(full_name),
-        }
+        param_list = [
+            {"email": self.to_like_value(email)},
+            {"full_name": self.to_like_value(full_name)}
+        ]
 
-        with connection.cursor() as cursor:
-            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
-            count = cursor.fetchone()
+        result = self.fetchone(sql, param_list)
 
-        return count[0]
+        return result[0]
 
     def custom_query(
             self,
@@ -91,7 +89,8 @@ class ApplicationUserQuery(BaseQuery):
             sort_item,
             descending_order):
 
-        sql = 'select sa.email,' \
+        sql = 'select sa.user_id,' \
+              '       sa.email,' \
               '       sa.full_name,' \
               '       sa.authority,' \
               '       sa.active,' \
@@ -105,20 +104,13 @@ class ApplicationUserQuery(BaseQuery):
               '	         sa.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 
-        param_disctionary = {
-            "email": self.to_like_value(email),
-            "full_name": self.to_like_value(full_name),
-            "limit": str(limit),
-            "offset": str(page),
-            "sort": self.__sort_item_disctionary[sort_item],
-            "desc": "desc" if self._str_to_bool(descending_order) else "asc"
-        }
+        param_list = [
+            {"email": self.to_like_value(email)},
+            {"full_name": self.to_like_value(full_name)},
+            {"sort": self.__sort_item_disctionary[sort_item]},
+            {"desc": "desc" if self._str_to_bool(descending_order) else "asc"},
+            {"limit": str(limit)},
+            {"offset": str(page)}
+        ]
 
-        # TODO:あとで消す。
-        print(self.to_with_param_sql(sql, param_disctionary))
-
-        with connection.cursor() as cursor:
-            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
-            result_data = self.namedtuplefetchall(cursor)
-
-        return result_data
+        return self.fetchall(sql, param_list)

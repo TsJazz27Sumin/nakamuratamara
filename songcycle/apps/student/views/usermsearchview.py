@@ -40,17 +40,39 @@ def search(request):
     print(result_list)
 
     context = {
-
+        'result_list': result_list,
+        'result_list_count': result_list_count,
+        'current_sort_item': target_sort_item,
+        'current_descending_order': target_descending_order,
+        'current_page': offset + 1,
+        'limit': __limit,
+        'current_sort_item': target_sort_item,
+        'current_descending_order': target_descending_order,
+        'authority_name': request.session['authority']
     }
 
     html = render_to_string(
-        'student/usermaintenance/index.html',
+        'student/usermaintenance/search_result.html',
         context,
         request=request)
     return HttpResponse(html)
 
 
-@decorator.authenticate_async("create")
-def create(request):
+@decorator.authenticate_async("paging")
+def paging(request):
+    return None
 
-    return search(request)
+
+@decorator.authenticate_async("sort")
+def sort(request):
+    return None
+
+
+@decorator.authenticate_async("detail")
+def detail(request):
+    return None
+
+
+@decorator.authenticate_async("delete")
+def delete(request):
+    return None

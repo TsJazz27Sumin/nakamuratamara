@@ -1,0 +1,55 @@
+{% load lookup %}
+
+<input id="result-list-count" type="hidden" value={{ result_list_count }}>
+<input id="current-sort-item" type="hidden" value={{ current_sort_item }}>
+<input id="current-descending-order" type="hidden" value={{ current_descending_order }}>
+<input id="current-page" type="hidden" value={{ current_page }}>
+<input id="limit" type="hidden" value={{ limit }}>
+<a id="paging-url" type="hidden" href="{% url 'user_m_paging' %}"></a>
+<a id="sort-url" type="hidden" href="{% url 'user_m_sort' %}"></a>
+
+<div class="table-responsive user-m-table-area">
+    <table class="table student-table">
+        <thead>
+            <tr>
+                <th id="target-year-sort" class="target-year sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="file-name-sort" class="file-name sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="down-load-count-sort" class="down-load-count sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th class="detail-user-m"></th>
+                <th class="delete-user-m"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in result_list %}
+            <tr>
+                <td class="target-year">{{result.user_id}}</td>
+                <td class="auther-user">{{ result.email }}</td>
+                <td class="file-name">
+                    <p class="text">{{result.full_name}}</p>
+                    {% if result.comment != "" %}
+                        <p class="comment">{{result.comment}}</p>
+                    {% endif %}
+                </td>
+                <td class="down-load-count">{{ result.download_count }}</td>
+                <td class="request-download">
+                    <button id="user-m-download" class="btn button-royal-blue btn-sm btn-block" type="button">
+                        Detail
+                        <a id="{{result.user_id}}" name="user-m-detail-link" type="hidden" href="{% url 'user_m_detail' %}"></a>
+                    </button>
+                    
+                </td>
+                <td class="delete-report">
+                    <button id="user-m-delete" class="btn button-dark-blue btn-sm btn-block" type="button">
+                        Delete
+                        <a id="{{result.user_id}}" name="user-m-delete-link" type="hidden" href="{% url 'user_m_delete' %}"></a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<nav class="report-pagination">
+    <ul id="pagination-area" class="pagination justify-content-end"></ul>
+</nav>

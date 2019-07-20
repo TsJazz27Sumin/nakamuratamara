@@ -56,7 +56,7 @@ function addErrorMessage(errorItem, errorMessage){
     }
 };
 
-function createPagingComponent(resultListCountId, currentPageId, limitId, paginationId){
+function createPagingComponent(resultListCountId, currentPageId, limitId, paginationId, group){
 
     const resultListCount = $('#' + resultListCountId).val();
     const currentPage = $('#' + currentPageId).val();
@@ -66,13 +66,13 @@ function createPagingComponent(resultListCountId, currentPageId, limitId, pagina
     let totalPage = Math.ceil(resultListCount / limit);
 
     if (totalPage > 1){
-        $pagination.append('<li class="page-item ' + (currentPage == 1 ? 'disabled':'') + '">' + (currentPage == 1 ? '<span class="page-link" >Previous</span>':'<a id="previous" name="paging" class="page-link" href="#" tabindex="-1">Previous</a>') + '</li>');
+        $pagination.append('<li class="page-item ' + (currentPage == 1 ? 'disabled':'') + '">' + (currentPage == 1 ? '<span class="page-link" >Previous</span>':'<a id="previous" name="' + group + '-paging" class="page-link" href="#" tabindex="-1">Previous</a>') + '</li>');
         
         for (let i = 1; i <= totalPage; i++){
-            $pagination.append('<li class="page-item ' + (currentPage == i ? 'active':'') + '"><a id="' + i + '" name="paging" class="page-link" href="#">' + i + '</a></li>');
+            $pagination.append('<li class="page-item ' + (currentPage == i ? 'active':'') + '"><a id="' + i + '" name="' + group + '-paging" class="page-link" href="#">' + i + '</a></li>');
         }
         
-        $pagination.append('<li class="page-item ' + (currentPage == totalPage ? 'disabled':'') + '">' + (currentPage == totalPage ? '<span class="page-link" >Next</span>':'<a id="next" name="paging" class="page-link" href="#">Next</a>') + '</li>');
+        $pagination.append('<li class="page-item ' + (currentPage == totalPage ? 'disabled':'') + '">' + (currentPage == totalPage ? '<span class="page-link" >Next</span>':'<a id="next" name="' + group + '-paging" class="page-link" href="#">Next</a>') + '</li>');
     }
 };
 
@@ -96,7 +96,7 @@ function afterReportSearch(html, group){
     var currentSortItem = $('#current-sort-item').val();
     var currentDescendingOrder = $('#current-descending-order').val();
 
-    createPagingComponent('result-list-count', 'current-page', 'limit', 'pagination-area');
+    createPagingComponent('result-list-count', 'current-page', 'limit', 'pagination-area', group);
     setOrderIcon(currentSortItem, currentDescendingOrder);
 };
 

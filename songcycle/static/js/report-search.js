@@ -56,12 +56,12 @@ $(document).ready(function () {
         });
     });
 
-    $("#application").on('click', '[name="paging"]', function () {
+    $("#application").on('click', '[name="report-paging"]', function () {
         paging("report", this.id);
         return false;
     });
 
-    $("#application").on('click', '[name="sort-item"]', function () {
+    $("#application").on('click', '[name="report-sort-item"]', function () {
         sort("report", this.id);
         return false;
     });

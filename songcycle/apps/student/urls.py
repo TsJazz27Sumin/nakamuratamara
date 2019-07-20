@@ -3,6 +3,7 @@ from apps.student.views import reportsearchview
 from apps.student.views import reportcreateview
 from apps.student.views import accesslogview
 from apps.student.views import usermsearchview
+from apps.student.views import usermcreateview
 from apps.student.views import homeview
 from apps.student.views import requestloginview
 
@@ -24,5 +25,9 @@ urlpatterns = [
     path('home/access-log/', accesslogview.index, name="access_log"),
     path('home/user-m/', usermsearchview.index, name="user_m"),
     path('home/user-m-search/', usermsearchview.search, name="user_m_search"),
-    path('home/user-m-create/', usermsearchview.create, name="user_m_create"),
+    path('home/user-m-paging/', usermsearchview.paging, name="user_m_paging"),
+    path('home/user-m-sort/', usermsearchview.sort, name="user_m_sort"),
+    path('home/user-m-detail/', usermsearchview.detail, name="user_m_detail"),
+    path('home/user-m-delete/', usermsearchview.delete, name="user_m_delete"),
+    path('home/user-m-create/', usermcreateview.create, name="user_m_create"),
 ]
