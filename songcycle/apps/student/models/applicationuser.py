@@ -13,7 +13,7 @@ class ApplicationUser(models.Model):
     last_name = models.CharField(default="nothing", max_length=100)
     full_name = models.CharField(default="nothing", max_length=200)
     authority = models.CharField(default="00102", max_length=20)
-    active = models.CharField(default="00", max_length=2)
+    status = models.CharField(default="00", max_length=2)
     first_login_date_timestamp = models.DateTimeField(default=timezone.now)
     last_login_date_timestamp = models.DateTimeField(default=timezone.now)
     login_count = models.IntegerField(default=0)

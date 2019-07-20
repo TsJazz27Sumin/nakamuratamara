@@ -19,10 +19,9 @@ class ApplicationUserQuery(BaseQuery):
         "email-sort": 'sa.email',
         "user-name-sort": 'sa.full_name',
         "authority-sort": 'sa.authority',
-        "active-sort": 'sa.active',
-        "first_login_date_timestamp-sort": 'sa.first_login_date_timestamp',
-        "last_login_date_timestamp-sort": 'sa.last_login_date_timestamp',
-        "login_count-sort": 'sa.login_count',
+        "status-sort": 'sa.status',
+        "last-login-sort": 'sa.last_login_date_timestamp',
+        "login-count-sort": 'sa.login_count',
     }
 
     def __new__(cls, *args, **kwargs):
@@ -93,7 +92,7 @@ class ApplicationUserQuery(BaseQuery):
               '       sa.email,' \
               '       sa.full_name,' \
               '       sa.authority,' \
-              '       sa.active,' \
+              '       sa.status,' \
               '       sa.last_login_date_timestamp,' \
               '       sa.login_count' \
               '  from student_applicationuser sa' \

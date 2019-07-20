@@ -82,13 +82,13 @@
   border: solid transparent;
   border-color: rgba(51,204,153,0);
 }
-.cover-report .report-table-area .down-load-count {
+.cover-report .report-table-area .download-count {
   width: 100px;
 }
 .cover-report .report-table-area .request-download {
   width: 100px;
 }
-.cover-report .report-table-area .delete-report {
+.cover-report .report-table-area .delete {
   width: 100px;
 }
 .cover-report .report-pagination {

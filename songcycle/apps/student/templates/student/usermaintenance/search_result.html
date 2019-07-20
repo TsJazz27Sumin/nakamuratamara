@@ -13,12 +13,12 @@
     <table class="table student-table">
         <thead>
             <tr>
-                <th id="target-year-sort" class="target-year sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="email-sort" class="email sort-header" name="user-m-sort-item">Email<span></span></th>
+                <th id="full-name-sort" class="full-name sort-header" name="user-m-sort-item">Full Name<span></span></th>
+                <th id="authority-sort" class="authority sort-header" name="user-m-sort-item">Authority<span></span></th>
+                <th id="status-sort" class="status sort-header" name="user-m-sort-item">Status<span></span></th>
+                <th id="last-login-sort" class="last-login sort-header" name="user-m-sort-item">Last Login<span></span></th>
+                <th id="login-count-sort" class="login-count sort-header" name="user-m-sort-item">Login Count<span></span></th>
                 <th class="detail-user-m"></th>
                 <th class="delete-user-m"></th>
             </tr>
@@ -26,16 +26,16 @@
         <tbody>
             {% for result in result_list %}
             <tr>
-                <td class="target-year">{{result.email}}</td>
-                <td class="auther-user">{{ result.full_name }}</td>
-                <td class="auther-user">{{ authority_dictionary | lookup:result.authority }}</td>
-                <td class="auther-user">{{ user_status_dictionary | lookup:result.active }}</td>
-                <td class="auther-user">{{ result.last_login_date_timestamp | to_jst }}</td>
-                <td class="auther-user">{{ result.login_count }}</td>
-                <td class="request-download">
+                <td class="email">{{result.email}}</td>
+                <td class="full-name">{{ result.full_name }}</td>
+                <td class="authority">{{ authority_dictionary | lookup:result.authority }}</td>
+                <td class="status">{{ user_status_dictionary | lookup:result.status }}</td>
+                <td class="last-login">{{ result.last_login_date_timestamp | to_jst }}</td>
+                <td class="login-count">{{ result.login_count }}</td>
+                <td class="detail">
                     <a id="{{result.user_id}}" name="user-m-detail-link" href="{% url 'user_m_detail' %}">User Detail</a>
                 </td>
-                <td class="delete-report">
+                <td class="delete">
                     <button id="user-m-delete" class="btn button-dark-blue btn-sm btn-block" type="button">
                         Delete
                         <a id="{{result.user_id}}" name="user-m-delete-link" type="hidden" href="{% url 'user_m_delete' %}"></a>

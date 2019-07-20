@@ -27,6 +27,13 @@
     }
 }
 
+.cell{
+    padding-top:1.15rem;
+    padding-right:1rem;
+    padding-left:1rem;
+    padding-bottom:1rem;
+}
+
 .cover-user-m{
     padding:2rem;
 
@@ -59,28 +66,36 @@
             color:#4169e1;
         }
 
-        .target-year{
-            width:50px;
+        .email{
+            @extend .cell
         }
 
-        .auther-user{
-            width:100px;
+        .full-name{
+            @extend .cell
         }
 
-        .file-name{
-            width:400px;
+        .authority{
+            @extend .cell
         }
 
-        .down-load-count{
-            width:100px;
+        .status{
+            @extend .cell
         }
 
-        .request-download{
-            width:100px;
+        .last-login{
+            @extend .cell
         }
 
-        .delete-user-m{
-            width:100px;
+        .login-count{
+            @extend .cell
+        }
+
+        .detail{
+            @extend .cell
+        }
+
+        .delete{
+            
         }
     }
 

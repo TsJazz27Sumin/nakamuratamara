@@ -33,7 +33,7 @@
                         <p class="comment">{{result.comment}}</p>
                     {% endif %}
                 </td>
-                <td class="down-load-count">{{ result.download_count }}</td>
+                <td class="download-count">{{ result.download_count }}</td>
                 <td class="request-download">
                     <button id="report-download" class="btn button-royal-blue btn-sm btn-block" type="button">
                         ダウンロード
@@ -42,7 +42,7 @@
                     
                 </td>
                 {% if authority_name == "admin" %}
-                <td class="delete-report">
+                <td class="delete">
                     <button id="report-delete" class="btn button-dark-blue btn-sm btn-block" type="button">
                         Delete
                         <a id="{{result.report_id}}" name="report-delete-link" type="hidden" href="{% url 'report_delete' %}"></a>

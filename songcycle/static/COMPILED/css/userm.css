@@ -21,6 +21,19 @@
 .user-m-create-area .continue-to-register {
   text-align: right;
 }
+.cell,
+.cover-user-m .user-m-table-area .email,
+.cover-user-m .user-m-table-area .full-name,
+.cover-user-m .user-m-table-area .authority,
+.cover-user-m .user-m-table-area .status,
+.cover-user-m .user-m-table-area .last-login,
+.cover-user-m .user-m-table-area .login-count,
+.cover-user-m .user-m-table-area .detail {
+  padding-top: 1.15rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
 .cover-user-m {
   padding: 2rem;
 }
@@ -47,24 +60,6 @@
 }
 .cover-user-m .user-m-table-area .sort-header:hover {
   color: #4169e1;
-}
-.cover-user-m .user-m-table-area .target-year {
-  width: 50px;
-}
-.cover-user-m .user-m-table-area .auther-user {
-  width: 100px;
-}
-.cover-user-m .user-m-table-area .file-name {
-  width: 400px;
-}
-.cover-user-m .user-m-table-area .down-load-count {
-  width: 100px;
-}
-.cover-user-m .user-m-table-area .request-download {
-  width: 100px;
-}
-.cover-user-m .user-m-table-area .delete-user-m {
-  width: 100px;
 }
 .cover-user-m .user-m-pagination {
   float: right;
