@@ -34,7 +34,7 @@ def login(request):
         login_service.update_login_information(active_user)
 
         request.session['authority'] = MasterQuery(
-        ).get_value(active_user.authority)
+        ).get_authority_value(active_user.authority)
         request.session['user_id'] = active_user.user_id
 
         return redirect('home')

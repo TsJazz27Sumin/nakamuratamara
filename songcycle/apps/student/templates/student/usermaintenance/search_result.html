@@ -28,8 +28,8 @@
             <tr>
                 <td class="target-year">{{result.email}}</td>
                 <td class="auther-user">{{ result.full_name }}</td>
-                <td class="auther-user">{{ result.authority }}</td>
-                <td class="auther-user">{{ result.active }}</td>
+                <td class="auther-user">{{ authority_dictionary | lookup:result.authority }}</td>
+                <td class="auther-user">{{ user_status_dictionary | lookup:result.active }}</td>
                 <td class="auther-user">{{ result.last_login_date_timestamp | to_jst }}</td>
                 <td class="auther-user">{{ result.login_count }}</td>
                 <td class="request-download">

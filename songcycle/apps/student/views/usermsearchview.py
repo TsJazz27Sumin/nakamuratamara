@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 
 from apps.student.decorators import decorator
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
+from apps.student.queries.masterquery import MasterQuery
 
 # TODO:Paging確認のため、とりあえずこの数字。
 __limit = 2
@@ -35,10 +36,15 @@ def search(request):
         __limit,
         target_sort_item,
         target_descending_order)
+    
+    authority_dictionary = MasterQuery().get_authority_dictionary()
+    user_status_dictionary = MasterQuery().get_user_status_dictionary()
 
     context = {
         'result_list': result_list,
         'result_list_count': result_list_count,
+        'authority_dictionary': authority_dictionary,
+        'user_status_dictionary': user_status_dictionary,
         'current_sort_item': target_sort_item,
         'current_descending_order': target_descending_order,
         'current_page': offset + 1,

@@ -23,6 +23,25 @@ class MasterQuery:
 
         return None
 
+    def get_authority_value(self, target):
+
+        return MasterData.objects.filter(
+            code='001', sub_code=target).first().value
+
+    def get_authority_dictionary(self):
+        return self.__get_master_dictionary('001')
+
+    def get_user_status_dictionary(self):
+        return self.__get_master_dictionary('002')
+
+    def __get_master_dictionary(self, target):
+
+        master_dictionary = {}
+        for master in MasterData.objects.filter(code=target).all():
+            master_dictionary[master.sub_code] = master.value
+
+        return master_dictionary
+
     def get_active_user_status_sub_code(self):
         return MasterData.objects.filter(
             code="002", value="active").first().sub_code
