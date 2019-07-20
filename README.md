@@ -154,4 +154,4 @@
   - [VSCodeの設定画面(JSON)を表示させるショートカットの設定](https://qiita.com/Naturalclar/items/4682ff7c8deb8d8dfcff)
   
 - macで開発する時の小ネタ
- - [Macにおけるバックスラッシュ（\）の入力方法](https://qiita.com/miyohide/items/6cb8967282d4b2db0f61)
+  - [Macにおけるバックスラッシュ（\）の入力方法](https://qiita.com/miyohide/items/6cb8967282d4b2db0f61)
