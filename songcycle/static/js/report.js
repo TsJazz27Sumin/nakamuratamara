@@ -240,12 +240,22 @@ $(document).ready(function () {
             $('#' + group).find('p').addClass("active");
 
             createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
+            setOrderIcon();
         });
 
         return false;
     });
 
     $("#application").on('click', '[name="sort-item"]', function () {
-        alert("!");
+        const targetSortItem = this.id;
+        const currentSortItem = $('#current-sort-item').val();
+        const currentDescendingOrder = $('#current-descending-order').val();
+
+        let target_descending_order = true;
+        if(targetSortItem === currentSortItem){
+            target_descending_order = (strToBool(currentDescendingOrder) == false);
+        }
+
+
     });
 });

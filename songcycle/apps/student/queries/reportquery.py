@@ -1,50 +1,58 @@
 # import area
 from django.db import connection
-from collections import namedtuple
 from apps.student.models.report import Report
 from apps.student.queries.basequery import BaseQuery
 import threading
 
 # CRUDのRは、ここに集約する。
 
+
 class ReportQuery(BaseQuery):
 
     __singleton = None
     __new_lock = threading.Lock()
     __sort_item_disctionary = {
-            "target-year-sort" : 'sr.target_year',
-            "auther-user-sort" : 'sa.full_name',
-            "file-name-sort" : 'sr.file_name',
-            "down-load-count-sort" : 'download_count',
-        }
+        "target-year-sort": 'sr.target_year',
+        "auther-user-sort": 'sa.full_name',
+        "file-name-sort": 'sr.file_name',
+        "down-load-count-sort": 'download_count',
+    }
 
     def __new__(cls, *args, **kwargs):
         cls.__new_lock.acquire()
-        if cls.__singleton == None:
+        if cls.__singleton is None:
             cls.__singleton = super(ReportQuery, cls).__new__(cls)
         cls.__new_lock.release()
         return cls.__singleton
 
     def select_all(self):
-        return Report.objects.all().order_by('target_year', 'create_timestamp').reverse()
-    
+        return Report.objects.all().order_by(
+            'target_year', 'create_timestamp').reverse()
+
     def count(self, target_year, file_name):
-        return Report.objects.filter(target_year__icontains=target_year, file_name__icontains=file_name).count()
+        return Report.objects.filter(
+            target_year__icontains=target_year,
+            file_name__icontains=file_name).count()
 
     def select(self, target_year, file_name, target_page, offset):
-        start = (target_page -1) * offset
+        start = (target_page - 1) * offset
         end = start + offset
 
-        return Report.objects.filter(target_year__icontains=target_year, file_name__icontains=file_name).all().order_by('target_year', 'create_timestamp').reverse()[start:end]
-    
+        return Report.objects.filter(
+            target_year__icontains=target_year,
+            file_name__icontains=file_name).all().order_by(
+            'target_year',
+            'create_timestamp').reverse()[
+            start:end]
+
     def get_one(self, report_id):
         return Report.objects.filter(report_id=report_id).first()
-    
+
     def exist_same_file_name(self, file_name):
         return Report.objects.filter(file_name=file_name).count() > 0
 
     def custom_count(self, target_year, full_name, file_name):
-    
+
         sql = 'select count(sr.report_id) count' \
               '  from student_report sr' \
               ' inner join student_applicationuser sa ' \
@@ -54,9 +62,9 @@ class ReportQuery(BaseQuery):
               '	  and sr.file_name like @file_name' \
 
         param_disctionary = {
-            "target_year" : super().to_like_value(target_year),
-            "full_name" : super().to_like_value(full_name),
-            "file_name" : super().to_like_value(file_name),
+            "target_year": super().to_like_value(target_year),
+            "full_name": super().to_like_value(full_name),
+            "file_name": super().to_like_value(file_name),
         }
 
         with connection.cursor() as cursor:
@@ -65,7 +73,15 @@ class ReportQuery(BaseQuery):
 
         return count[0]
 
-    def custom_query(self, target_year, full_name, file_name, page, limit, sort_item, descending_order):
+    def custom_query(
+            self,
+            target_year,
+            full_name,
+            file_name,
+            page,
+            limit,
+            sort_item,
+            descending_order):
 
         sql = 'select sr.report_id,' \
               '       sr.target_year,' \
@@ -91,13 +107,13 @@ class ReportQuery(BaseQuery):
               '	  limit @limit offset @offset' \
 
         param_disctionary = {
-            "target_year" : super().to_like_value(target_year),
-            "full_name" : super().to_like_value(full_name),
-            "file_name" : super().to_like_value(file_name),
-            "limit" : str(limit),
-            "offset" : str(page),
-            "sort" : self.__sort_item_disctionary[sort_item],
-            "desc" : "desc" if descending_order == True else "asc"
+            "target_year": super().to_like_value(target_year),
+            "full_name": super().to_like_value(full_name),
+            "file_name": super().to_like_value(file_name),
+            "limit": str(limit),
+            "offset": str(page),
+            "sort": self.__sort_item_disctionary[sort_item],
+            "desc": "desc" if descending_order else "asc"
         }
 
         print(super().to_with_param_sql(sql, param_disctionary))
@@ -105,5 +121,5 @@ class ReportQuery(BaseQuery):
         with connection.cursor() as cursor:
             cursor.execute(super().to_with_param_sql(sql, param_disctionary))
             result_data = super().namedtuplefetchall(cursor)
-        
+
         return result_data

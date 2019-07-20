@@ -10,3 +10,5 @@ pip install Django django_compressor
 brew install nodebrew
 npm install -g babel
 pip install django-static-precompiler
+pip install flake8
+pip install autopep8
