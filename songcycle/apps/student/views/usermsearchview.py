@@ -11,12 +11,11 @@ __limit = 2
 @decorator.authenticate_async("index")
 def index(request):
 
-    return search(request)
+    html = render_to_string(
+        'student/usermaintenance/index.html',
+        request=request)
 
-    # html = render_to_string(
-    #     'student/usermaintenance/index.html',
-    #     request=request)
-    # return HttpResponse(html)
+    return HttpResponse(html)
 
 
 @decorator.authenticate_async("search")
@@ -49,6 +48,7 @@ def search(request):
         context,
         request=request)
     return HttpResponse(html)
+
 
 @decorator.authenticate_async("create")
 def create(request):

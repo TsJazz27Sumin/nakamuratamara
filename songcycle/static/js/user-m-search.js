@@ -2,15 +2,17 @@ $(document).ready(function () {
 
     $("#user-m").click(function () {
 
+        id = this.id;
+
         $.ajax({
             type: "GET",
             url: this.href,
             dataType: "html"
         }).done(function (html) {
-            history.pushState('', '', this.id);
+            history.pushState('', '', id);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
-            $('#' + this.id).find('p').addClass("active");
+            $('#' + id).find('p').addClass("active");
 
             //初期検索をclickイベント発火させて実現しているが、もっと良い方法がありそうな気がする。
             $("#user-m-search").click();
@@ -20,40 +22,14 @@ $(document).ready(function () {
     });
 
     $("#application").on('click', "#user-m-delete", function () {
-
-        const group = "user-m";
-        const link = $(this).find('[name="user-m-delete-link"]')[0];
-
-        let fd = new FormData();
-        fd.append('user_id', link.id);
-        fd.append('current_page', $('#current-page')[0].value);
-
-        overlay()
-        $.ajax({
-            type: "POST",
-            url: link.href,
-            data:fd,
-            dataType: "html",
-            processData : false,
-            contentType: false
-        }).done(function (html) {
-            overlayClear(true)
-            afterReportSearch(html, group);
-
-        }).fail(function(jqXHR, textStatus, errorThrown){
-
-            overlayClear(false)
-
-            alert("このエラーが起きた場合は、管理者に問い合わせてください。");
-        });
-        
+        deleteData("user-m", $(this), "user_id");      
         return false;
     });
 
-    $("#application").on('click', "#report-search", function () {
+    $("#application").on('click', "#user-m-search", function () {
 
         const reportSearchForm = $(this.form).serialize();
-        const group = "report";
+        const group = "user-m";
 
         $.ajax({
             type: "POST",
@@ -66,63 +42,12 @@ $(document).ready(function () {
     });
 
     $("#application").on('click', '[name="paging"]', function () {
-
-        const group = "report";
-        const link = $('#paging-url')[0].href;
-
-        let fd = new FormData();
-        fd.append('current_page', $('#current-page')[0].value);
-
-        if(this.id === "previous"){
-            fd.append('previous', true);
-        } else if(this.id === "next"){
-            fd.append('next', true);
-        } else {
-            fd.append('target_page', this.id);
-        }
-
-        $.ajax({
-            type: "POST",
-            url: link,
-            data:fd,
-            dataType: "html",
-            processData : false,
-            contentType: false
-        }).done(function (html) {
-            afterReportSearch(html, group);
-        });
-
+        paging("user-m");
         return false;
     });
 
     $("#application").on('click', '[name="sort-item"]', function () {
-        const targetSortItem = this.id;
-        const currentSortItem = $('#current-sort-item').val();
-        const currentDescendingOrder = $('#current-descending-order').val();
-
-        let target_descending_order = true;
-        if(targetSortItem === currentSortItem){
-            target_descending_order = (strToBool(currentDescendingOrder) == false);
-        }
-
-        let fd = new FormData();
-        fd.append('target_sort_item', targetSortItem);
-        fd.append('target_descending_order', BoolToUpperStr(target_descending_order));
-
-        const group = "report";
-        const link = $('#sort-url')[0].href;
-
-        $.ajax({
-            type: "POST",
-            url: link,
-            data:fd,
-            dataType: "html",
-            processData : false,
-            contentType: false
-        }).done(function (html) {
-            afterReportSearch(html, group);
-        });
-
+        sort("user-m", this.id);
         return false;
     });
 });

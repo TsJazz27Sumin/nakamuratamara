@@ -127,3 +127,57 @@ function sort(group, id){
         afterReportSearch(html, group);
     });
 };
+
+function paging(group){
+    const link = $('#paging-url')[0].href;
+
+    let fd = new FormData();
+    fd.append('current_page', $('#current-page')[0].value);
+
+    if(this.id === "previous"){
+        fd.append('previous', true);
+    } else if(this.id === "next"){
+        fd.append('next', true);
+    } else {
+        fd.append('target_page', this.id);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: link,
+        data:fd,
+        dataType: "html",
+        processData : false,
+        contentType: false
+    }).done(function (html) {
+        afterReportSearch(html, group);
+    });
+};
+
+function deleteData(group, target, idName) {
+
+    const link = target.find('[name="report-delete-link"]')[0];
+
+    let fd = new FormData();
+    fd.append(idName, link.id);
+    fd.append('current_page', $('#current-page')[0].value);
+
+    overlay()
+    $.ajax({
+        type: "POST",
+        url: link.href,
+        data:fd,
+        dataType: "html",
+        processData : false,
+        contentType: false
+    }).done(function (html) {
+        overlayClear(true)
+        afterReportSearch(html, group);
+
+    }).fail(function(jqXHR, textStatus, errorThrown){
+
+        overlayClear(false)
+
+        alert("このエラーが起きた場合は、管理者に問い合わせてください。");
+    });
+};
