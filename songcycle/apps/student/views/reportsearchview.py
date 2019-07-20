@@ -71,7 +71,6 @@ def sort(request):
             target_sort_item,
             target_descending_order)
     else:
-        function.print_form_error(form)
         return None
 
 

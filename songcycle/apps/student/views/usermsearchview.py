@@ -146,7 +146,22 @@ def __paging(request, current_page, previous, next, target_page):
 
 @decorator.authenticate_async("sort")
 def sort(request):
-    return None
+    form = SortForm(data=request.POST)
+
+    if form.is_valid():
+        email = request.session['email']
+        full_name = request.session['full_name']
+        target_sort_item = form.cleaned_data['target_sort_item']
+        target_descending_order = form.cleaned_data['target_descending_order']
+
+        return __search(
+            request,
+            email,
+            full_name,
+            target_sort_item,
+            target_descending_order)
+    else:
+        return None
 
 
 @decorator.authenticate_async("detail")

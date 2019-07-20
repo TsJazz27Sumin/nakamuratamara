@@ -15,7 +15,7 @@ class ApplicationUserQuery(BaseQuery):
     __sort_item_disctionary = {
         "user-id-sort": 'sa.user_id',
         "email-sort": 'sa.email',
-        "user-name-sort": 'sa.full_name',
+        "full-name-sort": 'sa.full_name',
         "authority-sort": 'sa.authority',
         "status-sort": 'sa.status',
         "last-login-sort": 'sa.last_login_date_timestamp',
