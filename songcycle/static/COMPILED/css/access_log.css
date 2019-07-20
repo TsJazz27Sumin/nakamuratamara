@@ -1,51 +1,27 @@
+.cell,
+.access-log-area .access-log-table .event_type,
+.access-log-area .access-log-table .http_accept_language,
+.access-log-area .access-log-table .browser,
+.access-log-area .access-log-table .browser_version,
+.access-log-area .access-log-table .os,
+.access-log-area .access-log-table .os_version,
+.access-log-area .access-log-table .device,
+.access-log-area .access-log-table .device_brand,
+.access-log-area .access-log-table .device_type,
+.access-log-area .access-log-table .remote_addr,
+.access-log-area .access-log-table .access_date,
+.access-log-area .access-log-table .access_date_timestamp,
+.access-log-area .access-log-table .success_value,
+.access-log-area .access-log-table .fault_value,
+.access-log-area .access-log-table .comment {
+  padding-top: 1.15rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
 .access-log-area {
-  max-height: 55%;
+  max-height: 70%;
 }
 .access-log-area .access-log-table {
-  width: 2500px;
-}
-.access-log-area .access-log-table .event_type {
-  width: 250px;
-}
-.access-log-area .access-log-table .http_accept_language {
-  width: 250px;
-}
-.access-log-area .access-log-table .browser {
-  width: 250px;
-}
-.access-log-area .access-log-table .browser_version {
-  width: 250px;
-}
-.access-log-area .access-log-table .os {
-  width: 250px;
-}
-.access-log-area .access-log-table .os_version {
-  width: 250px;
-}
-.access-log-area .access-log-table .device {
-  width: 250px;
-}
-.access-log-area .access-log-table .device_brand {
-  width: 250px;
-}
-.access-log-area .access-log-table .device_type {
-  width: 250px;
-}
-.access-log-area .access-log-table .remote_addr {
-  width: 250px;
-}
-.access-log-area .access-log-table .access_date {
-  width: 250px;
-}
-.access-log-area .access-log-table .access_date_timestamp {
-  width: 250px;
-}
-.access-log-area .access-log-table .success_value {
-  width: 250px;
-}
-.access-log-area .access-log-table .fault_value {
-  width: 250px;
-}
-.access-log-area .access-log-table .comment {
-  width: 250px;
+  width: 1500px;
 }

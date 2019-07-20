@@ -1,6 +1,7 @@
 {% load timetags %}
 
-<main role="main" class="inner cover-search-area">
+<main role="main" class="inner cover-search-result-only">
+    <button id="report-search" type="button" class="btn search-button-sakura wrn-btn">CSV Download</button>
     <p class="lead">{{ result_list_count }}</p>
 
     <div class="table-responsive access-log-area">
@@ -8,14 +9,8 @@
             <thead>
                 <tr>
                     <th class="access_date_timestamp">access_date_timestamp</th>
-                    <th class="event_type">event_type</th>
-                    <th class="http_accept_language">http_accept_language</th>
                     <th class="browser">browser</th>
-                    <th class="browser_version">browser_version</th>
                     <th class="os">os</th>
-                    <th class="os_version">os_version</th>
-                    <th class="device">device</th>
-                    <th class="device_brand">device_brand</th>
                     <th class="device_type">device_type</th>
                     <th class="remote_addr">remote_addr</th>
                     <th class="success_value">success_value</th>
@@ -27,14 +22,8 @@
                 {% for result in result_list %}
                 <tr>
                     <td class="access_date_timestamp">{{result.access_date_timestamp | to_jst}}</td>
-                    <td class="event_type">{{result.event_type}}</td>
-                    <td class="http_accept_language">{{result.http_accept_language}}</td>
                     <td class="browser">{{result.browser}}</td>
-                    <td class="browser_version">{{result.browser_version}}</td>
                     <td class="os">{{result.os}}</td>
-                    <td class="os_version">{{result.os_version}}</td>
-                    <td class="device">{{result.device}}</td>
-                    <td class="device_brand">{{result.device_brand}}</td>
                     <td class="device_type">{{result.device_type}}</td>
                     <td class="remote_addr">{{result.remote_addr}}</td>
                     <td class="success_value">{{result.success_value}}</td>
