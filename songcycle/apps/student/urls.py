@@ -22,7 +22,7 @@ urlpatterns = [
     path('home/report-file-upload/', reportcreateview.file_upload, name="file_upload"),
     path('home/report-save/', reportcreateview.save_report, name="report_save"),
     path('home/access-log/', accesslogview.index, name="access_log"),
-    path('home/user-maintenance/', usermsearchview.index, name="user_m"),
-    path('home/user-maintenance-search/', usermsearchview.search, name="user_m_search"),
-    path('home/user-maintenance-create/', usermsearchview.search, name="user_m_create"),
+    path('home/user-m/', usermsearchview.index, name="user_m"),
+    path('home/user-m-search/', usermsearchview.search, name="user_m_search"),
+    path('home/user-m-create/', usermsearchview.create, name="user_m_create"),
 ]

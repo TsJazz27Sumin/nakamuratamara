@@ -56,11 +56,6 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#user-maintenance").click(function () {
-        GetHtmlAsync(this.id, this.id, this.href)
-        return false;
-    });
-
     function GetHtmlAsync(id, group, url){
 
         $.ajax({

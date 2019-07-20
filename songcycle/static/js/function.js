@@ -85,4 +85,45 @@ function setOrderIcon(currentSortItem, currentDescendingOrder){
     } else {
         $currentSortItemSpan.addClass('glyphicon glyphicon-arrow-down');
     }
-}
+};
+
+function afterReportSearch(html, group){
+
+    $('#search-result').html(html);
+    $('[name="function-title"]').removeClass("active");
+    $('#' + group).find('p').addClass("active");
+
+    var currentSortItem = $('#current-sort-item').val();
+    var currentDescendingOrder = $('#current-descending-order').val();
+
+    createPagingComponent('result-list-count', 'current-page', 'limit', 'pagination-area');
+    setOrderIcon(currentSortItem, currentDescendingOrder);
+};
+
+function sort(group, id){
+    const targetSortItem = id;
+    const currentSortItem = $('#current-sort-item').val();
+    const currentDescendingOrder = $('#current-descending-order').val();
+
+    let target_descending_order = true;
+    if(targetSortItem === currentSortItem){
+        target_descending_order = (strToBool(currentDescendingOrder) == false);
+    }
+
+    let fd = new FormData();
+    fd.append('target_sort_item', targetSortItem);
+    fd.append('target_descending_order', BoolToUpperStr(target_descending_order));
+
+    const link = $('#sort-url')[0].href;
+
+    $.ajax({
+        type: "POST",
+        url: link,
+        data:fd,
+        dataType: "html",
+        processData : false,
+        contentType: false
+    }).done(function (html) {
+        afterReportSearch(html, group);
+    });
+};

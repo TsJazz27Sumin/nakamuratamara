@@ -15,6 +15,7 @@
 <script type="text/javascript" src="{% static 'js/student.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/report-create.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/report-search.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user-m-search.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/function.js' %}"></script>
 {% endcompress %}
 {% endblock %}
@@ -38,7 +39,7 @@
                 <a id="report" class="nav-link" href="{% url 'report' %}"><p name="function-title">レポート</p></a>
 
                 {% if authority_name == "admin" %}
-                <a id="user-maintenance" class="nav-link" href="{% url 'user_m' %}"><p name="function-title">ユーザー管理</p></a>
+                <a id="user-m" class="nav-link" href="{% url 'user_m' %}"><p name="function-title">ユーザー管理</p></a>
                 <a id="access-log" class="nav-link" href="{% url 'access_log' %}"><p name="function-title">アクセスログ</p></a>
                 {% endif %}
                 

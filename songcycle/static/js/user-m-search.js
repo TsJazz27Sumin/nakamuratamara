@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#report").click(function () {
+    $("#user-m").click(function () {
 
         $.ajax({
             type: "GET",
@@ -13,19 +13,19 @@ $(document).ready(function () {
             $('#' + this.id).find('p').addClass("active");
 
             //初期検索をclickイベント発火させて実現しているが、もっと良い方法がありそうな気がする。
-            $("#report-search").click();
+            $("#user-m-search").click();
         });
 
         return false;
     });
 
-    $("#application").on('click', "#report-delete", function () {
+    $("#application").on('click', "#user-m-delete", function () {
 
-        const group = "report";
-        const link = $(this).find('[name="report-delete-link"]')[0];
+        const group = "user-m";
+        const link = $(this).find('[name="user-m-delete-link"]')[0];
 
         let fd = new FormData();
-        fd.append('report_id', link.id);
+        fd.append('user_id', link.id);
         fd.append('current_page', $('#current-page')[0].value);
 
         overlay()
@@ -48,21 +48,6 @@ $(document).ready(function () {
         });
         
         return false;
-    });
-
-    $("#application").on('click', "#report-download", function () {
-
-        const link = $(this).find('[name="report-download-link"]')[0];
-
-        let a = document.createElement("a");
-        a.href = link;
-        a.download = "test.docx";
-        a.click();
-
-        //ダウンロード数をカウントアップするために遅延実行。
-        setTimeout(function(){
-            $("#report-search").click();
-       },5000);
     });
 
     $("#application").on('click', "#report-search", function () {
@@ -111,7 +96,33 @@ $(document).ready(function () {
     });
 
     $("#application").on('click', '[name="sort-item"]', function () {
-        sort("report", this.id);
+        const targetSortItem = this.id;
+        const currentSortItem = $('#current-sort-item').val();
+        const currentDescendingOrder = $('#current-descending-order').val();
+
+        let target_descending_order = true;
+        if(targetSortItem === currentSortItem){
+            target_descending_order = (strToBool(currentDescendingOrder) == false);
+        }
+
+        let fd = new FormData();
+        fd.append('target_sort_item', targetSortItem);
+        fd.append('target_descending_order', BoolToUpperStr(target_descending_order));
+
+        const group = "report";
+        const link = $('#sort-url')[0].href;
+
+        $.ajax({
+            type: "POST",
+            url: link,
+            data:fd,
+            dataType: "html",
+            processData : false,
+            contentType: false
+        }).done(function (html) {
+            afterReportSearch(html, group);
+        });
+
         return false;
     });
 });
