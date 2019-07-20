@@ -152,3 +152,6 @@
   - [VS CodeでPythonの中間ファイル(.pyc)を非表示にする](https://www.sukerou.com/2019/03/vs-codepythonpyc.html)
   - [VS Code コーディング規約を快適に守る](https://qiita.com/firedfly/items/00c34018581c6cec9b84)
   - [VSCodeの設定画面(JSON)を表示させるショートカットの設定](https://qiita.com/Naturalclar/items/4682ff7c8deb8d8dfcff)
+  
+- macで開発する時の小ネタ
+ - [Macにおけるバックスラッシュ（\）の入力方法](https://qiita.com/miyohide/items/6cb8967282d4b2db0f61)
