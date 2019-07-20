@@ -14,7 +14,7 @@ class ReportQuery(BaseQuery):
         "target-year-sort": 'sr.target_year',
         "auther-user-sort": 'sa.full_name',
         "file-name-sort": 'sr.file_name',
-        "down-load-count-sort": 'download_count',
+        "download-count-sort": 'download_count',
     }
 
     def __new__(cls, *args, **kwargs):

@@ -6,8 +6,8 @@ from apps.student.services.reportservice import ReportService
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.forms.report.reportid import ReportIdForm
 from apps.student.forms.report.reportsearchform import ReportSearchForm
-from apps.student.forms.pagingform import PagingForm
-from apps.student.forms.report.reportsortform import ReportSortForm
+from apps.student.forms.search.pagingform import PagingForm
+from apps.student.forms.search.sortform import SortForm
 from apps.student.functions import function
 
 # TODO:Paging確認のため、とりあえずこの数字。
@@ -42,7 +42,6 @@ def search(request):
 
         return __search(
             request,
-            form,
             target_year,
             full_name,
             file_name,
@@ -55,7 +54,7 @@ def search(request):
 @decorator.authenticate_async("sort")
 def sort(request):
 
-    form = ReportSortForm(data=request.POST)
+    form = SortForm(data=request.POST)
 
     if form.is_valid():
         target_year = request.session['target_year']
@@ -66,7 +65,6 @@ def sort(request):
 
         return __search(
             request,
-            form,
             target_year,
             full_name,
             file_name,
@@ -79,7 +77,6 @@ def sort(request):
 
 def __search(
         request,
-        form,
         target_year,
         full_name,
         file_name,
@@ -138,17 +135,8 @@ def paging(request):
 
 
 def __paging(request, current_page, previous, next, target_page):
-    result_list = []
-    result_list_count = 0
 
-    offset = 0
-
-    if(previous):
-        target_page = current_page - 1
-    elif(next):
-        target_page = current_page + 1
-
-    offset = (target_page - 1) * __limit
+    offset, target_page = function.get_offset(previous, next, target_page, current_page, __limit)
 
     target_year = request.session['target_year']
     full_name = request.session['full_name']

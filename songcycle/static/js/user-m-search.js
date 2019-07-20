@@ -28,25 +28,25 @@ $(document).ready(function () {
 
     $("#application").on('click', "#user-m-search", function () {
 
-        const reportSearchForm = $(this.form).serialize();
+        const userSearchForm = $(this.form).serialize();
         const group = "user-m";
 
         $.ajax({
             type: "POST",
             url: this.form.action,
-            data:reportSearchForm,
+            data:userSearchForm,
             dataType: "html"
         }).done(function (html) {
             afterReportSearch(html, group);
         });
     });
 
-    $("#application").on('click', '[name="paging"]', function () {
+    $("#application").on('click', '[name="user-m-paging"]', function () {
         paging("user-m", this.id);
         return false;
     });
 
-    $("#application").on('click', '[name="sort-item"]', function () {
+    $("#application").on('click', '[name="user-m-sort-item"]', function () {
         sort("user-m", this.id);
         return false;
     });

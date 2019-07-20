@@ -1,6 +1,6 @@
 # import area
 import threading
-
+from datetime import datetime
 from apps.student.queries.accessinformationquery import AccessInformationQuery
 from apps.student.functions import function
 from apps.student.queries.masterquery import MasterQuery

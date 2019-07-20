@@ -27,6 +27,13 @@
     }
 }
 
+.cell{
+    padding-top:1.15rem;
+    padding-right:1rem;
+    padding-left:1rem;
+    padding-bottom:1rem;
+}
+
 .cover-report{
     padding:2rem;
 
@@ -35,7 +42,7 @@
         padding-left: 3.0rem;
 
         .search-year{
-            width: 80px;
+            width: 100px;
         }
 
         .search-full-name{
@@ -43,7 +50,7 @@
         }
 
         .search-report{
-            width: 550px;
+            width: 530px;
         }
     }
 
@@ -64,14 +71,17 @@
         }
 
         .target-year{
+            @extend .cell
             width:50px;
         }
 
         .auther-user{
+            @extend .cell
             width:100px;
         }
 
         .file-name{
+            @extend .cell
             width:400px;
 
             .text:hover + .comment {
@@ -102,6 +112,7 @@
         }
 
         .download-count{
+            @extend .cell
             width:100px;
         }
 

@@ -21,6 +21,16 @@
 .report-create-area .continue-to-register {
   text-align: right;
 }
+.cell,
+.cover-report .report-table-area .target-year,
+.cover-report .report-table-area .auther-user,
+.cover-report .report-table-area .file-name,
+.cover-report .report-table-area .download-count {
+  padding-top: 1.15rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
 .cover-report {
   padding: 2rem;
 }
@@ -29,13 +39,13 @@
   padding-left: 3rem;
 }
 .cover-report .search-sec .search-year {
-  width: 80px;
+  width: 100px;
 }
 .cover-report .search-sec .search-full-name {
   width: 140px;
 }
 .cover-report .search-sec .search-report {
-  width: 550px;
+  width: 530px;
 }
 .cover-report .report-create-link {
   float: right;

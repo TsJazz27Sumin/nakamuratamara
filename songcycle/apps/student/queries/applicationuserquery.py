@@ -1,6 +1,4 @@
 # import area
-from django.db import connection
-
 from apps.student.models.applicationuser import ApplicationUser
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.basequery import BaseQuery
@@ -35,22 +33,22 @@ class ApplicationUserQuery(BaseQuery):
     def is_active_user(self, email):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(
-            email=email, active=acitve_code).count() == 1
+            email=email, status=acitve_code).count() == 1
 
     def is_exist_user(self, user_id):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(
-            user_id=user_id, active=acitve_code).count() == 1
+            user_id=user_id, status=acitve_code).count() == 1
 
     def get_active_user(self, email):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(
-            email=email, active=acitve_code).first()
+            email=email, status=acitve_code).first()
 
     def get_active_users(self):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(
-            active=acitve_code).all().order_by('user_id')
+            status=acitve_code).all().order_by('user_id')
 
     def get_users_name(self, user_ids):
         users = ApplicationUser.objects.filter(
