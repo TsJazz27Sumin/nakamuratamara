@@ -8,6 +8,7 @@ from apps.student.forms.report.reportid import ReportIdForm
 from apps.student.forms.report.reportsearchform import ReportSearchForm
 from apps.student.forms.pagingform import PagingForm
 from apps.student.forms.report.reportsortform import ReportSortForm
+from apps.student.functions import function
 
 __limit = 2
 
@@ -36,7 +37,7 @@ def search(request):
         full_name = form.cleaned_data['full_name']
         file_name = form.cleaned_data['file_name']
         target_sort_item = 'target-year-sort'
-        target_descending_order = True
+        target_descending_order = 'True'
 
         return __search(
             request,
@@ -71,6 +72,7 @@ def sort(request):
             target_sort_item,
             target_descending_order)
     else:
+        function.print_form_error(form)
         return None
 
 
@@ -104,8 +106,8 @@ def __search(
     context = {
         'result_list': result_list,
         'result_list_count': result_list_count,
-        'current_sort_item': 'targetYearSort',
-        'current_descending_order': True,
+        'current_sort_item': target_sort_item,
+        'current_descending_order': target_descending_order,
         'current_page': offset + 1,
         'limit': __limit,
         'current_sort_item': target_sort_item,
@@ -170,6 +172,8 @@ def __paging(request, current_page, previous, next, target_page):
         'result_list_count': result_list_count,
         'current_page': target_page,
         'limit': __limit,
+        'current_sort_item': current_sort_item,
+        'current_descending_order': current_descending_order,
         'authority_name': request.session['authority']
     }
 

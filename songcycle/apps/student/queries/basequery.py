@@ -21,3 +21,8 @@ class BaseQuery:
     
     def to_like_value(self, value):
         return "'%" + value + "%'"
+
+    def _str_to_bool(self, value):
+        if(value == "True"):
+            return True
+        return False

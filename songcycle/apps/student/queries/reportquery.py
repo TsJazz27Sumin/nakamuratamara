@@ -62,13 +62,13 @@ class ReportQuery(BaseQuery):
               '	  and sr.file_name like @file_name' \
 
         param_disctionary = {
-            "target_year": super().to_like_value(target_year),
-            "full_name": super().to_like_value(full_name),
-            "file_name": super().to_like_value(file_name),
+            "target_year": self.to_like_value(target_year),
+            "full_name": self.to_like_value(full_name),
+            "file_name": self.to_like_value(file_name),
         }
 
         with connection.cursor() as cursor:
-            cursor.execute(super().to_with_param_sql(sql, param_disctionary))
+            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
             count = cursor.fetchone()
 
         return count[0]
@@ -107,19 +107,19 @@ class ReportQuery(BaseQuery):
               '	  limit @limit offset @offset' \
 
         param_disctionary = {
-            "target_year": super().to_like_value(target_year),
-            "full_name": super().to_like_value(full_name),
-            "file_name": super().to_like_value(file_name),
+            "target_year": self.to_like_value(target_year),
+            "full_name": self.to_like_value(full_name),
+            "file_name": self.to_like_value(file_name),
             "limit": str(limit),
             "offset": str(page),
             "sort": self.__sort_item_disctionary[sort_item],
-            "desc": "desc" if descending_order else "asc"
+            "desc": "desc" if self._str_to_bool(descending_order) else "asc"
         }
 
-        print(super().to_with_param_sql(sql, param_disctionary))
+        print(self.to_with_param_sql(sql, param_disctionary))
 
         with connection.cursor() as cursor:
-            cursor.execute(super().to_with_param_sql(sql, param_disctionary))
-            result_data = super().namedtuplefetchall(cursor)
+            cursor.execute(self.to_with_param_sql(sql, param_disctionary))
+            result_data = self.namedtuplefetchall(cursor)
 
         return result_data

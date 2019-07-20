@@ -35,6 +35,14 @@ function strToBool(value){
     return false;
 };
 
+function BoolToUpperStr(value){
+    if(value === true){
+        return "True";
+    }
+
+    return "False";
+};
+
 function addSuccessMessage(id){
     $(id).after('<p class="font-weight-bold text-success">Success!!!</p>');
 };
@@ -68,9 +76,9 @@ function createPagingComponent(resultListCountId, currentPageId, limitId, pagina
     }
 };
 
-function setOrderIcon(){
-    $currentSortItemSpan = $('#' + $('#current-sort-item').val()).find('span');
-    currentDescendingOrder = $('#current-descending-order').val();
+function setOrderIcon(currentSortItem, currentDescendingOrder){
+    $currentSortItemSpan = $('#' + currentSortItem).find('span');
+    currentDescendingOrder = currentDescendingOrder;
     
     if(strToBool(currentDescendingOrder)){
         $currentSortItemSpan.addClass('glyphicon glyphicon-arrow-up');

@@ -38,12 +38,7 @@ $(document).ready(function () {
             contentType: false
         }).done(function (html) {
             overlayClear(true)
-            
-            $('#search-result').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + group).find('p').addClass("active");
-
-            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
+            afterReportSearch(html, group);
 
         }).fail(function(jqXHR, textStatus, errorThrown){
 
@@ -81,12 +76,7 @@ $(document).ready(function () {
             data:reportSearchForm,
             dataType: "html"
         }).done(function (html) {
-            $('#search-result').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + group).find('p').addClass("active");
-
-            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
-            setOrderIcon();
+            afterReportSearch(html, group);
         });
     });
 
@@ -114,12 +104,7 @@ $(document).ready(function () {
             processData : false,
             contentType: false
         }).done(function (html) {
-            $('#search-result').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + group).find('p').addClass("active");
-
-            createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
-            setOrderIcon();
+            afterReportSearch(html, group);
         });
 
         return false;
@@ -135,6 +120,37 @@ $(document).ready(function () {
             target_descending_order = (strToBool(currentDescendingOrder) == false);
         }
 
+        let fd = new FormData();
+        fd.append('target_sort_item', targetSortItem);
+        fd.append('target_descending_order', BoolToUpperStr(target_descending_order));
 
+        const group = "report";
+        const link = $('#sort-url')[0].href;
+
+        $.ajax({
+            type: "POST",
+            url: link,
+            data:fd,
+            dataType: "html",
+            processData : false,
+            contentType: false
+        }).done(function (html) {
+            afterReportSearch(html, group);
+        });
+
+        return false;
     });
+
+    function afterReportSearch(html, group){
+
+        $('#search-result').html(html);
+        $('[name="function-title"]').removeClass("active");
+        $('#' + group).find('p').addClass("active");
+
+        var currentSortItem = $('#current-sort-item').val();
+        var currentDescendingOrder = $('#current-descending-order').val();
+
+        createPagingComponent('result-list-count', 'current-page', 'limit', 'report-pagination-area');
+        setOrderIcon(currentSortItem, currentDescendingOrder);
+    };
 });
