@@ -25,7 +25,7 @@ def search(request):
     full_name = ''
     offset = 0
     target_sort_item = 'user-id-sort'
-    target_descending_order = 'True'
+    target_descending_order = 'False'
 
     result_list_count = ApplicationUserQuery().custom_count(email, full_name)
     result_list = ApplicationUserQuery().custom_query(
@@ -36,19 +36,13 @@ def search(request):
         target_sort_item,
         target_descending_order)
 
-    print(result_list_count)
-    print(result_list)
-
     context = {
         'result_list': result_list,
         'result_list_count': result_list_count,
         'current_sort_item': target_sort_item,
         'current_descending_order': target_descending_order,
         'current_page': offset + 1,
-        'limit': __limit,
-        'current_sort_item': target_sort_item,
-        'current_descending_order': target_descending_order,
-        'authority_name': request.session['authority']
+        'limit': __limit
     }
 
     html = render_to_string(

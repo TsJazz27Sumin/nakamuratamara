@@ -1,4 +1,5 @@
 {% load lookup %}
+{% load timetags %}
 
 <input id="result-list-count" type="hidden" value={{ result_list_count }}>
 <input id="current-sort-item" type="hidden" value={{ current_sort_item }}>
@@ -14,8 +15,10 @@
             <tr>
                 <th id="target-year-sort" class="target-year sort-header" name="user-m-sort-item">xxx<span></span></th>
                 <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="file-name-sort" class="file-name sort-header" name="user-m-sort-item">xxx<span></span></th>
-                <th id="down-load-count-sort" class="down-load-count sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
+                <th id="auther-user-sort" class="auther-user sort-header" name="user-m-sort-item">xxx<span></span></th>
                 <th class="detail-user-m"></th>
                 <th class="delete-user-m"></th>
             </tr>
@@ -23,21 +26,14 @@
         <tbody>
             {% for result in result_list %}
             <tr>
-                <td class="target-year">{{result.user_id}}</td>
-                <td class="auther-user">{{ result.email }}</td>
-                <td class="file-name">
-                    <p class="text">{{result.full_name}}</p>
-                    {% if result.comment != "" %}
-                        <p class="comment">{{result.comment}}</p>
-                    {% endif %}
-                </td>
-                <td class="down-load-count">{{ result.download_count }}</td>
+                <td class="target-year">{{result.email}}</td>
+                <td class="auther-user">{{ result.full_name }}</td>
+                <td class="auther-user">{{ result.authority }}</td>
+                <td class="auther-user">{{ result.active }}</td>
+                <td class="auther-user">{{ result.last_login_date_timestamp | to_jst }}</td>
+                <td class="auther-user">{{ result.login_count }}</td>
                 <td class="request-download">
-                    <button id="user-m-download" class="btn button-royal-blue btn-sm btn-block" type="button">
-                        Detail
-                        <a id="{{result.user_id}}" name="user-m-detail-link" type="hidden" href="{% url 'user_m_detail' %}"></a>
-                    </button>
-                    
+                    <a id="{{result.user_id}}" name="user-m-detail-link" href="{% url 'user_m_detail' %}">User Detail</a>
                 </td>
                 <td class="delete-report">
                     <button id="user-m-delete" class="btn button-dark-blue btn-sm btn-block" type="button">

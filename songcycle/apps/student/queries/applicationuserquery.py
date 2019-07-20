@@ -94,7 +94,6 @@ class ApplicationUserQuery(BaseQuery):
               '       sa.full_name,' \
               '       sa.authority,' \
               '       sa.active,' \
-              '       sa.first_login_date_timestamp,' \
               '       sa.last_login_date_timestamp,' \
               '       sa.login_count' \
               '  from student_applicationuser sa' \
