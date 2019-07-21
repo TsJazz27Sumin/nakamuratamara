@@ -13,7 +13,7 @@ from apps.student.queries.masterquery import MasterQuery
 __limit = 2
 
 
-@decorator.authenticate_async("index")
+@decorator.authenticate_admin_only_async("index")
 def index(request):
 
     html = render_to_string(
@@ -23,7 +23,7 @@ def index(request):
     return HttpResponse(html)
 
 
-@decorator.authenticate_async("search")
+@decorator.authenticate_admin_only_async("search")
 def search(request):
 
     form = UserSearchForm(data=request.POST)
@@ -88,7 +88,7 @@ def __search(
     return HttpResponse(html)
 
 
-@decorator.authenticate_async("paging")
+@decorator.authenticate_admin_only_async("paging")
 def paging(request):
 
     form = PagingForm(data=request.POST)
@@ -144,7 +144,7 @@ def __paging(request, current_page, previous, next, target_page):
     return HttpResponse(html)
 
 
-@decorator.authenticate_async("sort")
+@decorator.authenticate_admin_only_async("sort")
 def sort(request):
     form = SortForm(data=request.POST)
 
@@ -164,11 +164,11 @@ def sort(request):
         return None
 
 
-@decorator.authenticate_async("detail")
+@decorator.authenticate_admin_only_async("detail")
 def detail(request):
     return None
 
 
-@decorator.authenticate_async("delete")
+@decorator.authenticate_admin_only_async("delete")
 def delete(request):
     return None

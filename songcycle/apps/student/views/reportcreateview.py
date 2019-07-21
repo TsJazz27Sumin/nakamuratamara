@@ -74,27 +74,9 @@ def save_report(request):
             return JsonResponse(json_data)
 
     else:
-        error_message_list = []
-        error_item_list = []
+        
+        error_message, error_item = __get_error_infomations(form)
 
-        for field in form:
-            for error in field.errors:
-                # 今んとこ先生が使うので、メッセージは英語のまま。
-                if "file_path" in field.name:
-                    error_message_list.append("Report File:" + error)
-                    error_item_list.append("report-file")
-                if "auther_user_id" in field.name:
-                    error_message_list.append("Author:" + error)
-                    error_item_list.append("auther-user")
-                if "target_year" in field.name:
-                    error_message_list.append("Year:" + error)
-                    error_item_list.append("target-year")
-                if "comment" in field.name:
-                    error_message_list.append("Comment:" + error)
-                    error_item_list.append("comment-area")
-
-        error_message = ','.join(error_message_list)
-        error_item = ','.join(error_item_list)
         json_data = {
             'data': {
                 'result': 'false',
@@ -103,6 +85,32 @@ def save_report(request):
 
     return JsonResponse(json_data)
 
+
+def __get_error_infomations(form):
+
+    error_message_list = []
+    error_item_list = []
+
+    for field in form:
+        for error in field.errors:
+            # 今んとこ先生が使うので、メッセージは英語のまま。
+            if "file_path" in field.name:
+                error_message_list.append("Report File:" + error)
+                error_item_list.append("report-file")
+            if "auther_user_id" in field.name:
+                error_message_list.append("Author:" + error)
+                error_item_list.append("auther-user")
+            if "target_year" in field.name:
+                error_message_list.append("Year:" + error)
+                error_item_list.append("target-year")
+            if "comment" in field.name:
+                error_message_list.append("Comment:" + error)
+                error_item_list.append("comment-area")
+    
+    error_message = ','.join(error_message_list)
+    error_item = ','.join(error_item_list)
+
+    return error_message, error_item
 
 def __get_choices():
     choices = []

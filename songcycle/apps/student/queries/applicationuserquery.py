@@ -39,6 +39,14 @@ class ApplicationUserQuery(BaseQuery):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
         return ApplicationUser.objects.filter(
             user_id=user_id, status=acitve_code).count() == 1
+    
+    def is_exist_same_email(self, email):
+        return ApplicationUser.objects.filter(
+            email=email).count() == 1
+
+    def is_exist_same_full_name(self, full_name):
+        return ApplicationUser.objects.filter(
+            full_name=full_name).count() == 1
 
     def get_active_user(self, email):
         acitve_code = self.__master_query.get_active_user_status_sub_code()
@@ -96,7 +104,7 @@ class ApplicationUserQuery(BaseQuery):
               '  from student_applicationuser sa' \
               '	where sa.email like @email' \
               '	  and sa.full_name like @full_name' \
-              '	order by @sort @desc,' \
+              '	order by @sort @desc nulls last,' \
               '	         sa.create_timestamp desc' \
               '	  limit @limit offset @offset' \
 

@@ -4,9 +4,12 @@ from django.template.loader import render_to_string
 
 from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
+from apps.student.queries.applicationuserquery import ApplicationUserQuery
+from apps.student.services.applicationuserservice import ApplicationUserService
+from apps.student.forms.userm.usersaveform import UserSaveForm
 
 
-@decorator.authenticate_async("create")
+@decorator.authenticate_admin_only_async("create")
 def create(request):
 
     context = {
@@ -21,7 +24,84 @@ def create(request):
     return HttpResponse(html)
 
 
-@decorator.authenticate_async("save_user")
+@decorator.authenticate_admin_only_async_json_response("save_user")
 def save_user(request):
 
-    return None
+    form = UserSaveForm(data=request.POST)
+    json_data = None
+
+    if form.is_valid():
+        email = form.cleaned_data['email']
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        full_name = first_name + ' ' + last_name
+        authority = form.cleaned_data['authority']
+        status = form.cleaned_data['status']
+        comment = form.cleaned_data['comment']
+        login_user_id = request.session['user_id']
+
+        if(ApplicationUserQuery().is_exist_same_email(email)):
+            json_data = {
+                'data': {
+                    'result': 'false',
+                    'message': 'Already same email exist.'}}
+            return JsonResponse(json_data)
+
+        if(ApplicationUserQuery().is_exist_same_full_name(full_name)):
+            json_data = {
+                'data': {
+                    'result': 'false',
+                    'message': 'Already same name user exist.'}}
+            return JsonResponse(json_data)
+
+        user_id = ApplicationUserService().save_user(
+            email, first_name, last_name, full_name, authority, status, comment, login_user_id)
+
+        if(user_id is not None):
+            json_data = {'data': {'result': 'true', 'message': 'Success'}}
+            return JsonResponse(json_data)
+
+    else:
+
+        error_message, error_item = __get_error_infomations(form)
+
+        json_data = {
+            'data': {
+                'result': 'false',
+                'errorMessage': error_message,
+                'errorItem': error_item}}
+
+    return JsonResponse(json_data)
+
+
+def __get_error_infomations(form):
+
+    error_message_list = []
+    error_item_list = []
+
+    for field in form:
+        for error in field.errors:
+            # 今んとこ先生が使うので、メッセージは英語のまま。
+            if "email" in field.name:
+                error_message_list.append("Email:" + error)
+                error_item_list.append("email-area")
+            if "first_name" in field.name:
+                error_message_list.append("First Name:" + error)
+                error_item_list.append("name-area")
+            if "last_name" in field.name:
+                error_message_list.append("Last Name:" + error)
+                error_item_list.append("name-area")
+            if "authority" in field.name:
+                error_message_list.append("Authority:" + error)
+                error_item_list.append("authority")
+            if "status" in field.name:
+                error_message_list.append("Status:" + error)
+                error_item_list.append("status")
+            if "comment" in field.name:
+                error_message_list.append("Comment:" + error)
+                error_item_list.append("comment-area")
+
+    error_message = ','.join(error_message_list)
+    error_item = ','.join(error_item_list)
+
+    return error_message, error_item

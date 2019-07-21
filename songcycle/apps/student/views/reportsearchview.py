@@ -220,7 +220,7 @@ def delete_report(request):
         return None
 
 
-@decorator.authenticate_admin_only("download_report")
+@decorator.authenticate_async("download_report")
 def download_report(request):
 
     user_id = request.session['user_id']

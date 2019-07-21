@@ -24,3 +24,13 @@ class NumberingMasterQuery:
         NumberingMaster.save(master)
 
         return report_id
+
+    def get_user_id(self):
+    
+        master = NumberingMaster.objects.filter(code="01").first()
+        user_id = master.initial + str(master.value).zfill(4)
+
+        master.value += 1
+        NumberingMaster.save(master)
+
+        return user_id

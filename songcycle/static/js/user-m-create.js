@@ -25,14 +25,14 @@ $(document).ready(function () {
         $('[name="error-message"]').remove();
 
         let form = $('#user-m-save-form');
-        const reportSaveForm = form.serialize();
+        const userSaveForm = form.serialize();
 
         overlay()
 
         $.ajax({
             url  : form[0].action,
             type : "POST",
-            data : reportSaveForm,
+            data : userSaveForm,
             dataType : "json",
         }).done(function(json){
 
@@ -40,9 +40,8 @@ $(document).ready(function () {
 
             if(strToBool(data.result)){
                 overlayClear(false)
-                $("#report-file").prop("disabled", true);
                 
-                addSuccessMessage("#report-save-area");
+                addSuccessMessage("#user-m-save-area");
 
                 $('#user-m-save-area').remove();
                 $('#seq-user-m-create').removeClass("continue-to-register-none");
