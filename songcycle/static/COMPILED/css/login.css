@@ -1,8 +1,4 @@
 @media screen and (min-width: 1000px) {
-  .login-seccess-lead {
-    font-size: 1.25rem;
-    font-weight: 300;
-  }
   body {
     display: -ms-flexbox;
     display: flex;
@@ -41,10 +37,6 @@
   }
 }
 @media screen and (max-width: 999px) {
-  .login-seccess-lead {
-    font-size: 0.75rem;
-    font-weight: 300;
-  }
   body {
     display: -ms-flexbox;
     display: flex;
