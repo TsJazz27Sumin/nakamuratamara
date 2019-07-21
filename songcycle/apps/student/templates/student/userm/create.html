@@ -21,7 +21,7 @@
         <div class="col-md-12 mb-3">
           <select class="custom-select d-block w-100" id="authority" name="authority" required="">
             <option value="">Select Authority...</option>
-            {% for key,val in authority_taple %}
+            {% for key,val in authority_taples %}
             <option value={{ key }}>{{val}}</option>
             {% endfor %}
           </select>
@@ -32,9 +32,9 @@
           <div class="col-md-12 mb-3">
             <select class="custom-select d-block w-100" id="status" name="status" required="">
               <option value="">Select Status...</option>
-              {% for key,val in status_taple %}
-              <option name="target-years" value="{{ key }}">{{val}}</option>
-              {% endfor %}
+              {% for key,val in user_status_taples %}
+              <option value={{ key }}>{{val}}</option>
+            {% endfor %}
             </select>
           </div>
         </div>

@@ -42,6 +42,20 @@ class MasterQuery:
 
         return master_dictionary
 
+    def get_authority_taples(self):
+        return self.__get_master_taples('001')
+
+    def get_user_status_taples(self):
+        return self.__get_master_taples('002')
+
+    def __get_master_taples(self, target):
+
+        taples = []
+        for master in MasterData.objects.filter(code=target).all():
+            taples.append((master.sub_code, master.value))
+
+        return taples
+
     def get_active_user_status_sub_code(self):
         return MasterData.objects.filter(
             code="002", value="active").first().sub_code
