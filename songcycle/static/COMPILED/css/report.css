@@ -110,7 +110,7 @@
 }
 @media screen and (max-width: 999px) {
   .cover-report .search-sec {
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
     padding-left: 3rem;
   }
   .cover-report .search-sec .search-value {
@@ -127,7 +127,7 @@
     padding: 0.65rem;
   }
   .cover-report .report-table-area {
-    max-height: 60%;
+    max-height: 65%;
     padding-right: 2rem;
     padding-left: 2rem;
     padding-bottom: 2rem;

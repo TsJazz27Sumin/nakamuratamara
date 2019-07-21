@@ -9,6 +9,7 @@
                     年度：{{result.target_year}}<br>
                     著作者：{{ result.full_name }}<br>
                     レポート名：{{result.file_name}}<br/>
+                    ダウンロード数：{{ result.download_count }}<br/>
                     <button id="report-download" class="btn button-royal-blue btn-sm btn-block" type="button">
                         ダウンロード
                         <a name="report-download-link" type="hidden" href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
