@@ -64,9 +64,16 @@ body {
 /*
  * Cover
  */
-.cover {
-  padding: 9rem;
-  color: #212529;
+@media screen and (min-width: 1000px) {
+  .cover {
+    padding: 9rem;
+    color: #212529;
+  }
+}
+@media screen and (max-width: 999px) {
+  .cover {
+    color: #212529;
+  }
 }
 .cover-search-area {
   padding-top: 8rem;

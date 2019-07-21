@@ -17,6 +17,7 @@ urlpatterns = [
     path('home/report-delete/', reportsearchview.delete_report, name="report_delete"),
     path('home/report-download/', reportsearchview.download_report, name="report_download"),
     path('home/report-search/', reportsearchview.search, name="report_search"),
+    path('home/report-search-sp/', reportsearchview.search_sp, name="report_search_sp"),
     path('home/report-paging/', reportsearchview.paging, name="report_paging"),
     path('home/report-sort/', reportsearchview.sort, name="report_sort"),
     path('home/report-create/', reportcreateview.create, name="report_create"),

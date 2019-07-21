@@ -115,3 +115,40 @@ class ReportQuery(BaseQuery):
         ]
 
         return self.fetchall(sql, param_list)
+
+    def custom_query_sp(
+            self,
+            search_value
+    ):
+
+        sql = 'select sr.report_id,' \
+              '       sr.target_year,' \
+              '       sa.full_name,' \
+              '       sr.file_name,' \
+              '       case ' \
+              '        when sdc.download_count is null ' \
+              '         then 0 ' \
+              '        else sdc.download_count' \
+              '       end download_count,' \
+              '       sr.comment' \
+              '  from student_report sr' \
+              ' inner join student_applicationuser sa ' \
+              '    on sr.auther_user_id = sa.user_id' \
+              '  left outer join (select report_id, count(report_id) download_count' \
+              '				        from student_downloadinformation sd' \
+              '                    group by report_id) sdc ' \
+              '	on sr.report_id = sdc.report_id' \
+              '	where sr.target_year like @target_year' \
+              '	   or sa.full_name like @full_name' \
+              '	   or sr.file_name like @file_name' \
+              '	order by sr.target_year desc,' \
+              '	         sr.create_timestamp desc' \
+
+        param_list = [
+            {"target_year": self.to_like_value(search_value)},
+            {"full_name": self.to_like_value(search_value)},
+            {"file_name": self.to_like_value(search_value)}
+        ]
+
+        return self.fetchall(sql, param_list)
+

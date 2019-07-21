@@ -56,6 +56,23 @@ $(document).ready(function () {
         });
     });
 
+    $("#application").on('click', "#report-search-sp", function () {
+
+        const reportSearchForm = $(this.form).serialize();
+        const group = "report";
+
+        $.ajax({
+            type: "POST",
+            url: this.form.action,
+            data:reportSearchForm,
+            dataType: "html"
+        }).done(function (html) {
+            $('#search-result').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+        });
+    });
+
     $("#application").on('click', '[name="report-paging"]', function () {
         paging("report", this.id);
         return false;

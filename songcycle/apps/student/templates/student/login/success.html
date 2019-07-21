@@ -4,6 +4,7 @@
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
 <link href="{% static 'css/student.styl' %}" rel="stylesheet">
+<link href="{% static 'css/login.styl' %}" rel="stylesheet">
 {% endblock %}
 
 <!DOCTYPE html>
@@ -24,8 +25,8 @@
         </header>
         <main role="main" class="inner cover">
             <h1 class="cover-heading">ようこそ。</h1>
-            <p class="lead">ログイン専用のURLをメール送信しました。</p>
-            <p class="lead">メールが来ない場合は先生に確認してください。</p>
+            <p class="login-seccess-lead">ログイン専用のURLをメール送信しました。</p>
+            <p class="login-seccess-lead">メールが来ない場合は先生に確認してください。</p>
         </main>
 
         <footer class="mastfoot mt-auto">

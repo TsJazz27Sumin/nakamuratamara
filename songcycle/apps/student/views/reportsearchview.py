@@ -1,11 +1,13 @@
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from user_agents import parse
 
 from apps.student.decorators import decorator
 from apps.student.services.reportservice import ReportService
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.forms.report.reportid import ReportIdForm
 from apps.student.forms.report.reportsearchform import ReportSearchForm
+from apps.student.forms.report.reportsearchspform import ReportSearchSpForm
 from apps.student.forms.search.pagingform import PagingForm
 from apps.student.forms.search.sortform import SortForm
 from apps.student.functions import function
@@ -16,6 +18,15 @@ __limit = 2
 
 @decorator.authenticate_async("index")
 def index(request):
+
+    user_agent = parse(request.META['HTTP_USER_AGENT'])
+
+    if(user_agent.is_mobile):
+        html = render_to_string(
+            'student/report/index_sp.html',
+            {},
+            request=request)
+        return HttpResponse(html)
 
     context = {
         'authority_name': request.session['authority']
@@ -115,6 +126,29 @@ def __search(
         context,
         request=request)
     return HttpResponse(html)
+
+
+@decorator.authenticate_async("search_sp")
+def search_sp(request):
+
+    form = ReportSearchSpForm(data=request.POST)
+
+    if form.is_valid():
+        search_value = form.cleaned_data['search_value']
+
+        result_list = ReportQuery().custom_query_sp(search_value)
+
+        context = {
+            'result_list': result_list
+        }
+
+        html = render_to_string(
+            'student/report/search_result_sp.html',
+            context,
+            request=request)
+        return HttpResponse(html)
+    else:
+        return None
 
 
 @decorator.authenticate_async("paging")

@@ -1,35 +1,99 @@
-body {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+@media screen and (min-width:1000px) {
 
-    .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: auto;
+    .login-seccess-lead{
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
 
-        input {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
 
-            .form-control {
-                position: relative;
-                box-sizing: border-box;
-                height: auto;
-                padding: 10px;
-                font-size: 16px;
-            }
+        .title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem!important;
+            font-weight: 400!important;
         }
 
-        .button-sakura{
-            color: #ffffff;
-            background-color: rgb(255, 51, 102);
-            border-color: #ffdbed;
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+
+            input {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+
+                .form-control {
+                    position: relative;
+                    box-sizing: border-box;
+                    height: auto;
+                    padding: 10px;
+                    font-size: 16px;
+                }
+            }
+
+            .button-sakura{
+                color: #ffffff;
+                background-color: rgb(255, 51, 102);
+                border-color: #ffdbed;
+            }
         }
     }
 }
+
+@media screen and (max-width:999px) {
+
+    .login-seccess-lead{
+        font-size: 0.75rem;
+        font-weight: 300;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+
+        .title {
+            font-size: 5rem;
+            margin-bottom: 1rem!important;
+            font-weight: 400!important;
+        }
+
+        .form-signin {
+            padding: 15px;
+            margin: auto;
+
+            input {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+                height: 5rem;
+                font-size: 32px;
+
+                .form-control {
+                    position: relative;
+                    box-sizing: border-box;
+                    height: auto;
+                    padding: 10px;
+                }
+            }
+
+            .button-sakura{
+                color: #ffffff;
+                background-color: rgb(255, 51, 102);
+                border-color: #ffdbed;
+                height: 5rem;
+                font-size: 32px;
+            }
+        }
+    }
+}
+

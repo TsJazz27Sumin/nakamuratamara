@@ -1,0 +1,22 @@
+<main role="main" class="inner cover-report">
+    <section class="search-sec">
+        <form id="report-search-form" action="{% url 'report_search_sp' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="search-value p-0">
+                            <input id="search-value" name="search_value" type="text" maxlength=100 class="form-control search-slt" placeholder="年度・作者名・レポート名">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="search-button p-0 ">
+                            <button id="report-search-sp" type="button" class="btn search-button-sakura wrn-btn"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div id="search-result"></div>
+</main>

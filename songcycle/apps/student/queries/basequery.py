@@ -28,7 +28,7 @@ class BaseQuery:
     def fetchall(self, sql, param_list):
 
         sql, param_values = self.__preparation(sql, param_list)
-
+        
         with connection.cursor() as cursor:
             cursor.execute(sql, param_values)
             result_data = self.namedtuplefetchall(cursor)

@@ -34,100 +34,199 @@
     padding-bottom:1rem;
 }
 
-.cover-report{
-    padding:2rem;
+@media screen and (min-width:1000px) {
+    .cover-report{
+        padding:2rem;
 
-    .search-sec {
-        padding-bottom: 2rem;
-        padding-left: 3.0rem;
+        .search-sec {
+            padding-bottom: 2rem;
+            padding-left: 3.0rem;
 
-        .search-year{
-            width: 100px;
-        }
-
-        .search-full-name{
-            width: 140px;
-        }
-
-        .search-report{
-            width: 530px;
-        }
-    }
-
-    .report-create-link{
-        float: right;
-        padding-right:2.8rem;
-        padding-bottom: 2rem;
-    }
-
-    .report-table-area{
-        max-height:45%;
-        padding-right:2rem;
-        padding-left:2rem;
-        padding-bottom: 2rem;
-
-        .sort-header:hover{
-            color:#4169e1;
-        }
-
-        .target-year{
-            @extend .cell
-            width:50px;
-        }
-
-        .auther-user{
-            @extend .cell
-            width:100px;
-        }
-
-        .file-name{
-            @extend .cell
-            width:400px;
-
-            .text:hover + .comment {
-                display: block;
+            .search-year{
+                width: 100px;
             }
 
-            .comment {
-                display: none;
-                position: absolute;
-                padding: 16px;
-                border-radius: 5px;
-                background-color: #4169e1;
-                //TODO:色は共通定義を作って整理したい。
-                color: #fff;
-                font-weight: bold;
+            .search-full-name{
+                width: 140px;
             }
-            
-            .comment:after {
-                position: absolute;
-                width: 0;
-                height: 0;
-                left: 0;
-                bottom: -19px;
-                margin-left: 10px;
-                border: solid transparent;
-                border-color: rgba(51, 204, 153, 0);
+
+            .search-report{
+                width: 530px;
             }
         }
 
-        .download-count{
-            @extend .cell
-            width:100px;
+        .report-create-link{
+            float: right;
+            padding-right:2.8rem;
+            padding-bottom: 2rem;
         }
 
-        .request-download{
-            width:100px;
+        .report-table-area{
+            max-height:45%;
+            padding-right:2rem;
+            padding-left:2rem;
+            padding-bottom: 2rem;
+
+            .sort-header:hover{
+                color:#4169e1;
+            }
+
+            .target-year{
+                @extend .cell
+                width:50px;
+            }
+
+            .auther-user{
+                @extend .cell
+                width:100px;
+            }
+
+            .file-name{
+                @extend .cell
+                width:400px;
+
+                .text:hover + .comment {
+                    display: block;
+                }
+
+                .comment {
+                    display: none;
+                    position: absolute;
+                    padding: 16px;
+                    border-radius: 5px;
+                    background-color: #4169e1;
+                    //TODO:色は共通定義を作って整理したい。
+                    color: #fff;
+                    font-weight: bold;
+                }
+                
+                .comment:after {
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    left: 0;
+                    bottom: -19px;
+                    margin-left: 10px;
+                    border: solid transparent;
+                    border-color: rgba(51, 204, 153, 0);
+                }
+            }
+
+            .download-count{
+                @extend .cell
+                width:100px;
+            }
+
+            .request-download{
+                width:100px;
+            }
+
+            .delete{
+                width:100px;
+            }
         }
 
-        .delete{
-            width:100px;
+        .report-pagination{
+            float: right;
+            padding-top:1rem;
+            padding-right:2.8rem;
         }
     }
+}
 
-    .report-pagination{
-        float: right;
-        padding-top:1rem;
-        padding-right:2.8rem;
+@media screen and (max-width:999px) {
+    .cover-report{
+
+        .search-sec {
+            padding-bottom: 2rem;
+            padding-left: 3.0rem;
+
+            .search-value{
+                width: 85%;
+            }
+
+            .search-button{
+                width: 85%;
+
+                .search-button-sakura{
+                    color: #ffffff;
+                    background-color: rgb(255, 51, 102);
+                    border-color: #ffdbed;
+                    width: 100%;
+                    padding: 0.65rem;
+                }
+            }
+        }
+
+        .report-table-area{
+            max-height:60%;
+            padding-right:2rem;
+            padding-left:2rem;
+            padding-bottom: 2rem;
+
+            .sort-header:hover{
+                color:#4169e1;
+            }
+
+            .target-year{
+                @extend .cell
+                width:50px;
+            }
+
+            .auther-user{
+                @extend .cell
+                width:100px;
+            }
+
+            .file-name{
+                @extend .cell
+                width:400px;
+
+                .text:hover + .comment {
+                    display: block;
+                }
+
+                .comment {
+                    display: none;
+                    position: absolute;
+                    padding: 16px;
+                    border-radius: 5px;
+                    background-color: #4169e1;
+                    //TODO:色は共通定義を作って整理したい。
+                    color: #fff;
+                    font-weight: bold;
+                }
+                
+                .comment:after {
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    left: 0;
+                    bottom: -19px;
+                    margin-left: 10px;
+                    border: solid transparent;
+                    border-color: rgba(51, 204, 153, 0);
+                }
+            }
+
+            .download-count{
+                @extend .cell
+                width:100px;
+            }
+
+            .request-download{
+                width:100px;
+            }
+
+            .delete{
+                width:100px;
+            }
+        }
+
+        .report-pagination{
+            float: right;
+            padding-top:1rem;
+            padding-right:2.8rem;
+        }
     }
 }

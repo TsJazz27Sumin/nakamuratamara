@@ -1,31 +1,83 @@
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+@media screen and (min-width: 1000px) {
+  .login-seccess-lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  body .title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem !important;
+    font-weight: 400 !important;
+  }
+  body .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  body .form-signin input {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  body .form-signin input .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  body .form-signin .button-sakura {
+    color: #fff;
+    background-color: #f36;
+    border-color: #ffdbed;
+  }
 }
-body .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-body .form-signin input {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-body .form-signin input .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-body .form-signin .button-sakura {
-  color: #fff;
-  background-color: #f36;
-  border-color: #ffdbed;
+@media screen and (max-width: 999px) {
+  .login-seccess-lead {
+    font-size: 0.75rem;
+    font-weight: 300;
+  }
+  body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  body .title {
+    font-size: 5rem;
+    margin-bottom: 1rem !important;
+    font-weight: 400 !important;
+  }
+  body .form-signin {
+    padding: 15px;
+    margin: auto;
+  }
+  body .form-signin input {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 5rem;
+    font-size: 32px;
+  }
+  body .form-signin input .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+  }
+  body .form-signin .button-sakura {
+    color: #fff;
+    background-color: #f36;
+    border-color: #ffdbed;
+    height: 5rem;
+    font-size: 32px;
+  }
 }
