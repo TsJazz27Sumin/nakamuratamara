@@ -5,11 +5,8 @@
   padding-left: 15rem;
   color: #212529;
 }
-.user-m-create-area .user-m-file {
-  padding-right: 3rem;
-}
-.user-m-create-area .file-name-label {
-  padding-top: 0.3rem;
+.user-m-create-area .name-margin {
+  padding: 0.5rem;
 }
 .user-m-create-area .user-m-create-title {
   padding-bottom: 4rem;

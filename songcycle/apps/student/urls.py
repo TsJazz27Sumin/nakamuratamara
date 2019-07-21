@@ -31,4 +31,5 @@ urlpatterns = [
     path('home/user-m-detail/', usermsearchview.detail, name="user_m_detail"),
     path('home/user-m-delete/', usermsearchview.delete, name="user_m_delete"),
     path('home/user-m-create/', usermcreateview.create, name="user_m_create"),
+    path('home/user-m-save/', usermcreateview.save_user, name="user_m_save"),
 ]
