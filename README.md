@@ -67,6 +67,7 @@
   - [Django2でStylusを使う](https://blog.takao-hayashi.org/posts/django2%E3%81%A7stylus%E3%82%92%E4%BD%BF%E3%81%86/)
   - [django-static-precompiler 1.8.2](https://pypi.org/project/django-static-precompiler/)
   - [Stylus入門](https://qiita.com/kubotak/items/18abd6eba7e3daaba054)
+  - [レスポンシブ対応サクッとまとめ](https://qiita.com/ymtm_jp/items/e8c55046429438a91903)
 
 - javascript関連
   - [jQueryでイベントが発火しないときの簡単な対処法](https://pisuke-code.com/jquery-solution-for-event-unfired/)
@@ -103,6 +104,7 @@
 
 - セキュリティ関連
   - [Django でランダムな文字列を生成するメモ](https://cortyuming.hateblo.jp/entry/20140529/p1)
+  - [Djangoのセキュリティとその実装](https://www.slideshare.net/mobile/aki33524/django-58472909)
 
 - Logging関連
   - [django#logging](https://qiita.com/soup01/items/068b2f3e3fe83026e4b7)
