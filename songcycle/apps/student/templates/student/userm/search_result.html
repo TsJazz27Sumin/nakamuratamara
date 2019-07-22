@@ -33,7 +33,7 @@
                 <td class="last-login">{{ result.last_login_date_timestamp | to_jst }}</td>
                 <td class="login-count">{{ result.login_count }}</td>
                 <td class="detail">
-                    <a id="{{result.user_id}}" name="user-m-detail-link" href="{% url 'user_m_detail' %}">User Detail</a>
+                    <a id="{{result.user_id}}" name="user-m-update-link" href="{% url 'user_m_update' %}">User Update</a>
                 </td>
                 <td class="delete">
                     <button id="user-m-delete" class="btn button-dark-blue btn-sm btn-block" type="button">

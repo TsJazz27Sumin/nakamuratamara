@@ -20,7 +20,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#application").on('click', '[name="user-m-detail-link"]', function () {
+    $("#application").on('click', '[name="user-m-update-link"]', function () {
 
         const id = this.id;
         const group = "user-m";

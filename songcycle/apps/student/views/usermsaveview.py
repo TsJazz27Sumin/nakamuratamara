@@ -25,8 +25,8 @@ def create(request):
     return HttpResponse(html)
 
 
-@decorator.authenticate_admin_only_async("detail")
-def detail(request):
+@decorator.authenticate_admin_only_async("update")
+def update(request):
 
     form = UserIdForm(data=request.POST)
 
@@ -42,7 +42,7 @@ def detail(request):
         }
 
         html = render_to_string(
-            'student/userm/detail.html',
+            'student/userm/update.html',
             context=context,
             request=request)
         return HttpResponse(html)

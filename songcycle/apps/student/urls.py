@@ -30,6 +30,6 @@ urlpatterns = [
     path('home/user-m-sort/', usermsearchview.sort, name="user_m_sort"),
     path('home/user-m-delete/', usermsearchview.delete, name="user_m_delete"),
     path('home/user-m-create/', usermsaveview.create, name="user_m_create"),
-    path('home/user-m-detail/', usermsaveview.detail, name="user_m_detail"),
+    path('home/user-m-update/', usermsaveview.update, name="user_m_update"),
     path('home/user-m-save/', usermsaveview.save_user, name="user_m_save"),
 ]
