@@ -67,18 +67,24 @@ def save_user(request):
         comment = form.cleaned_data['comment']
         login_user_id = request.session['user_id']
 
-        if(ApplicationUserQuery().is_exist_same_email(email)):
+        user = None
+        if (user_id != ''):
+            user = ApplicationUserQuery().get_user(user_id)
+
+        if(__is_exist_same_email(user, email)):
             json_data = {
                 'data': {
                     'result': 'false',
-                    'message': 'Already same email exist.'}}
+                    'errorMessage': 'Already same email exist.',
+                    'errorItem': 'email-area'}}
             return JsonResponse(json_data)
 
-        if(ApplicationUserQuery().is_exist_same_full_name(full_name)):
+        if(__is_exist_same_full_name(user, full_name)):
             json_data = {
                 'data': {
                     'result': 'false',
-                    'message': 'Already same name user exist.'}}
+                    'errorMessage': 'Already same name user exist.',
+                    'errorItem': 'fisrt_name'}}
             return JsonResponse(json_data)
 
         user_id = ApplicationUserService().save_user(
@@ -99,6 +105,18 @@ def save_user(request):
                 'errorItem': error_item}}
 
     return JsonResponse(json_data)
+
+
+def __is_exist_same_email(user, email):
+
+    if (user is None or user.email != email):
+        return ApplicationUserQuery().is_exist_same_email(email)
+
+
+def __is_exist_same_full_name(user, full_name):
+    
+    if (user is None or user.full_name != full_name):
+        return ApplicationUserQuery().is_exist_same_email(full_name)
 
 
 def __get_error_infomations(form):

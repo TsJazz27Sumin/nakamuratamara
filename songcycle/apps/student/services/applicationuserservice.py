@@ -69,6 +69,6 @@ class ApplicationUserService:
             user.update_user_id = login_user_id
             user.update_timestamp = datetime.now()
 
-            self.__application_user_repository(user)
+            self.__application_user_repository.update(user)
 
             return user_id

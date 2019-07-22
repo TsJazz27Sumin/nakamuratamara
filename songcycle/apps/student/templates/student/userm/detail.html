@@ -3,6 +3,8 @@
     <form id="user-m-save-form" action="{% url 'user_m_save' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
+      <input id="user-id" name="user_id" type="hidden" value="{{user.user_id}}">
+
       <div class="mb-3">
         <div id="email-area" class="input-group"> 
           <input id="email" name="email" type="text" class="form-control" placeholder="Email" value="{{user.email}}" maxlength=256>
