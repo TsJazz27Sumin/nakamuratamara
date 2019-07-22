@@ -56,18 +56,20 @@ class LoginService:
         # TODO
         # テンポラリーのデータは、1日経ったらcronで消したい。
 
-        # print(login_url)
+        # TODO:demo用
+        if ("@test.com" in email):
+            print(login_url)
+        else:
+            # メールが送信できることは確認できたのでコメントアウト
+            message = Mail(
+                from_email=develop.SENDGRID_FROM,
+                to_emails=email,
+                subject='ログインURLのお知らせ',
+                html_content='一時的に有効なログインURLです。<br>' + login_url
+            )
 
-        # メールが送信できることは確認できたのでコメントアウト
-        message = Mail(
-            from_email=develop.SENDGRID_FROM,
-            to_emails=email,
-            subject='ログインURLのお知らせ',
-            html_content='一時的に有効なログインURLです。<br>' + login_url
-        )
-
-        sg = SendGridAPIClient(develop.SENDGRID_APIKEY)
-        sg.send(message)
+            sg = SendGridAPIClient(develop.SENDGRID_APIKEY)
+            sg.send(message)
 
     def get_active_user(self, onetime_password):
         valid_time = datetime.now() - timedelta(minutes=self.__master_query.get_temporary_time())
