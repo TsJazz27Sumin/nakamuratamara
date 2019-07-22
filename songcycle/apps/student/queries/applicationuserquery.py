@@ -69,6 +69,9 @@ class ApplicationUserQuery(BaseQuery):
 
         return user_name_dictionary
 
+    def get_user(self, user_id):
+        return ApplicationUser.objects.filter(user_id=user_id).first()
+
     def custom_count(self, email, full_name):
     
         sql = 'select count(sa.user_id) count' \

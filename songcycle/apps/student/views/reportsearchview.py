@@ -5,7 +5,7 @@ from user_agents import parse
 from apps.student.decorators import decorator
 from apps.student.services.reportservice import ReportService
 from apps.student.queries.reportquery import ReportQuery
-from apps.student.forms.report.reportid import ReportIdForm
+from apps.student.forms.report.reportdeleteform import ReportDeleteForm
 from apps.student.forms.report.reportsearchform import ReportSearchForm
 from apps.student.forms.report.reportsearchspform import ReportSearchSpForm
 from apps.student.forms.search.pagingform import PagingForm
@@ -207,7 +207,7 @@ def __paging(request, current_page, previous, next, target_page):
 @decorator.authenticate_admin_only_async("delete_report")
 def delete_report(request):
 
-    form = ReportIdForm(data=request.POST)
+    form = ReportDeleteForm(data=request.POST)
 
     if form.is_valid():
         report_id = form.cleaned_data['report_id']

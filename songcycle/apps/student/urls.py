@@ -3,7 +3,7 @@ from apps.student.views import reportsearchview
 from apps.student.views import reportcreateview
 from apps.student.views import accesslogview
 from apps.student.views import usermsearchview
-from apps.student.views import usermcreateview
+from apps.student.views import usermsaveview
 from apps.student.views import homeview
 from apps.student.views import requestloginview
 
@@ -28,8 +28,8 @@ urlpatterns = [
     path('home/user-m-search/', usermsearchview.search, name="user_m_search"),
     path('home/user-m-paging/', usermsearchview.paging, name="user_m_paging"),
     path('home/user-m-sort/', usermsearchview.sort, name="user_m_sort"),
-    path('home/user-m-detail/', usermsearchview.detail, name="user_m_detail"),
     path('home/user-m-delete/', usermsearchview.delete, name="user_m_delete"),
-    path('home/user-m-create/', usermcreateview.create, name="user_m_create"),
-    path('home/user-m-save/', usermcreateview.save_user, name="user_m_save"),
+    path('home/user-m-create/', usermsaveview.create, name="user_m_create"),
+    path('home/user-m-detail/', usermsaveview.detail, name="user_m_detail"),
+    path('home/user-m-save/', usermsaveview.save_user, name="user_m_save"),
 ]

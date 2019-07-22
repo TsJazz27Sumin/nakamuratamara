@@ -20,6 +20,31 @@ $(document).ready(function () {
         return false;
     });
 
+    $("#application").on('click', '[name="user-m-detail-link"]', function () {
+
+        const id = this.id;
+        const group = "user-m";
+        const url = this.href;
+
+        let fd = new FormData();
+        fd.append('user_id', id);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data:fd,
+            dataType: "html",
+            processData : false,
+            contentType: false
+        }).done(function (html) {
+            $('#application').html(html);
+            $('[name="function-title"]').removeClass("active");
+            $('#' + group).find('p').addClass("active");
+        });
+        
+        return false;
+    });
+
     $("#application").on('click', "#user-m-save", function(event) {
         
         $('[name="error-message"]').remove();

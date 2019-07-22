@@ -18,6 +18,20 @@
 .user-m-create-area .continue-to-register {
   text-align: right;
 }
+.user-m-detail-area {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  padding-right: 15rem;
+  padding-left: 15rem;
+  color: #212529;
+}
+.user-m-detail-area .name-margin {
+  padding: 0.5rem;
+}
+.user-m-detail-area .user-m-detail-title {
+  padding-bottom: 4rem;
+  text-align: left;
+}
 .cell,
 .cover-user-m .user-m-table-area .email,
 .cover-user-m .user-m-table-area .full-name,

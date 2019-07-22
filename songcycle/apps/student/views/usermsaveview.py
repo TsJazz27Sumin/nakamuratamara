@@ -7,6 +7,7 @@ from apps.student.queries.masterquery import MasterQuery
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.services.applicationuserservice import ApplicationUserService
 from apps.student.forms.userm.usersaveform import UserSaveForm
+from apps.student.forms.userm.useridform import UserIdForm
 
 
 @decorator.authenticate_admin_only_async("create")
@@ -24,6 +25,31 @@ def create(request):
     return HttpResponse(html)
 
 
+@decorator.authenticate_admin_only_async("detail")
+def detail(request):
+
+    form = UserIdForm(data=request.POST)
+
+    if form.is_valid():
+        user_id = form.cleaned_data['user_id']
+
+        user = ApplicationUserQuery().get_user(user_id)
+
+        context = {
+            'user': user,
+            'authority_taples': MasterQuery().get_authority_taples(),
+            'user_status_taples': MasterQuery().get_user_status_taples()
+        }
+
+        html = render_to_string(
+            'student/userm/detail.html',
+            context=context,
+            request=request)
+        return HttpResponse(html)
+    else:
+        return None
+
+
 @decorator.authenticate_admin_only_async_json_response("save_user")
 def save_user(request):
 
@@ -31,6 +57,7 @@ def save_user(request):
     json_data = None
 
     if form.is_valid():
+        user_id = form.cleaned_data['user_id']
         email = form.cleaned_data['email']
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
@@ -55,9 +82,9 @@ def save_user(request):
             return JsonResponse(json_data)
 
         user_id = ApplicationUserService().save_user(
-            email, first_name, last_name, full_name, authority, status, comment, login_user_id)
-
-        if(user_id is not None):
+            user_id, email, first_name, last_name, full_name, authority, status, comment, login_user_id)
+            
+        if (user_id is not None):
             json_data = {'data': {'result': 'true', 'message': 'Success'}}
             return JsonResponse(json_data)
 

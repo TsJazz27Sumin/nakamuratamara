@@ -164,11 +164,6 @@ def sort(request):
         return None
 
 
-@decorator.authenticate_admin_only_async("detail")
-def detail(request):
-    return None
-
-
 @decorator.authenticate_admin_only_async("delete")
 def delete(request):
     return None
