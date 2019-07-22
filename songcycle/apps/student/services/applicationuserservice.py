@@ -72,3 +72,7 @@ class ApplicationUserService:
             self.__application_user_repository.update(user)
 
             return user_id
+    
+    def delete_user(self, user_id):
+        user = self.__application_user_query.get_user(user_id)
+        self.__application_user_repository.delete(user)

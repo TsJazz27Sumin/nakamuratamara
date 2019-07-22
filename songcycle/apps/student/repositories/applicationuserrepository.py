@@ -45,3 +45,6 @@ class ApplicationUserRepository:
 
     def update(self, application_user):
         application_user.save()
+    
+    def delete(self, application_user):
+        application_user.delete()

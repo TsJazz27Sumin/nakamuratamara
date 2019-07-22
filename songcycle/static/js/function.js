@@ -156,7 +156,7 @@ function paging(group, id){
 
 function deleteData(group, target, idName) {
 
-    const link = target.find('[name="report-delete-link"]')[0];
+    const link = target.find('[name="' + group + '-delete-link"]')[0];
 
     let fd = new FormData();
     fd.append(idName, link.id);

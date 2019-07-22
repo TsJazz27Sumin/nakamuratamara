@@ -2,12 +2,15 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from apps.student.decorators import decorator
-from apps.student.forms.userm.usersearchform import UserSearchForm
 from apps.student.forms.search.pagingform import PagingForm
 from apps.student.forms.search.sortform import SortForm
+from apps.student.forms.userm.userdeleteform import UserDeleteForm
+from apps.student.forms.userm.usersearchform import UserSearchForm
 from apps.student.functions import function
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.queries.masterquery import MasterQuery
+from apps.student.services.applicationuserservice import ApplicationUserService
+
 
 # TODO:Paging確認のため、とりあえずこの数字。
 __limit = 2
@@ -164,6 +167,17 @@ def sort(request):
         return None
 
 
-@decorator.authenticate_admin_only_async("delete")
-def delete(request):
-    return None
+@decorator.authenticate_admin_only_async("delete_user")
+def delete_user(request):
+    
+    form = UserDeleteForm(data=request.POST)
+
+    if form.is_valid():
+        user_id = form.cleaned_data['user_id']
+        current_page = form.cleaned_data['current_page']
+
+        ApplicationUserService().delete_user(user_id)
+
+        return __paging(request, current_page, False, False, current_page)
+    else:
+        return None
