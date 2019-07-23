@@ -4,6 +4,7 @@ import threading
 # CRUDのCUDは、ここに集約する。
 from apps.student.models.applicationuser import ApplicationUser
 
+
 class ApplicationUserRepository:
 
     __singleton = None
@@ -27,7 +28,7 @@ class ApplicationUserRepository:
                status,
                comment,
                login_user_id):
-        
+
         application_user = ApplicationUser(
             user_id=user_id,
             email=email,
@@ -45,6 +46,6 @@ class ApplicationUserRepository:
 
     def update(self, application_user):
         application_user.save()
-    
+
     def delete(self, application_user):
         application_user.delete()

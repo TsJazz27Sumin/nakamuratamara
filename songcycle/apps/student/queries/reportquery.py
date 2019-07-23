@@ -151,4 +151,3 @@ class ReportQuery(BaseQuery):
         ]
 
         return self.fetchall(sql, param_list)
-

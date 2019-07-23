@@ -4,8 +4,6 @@ from django.shortcuts import redirect
 from user_agents import parse
 from django.http.response import JsonResponse
 
-from apps.student.queries.masterquery import MasterQuery
-
 logger = logging.getLogger("student")
 
 
@@ -45,7 +43,7 @@ def authenticate_async(function_name):
                 # 権限が不明な場合は、セッション切れ、もしくは不正アクセスと見なし、強制ログアウト
                 return redirect('request_login')
 
-            if (args[0].is_ajax() == False):
+            if (args[0].is_ajax() is False):
                 # Ajax通信ではない場合、HOME画面に戻す。
                 return redirect('home')
 
@@ -99,7 +97,7 @@ def authenticate_admin_only_async(function_name):
                 # 権限が不明な場合は、セッション切れ、もしくは不正アクセスと見なし、強制ログアウト
                 return redirect('request_login')
             else:
-                if (args[0].is_ajax() == False):
+                if (args[0].is_ajax() is False):
                     # Ajax通信ではない場合、HOME画面に戻す。
                     return redirect('home')
 
@@ -136,17 +134,17 @@ def authenticate_admin_only_async_json_response(function_name):
 
 
 def __output_ordinary_log(args, function_name):
-        request = getattr(args[0], 'request', args[0])
-        user_agent = parse(request.META['HTTP_USER_AGENT'])
-        remote_addr = request.META['REMOTE_ADDR']
+    request = getattr(args[0], 'request', args[0])
+    user_agent = parse(request.META['HTTP_USER_AGENT'])
+    remote_addr = request.META['REMOTE_ADDR']
 
-        user_id = ""
-        if 'user_id' in request.session:
-            user_id = request.session['user_id']
+    user_id = ""
+    if 'user_id' in request.session:
+        user_id = request.session['user_id']
 
-        logger.info(
-            '{} : {} : {} : {}'.format(
-                user_agent,
-                remote_addr,
-                function_name,
-                user_id))
+    logger.info(
+        '{} : {} : {} : {}'.format(
+            user_agent,
+            remote_addr,
+            function_name,
+            user_id))

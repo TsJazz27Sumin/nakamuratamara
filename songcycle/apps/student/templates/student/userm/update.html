@@ -1,63 +1,67 @@
 <div class="user-m-update-area">
-    <h4 class="mb-3 user-m-update-title">User Update</h4>
-    <form id="user-m-save-form" action="{% url 'user_m_save' %}" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
+  <h4 class="mb-3 user-m-update-title">User Update</h4>
+  <form id="user-m-save-form" action="{% url 'user_m_save' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-      <input id="user-id" name="user_id" type="hidden" value="{{user.user_id}}">
+    <input id="user-id" name="user_id" type="hidden" value="{{user.user_id}}">
 
-      <div class="mb-3">
-        <div id="email-area" class="input-group"> 
-          <input id="email" name="email" type="text" class="form-control" placeholder="Email" value="{{user.email}}" maxlength=256>
-        </div>
+    <div class="mb-3">
+      <div id="email-area" class="input-group">
+        <input id="email" name="email" type="text" class="form-control" placeholder="Email" value="{{user.email}}"
+          maxlength=256>
       </div>
-  
-      <div class="mb-3">
-        <div id="name-area" class="input-group"> 
-          <input id="first-name" name="first_name" type="text" class="form-control" placeholder="First Name" value="{{user.first_name}}" maxlength=100>
-          <span class="name-margin"></span>
-          <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{user.last_name}}" maxlength=100>
-        </div>
-      </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <select class="custom-select d-block w-100" id="authority" name="authority" required="">
-            <option value="">Select Authority...</option>
-            {% for key,val in authority_taples %}
-            {% if user.authority == key %}
-              <option selected value={{ key }}>{{val}}</option>
-            {% else %}
-              <option value={{ key }}>{{val}}</option>
-            {% endif %}
-            {% endfor %}
-          </select>
-        </div>
+    <div class="mb-3">
+      <div id="name-area" class="input-group">
+        <input id="first-name" name="first_name" type="text" class="form-control" placeholder="First Name"
+          value="{{user.first_name}}" maxlength=100>
+        <span class="name-margin"></span>
+        <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name"
+          value="{{user.last_name}}" maxlength=100>
       </div>
+    </div>
 
-      <div class="row">
-          <div class="col-md-12 mb-3">
-            <select class="custom-select d-block w-100" id="status" name="status" required="">
-              <option value="">Select Status...</option>
-              {% for key,val in user_status_taples %}
-              {% if user.status == key %}
-                <option selected value={{ key }}>{{val}}</option>
-              {% else %}
-                <option value={{ key }}>{{val}}</option>
-              {% endif %}
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-
-      <div class="mb-3">
-        <div id="comment-area" class="input-group"> 
-          <input id="comment" name="comment" type="text" class="form-control" placeholder="If you have comment, Please input." value="{{user.comment}}" maxlength=100>
-        </div>
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <select class="custom-select d-block w-100" id="authority" name="authority" required="">
+          <option value="">Select Authority...</option>
+          {% for key,val in authority_taples %}
+          {% if user.authority == key %}
+          <option selected value={{ key }}>{{val}}</option>
+          {% else %}
+          <option value={{ key }}>{{val}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
       </div>
+    </div>
 
-      <div id="user-m-save-area">
-        <hr class="mb-4">
-        <button id="user-m-save" class="btn button-dark-blue btn-lg btn-block" type="button">Save</button>
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <select class="custom-select d-block w-100" id="status" name="status" required="">
+          <option value="">Select Status...</option>
+          {% for key,val in user_status_taples %}
+          {% if user.status == key %}
+          <option selected value={{ key }}>{{val}}</option>
+          {% else %}
+          <option value={{ key }}>{{val}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div class="mb-3">
+      <div id="comment-area" class="input-group">
+        <input id="comment" name="comment" type="text" class="form-control"
+          placeholder="If you have comment, Please input." value="{{user.comment}}" maxlength=100>
+      </div>
+    </div>
+
+    <div id="user-m-save-area">
+      <hr class="mb-4">
+      <button id="user-m-save" class="btn button-dark-blue btn-lg btn-block" type="button">Save</button>
+    </div>
+  </form>
+</div>

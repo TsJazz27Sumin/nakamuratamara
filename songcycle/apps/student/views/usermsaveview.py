@@ -88,8 +88,16 @@ def save_user(request):
             return JsonResponse(json_data)
 
         user_id = ApplicationUserService().save_user(
-            user_id, email, first_name, last_name, full_name, authority, status, comment, login_user_id)
-            
+            user_id,
+            email,
+            first_name,
+            last_name,
+            full_name,
+            authority,
+            status,
+            comment,
+            login_user_id)
+
         if (user_id is not None):
             json_data = {'data': {'result': 'true', 'message': 'Success'}}
             return JsonResponse(json_data)
@@ -114,7 +122,7 @@ def __is_exist_same_email(user, email):
 
 
 def __is_exist_same_full_name(user, full_name):
-    
+
     if (user is None or user.full_name != full_name):
         return ApplicationUserQuery().is_exist_same_email(full_name)
 

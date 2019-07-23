@@ -26,37 +26,45 @@
 <html>
 
 <head>
-<meta charset="utf-8" />
-<title>home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <title>home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class="text-center">
-<div id="body-area" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead">
-        <div class="inner">
-            <h3 class="masthead-brand">Nakamuratamara</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link" href="{% url 'home' %}"><p name="function-title" class="active">ホーム</p></a>
-                <a id="report" class="nav-link" href="{% url 'report' %}"><p name="function-title">レポート</p></a>
+    <div id="body-area" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead">
+            <div class="inner">
+                <h3 class="masthead-brand">Nakamuratamara</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="{% url 'home' %}">
+                        <p name="function-title" class="active">ホーム</p>
+                    </a>
+                    <a id="report" class="nav-link" href="{% url 'report' %}">
+                        <p name="function-title">レポート</p>
+                    </a>
 
-                {% if authority_name == "admin" %}
-                <a id="user-m" class="nav-link" href="{% url 'user_m' %}"><p name="function-title">ユーザー管理</p></a>
-                <a id="access-log" class="nav-link" href="{% url 'access_log' %}"><p name="function-title">アクセスログ</p></a>
-                {% endif %}
-                
-                <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
-            </nav>
+                    {% if authority_name == "admin" %}
+                    <a id="user-m" class="nav-link" href="{% url 'user_m' %}">
+                        <p name="function-title">ユーザー管理</p>
+                    </a>
+                    <a id="access-log" class="nav-link" href="{% url 'access_log' %}">
+                        <p name="function-title">アクセスログ</p>
+                    </a>
+                    {% endif %}
+
+                    <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+                </nav>
+            </div>
+        </header>
+
+        <div id="application">
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading">ようこそ.</h1>
+                <p class="student-lead">このサイトは、学生のためのレポート共有サイトです。</p>
+            </main>
         </div>
-    </header>
-
-    <div id="application">
-        <main role="main" class="inner cover">
-            <h1 class="cover-heading">ようこそ.</h1>
-            <p class="student-lead">このサイトは、学生のためのレポート共有サイトです。</p>
-        </main>
     </div>
-</div>
 </body>
 
 </html>

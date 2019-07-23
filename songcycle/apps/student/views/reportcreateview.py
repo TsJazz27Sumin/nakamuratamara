@@ -74,7 +74,7 @@ def save_report(request):
             return JsonResponse(json_data)
 
     else:
-        
+
         error_message, error_item = __get_error_infomations(form)
 
         json_data = {
@@ -106,11 +106,12 @@ def __get_error_infomations(form):
             if "comment" in field.name:
                 error_message_list.append("Comment:" + error)
                 error_item_list.append("comment-area")
-    
+
     error_message = ','.join(error_message_list)
     error_item = ','.join(error_item_list)
 
     return error_message, error_item
+
 
 def __get_choices():
     choices = []

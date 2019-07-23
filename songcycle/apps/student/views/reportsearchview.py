@@ -169,7 +169,8 @@ def paging(request):
 
 def __paging(request, current_page, previous, next, target_page):
 
-    offset, target_page = function.get_offset(previous, next, target_page, current_page, __limit)
+    offset, target_page = function.get_offset(
+        previous, next, target_page, current_page, __limit)
 
     target_year = request.session['target_year']
     full_name = request.session['full_name']
@@ -222,7 +223,7 @@ def delete_report(request):
 
 @decorator.authenticate_download("download_report")
 def download_report(request):
-    
+
     user_id = request.session['user_id']
     report_id = request.GET.get("report_id")
 

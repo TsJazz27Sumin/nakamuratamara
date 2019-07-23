@@ -81,7 +81,7 @@ class GoogleApiService:
 
         service = self.__get_service(self.__scopes)
 
-        result = service.files().delete(
+        service.files().delete(
             fileId=google_file_id
         ).execute()
 

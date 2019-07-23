@@ -109,7 +109,8 @@ def paging(request):
 
 def __paging(request, current_page, previous, next, target_page):
 
-    offset, target_page = function.get_offset(previous, next, target_page, current_page, __limit)
+    offset, target_page = function.get_offset(
+        previous, next, target_page, current_page, __limit)
 
     email = request.session['email']
     full_name = request.session['full_name']
@@ -169,7 +170,7 @@ def sort(request):
 
 @decorator.authenticate_admin_only_async("delete_user")
 def delete_user(request):
-    
+
     form = UserDeleteForm(data=request.POST)
 
     if form.is_valid():
