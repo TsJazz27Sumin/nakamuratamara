@@ -11,7 +11,7 @@ $(document).ready(function () {
             url: url,
             dataType: "html"
         }).done(function (html) {
-            history.pushState('', '', id);
+            history.pushState('', '', url);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
@@ -37,6 +37,7 @@ $(document).ready(function () {
             processData : false,
             contentType: false
         }).done(function (html) {
+            history.pushState('', '', url);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
@@ -51,6 +52,7 @@ $(document).ready(function () {
 
         let form = $('#user-m-save-form');
         const userSaveForm = form.serialize();
+        const url = form[0].action;
 
         overlay()
 
@@ -64,6 +66,7 @@ $(document).ready(function () {
             const data = json.data;
 
             if(strToBool(data.result)){
+                history.pushState('', '', url);
                 overlayClear(false)
                 
                 addSuccessMessage("#user-m-save-area");

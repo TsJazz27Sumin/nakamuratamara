@@ -2,14 +2,15 @@ $(document).ready(function () {
 
     $("#user-m").click(function () {
 
-        id = this.id;
+        const id = this.id;
+        const url = this.href;
 
         $.ajax({
             type: "GET",
             url: this.href,
             dataType: "html"
         }).done(function (html) {
-            history.pushState('', '', id);
+            history.pushState('', '', url);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + id).find('p').addClass("active");
@@ -30,13 +31,15 @@ $(document).ready(function () {
 
         const userSearchForm = $(this.form).serialize();
         const group = "user-m";
+        const url =  this.form.action;
 
         $.ajax({
             type: "POST",
-            url: this.form.action,
+            url: url,
             data:userSearchForm,
             dataType: "html"
         }).done(function (html) {
+            history.pushState('', '', url);
             afterReportSearch(html, group);
         });
     });

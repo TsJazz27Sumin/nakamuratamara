@@ -63,7 +63,7 @@ $(document).ready(function () {
             url: url,
             dataType: "html"
         }).done(function (html) {
-            history.pushState('', '', id);
+            history.pushState('', '', url);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");

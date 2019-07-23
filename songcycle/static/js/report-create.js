@@ -5,7 +5,6 @@ $(document).ready(function () {
     let inputTag = null;
     $("#application").on('click', "#report-create", function () {
 
-        const id = this.id;
         const group = "report";
         const url = this.href;
 
@@ -14,7 +13,7 @@ $(document).ready(function () {
             url: url,
             dataType: "html"
         }).done(function (html) {
-            history.pushState('', '', id);
+            history.pushState('', '', url);
             $('#application').html(html);
             $('[name="function-title"]').removeClass("active");
             $('#' + group).find('p').addClass("active");
@@ -87,6 +86,7 @@ $(document).ready(function () {
 
         let form = $('#report-save-form');
         const reportSaveForm = form.serialize();
+        const url = form[0].action;
 
         overlay()
 
@@ -101,6 +101,7 @@ $(document).ready(function () {
 
             if(strToBool(data.result)){
                 overlayClear(false)
+                history.pushState('', '', url);
                 $("#report-file").prop("disabled", true);
                 
                 addSuccessMessage("#report-save-area");

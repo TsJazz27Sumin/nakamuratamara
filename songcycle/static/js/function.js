@@ -124,12 +124,13 @@ function sort(group, id){
         processData : false,
         contentType: false
     }).done(function (html) {
+        history.pushState('', '', link);
         afterReportSearch(html, group);
     });
 };
 
 function paging(group, id){
-    const link = $('#paging-url')[0].href;
+    const url = $('#paging-url')[0].href;
 
     let fd = new FormData();
     fd.append('current_page', $('#current-page')[0].value);
@@ -144,12 +145,13 @@ function paging(group, id){
 
     $.ajax({
         type: "POST",
-        url: link,
+        url: url,
         data:fd,
         dataType: "html",
         processData : false,
         contentType: false
     }).done(function (html) {
+        history.pushState('', '', url);
         afterReportSearch(html, group);
     });
 };
@@ -157,6 +159,7 @@ function paging(group, id){
 function deleteData(group, target, idName) {
 
     const link = target.find('[name="' + group + '-delete-link"]')[0];
+    const url = link.href;
 
     let fd = new FormData();
     fd.append(idName, link.id);
@@ -165,13 +168,14 @@ function deleteData(group, target, idName) {
     overlay()
     $.ajax({
         type: "POST",
-        url: link.href,
+        url: url,
         data:fd,
         dataType: "html",
         processData : false,
         contentType: false
     }).done(function (html) {
         overlayClear(true)
+        history.pushState('', '', url);
         afterReportSearch(html, group);
 
     }).fail(function(jqXHR, textStatus, errorThrown){
