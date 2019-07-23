@@ -125,6 +125,7 @@
   - [プルダウンリスト（Select）とマルチセレクトボックス。初期化と値の受取など。／Django2.0＋Bootstrap4](https://arakan-pgm-ai.hatenablog.com/entry/2019/02/14/090000)
   - [Pythonで文字列・数値をゼロ埋め（ゼロパディング）](https://note.nkmk.me/python-zero-padding/)
   - [Djangoのテンプレートで、キーに変数を指定して辞書にアクセス](http://y0m0r.hateblo.jp/entry/20140424/1398354294)
+  - [django-pandasを利用する。](https://sinyblog.com/django/django-pandas/)
 
 - デコレータ関連
   - [PythonのデコレータでAOPっぽいことをしました。](https://qiita.com/naokiur/items/671f9cfd6b2d683f3de4)
