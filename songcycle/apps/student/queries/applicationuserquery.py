@@ -12,7 +12,7 @@ class ApplicationUserQuery(BaseQuery):
     __singleton = None
     __master_query = None
     __new_lock = threading.Lock()
-    __sort_item_disctionary = {
+    __sort_item_dictionary = {
         "user-id-sort": 'sa.user_id',
         "email-sort": 'sa.email',
         "full-name-sort": 'sa.full_name',
@@ -114,7 +114,7 @@ class ApplicationUserQuery(BaseQuery):
         param_list = [
             {"email": self.to_like_value(email)},
             {"full_name": self.to_like_value(full_name)},
-            {"sort": self.__sort_item_disctionary[sort_item]},
+            {"sort": self.__sort_item_dictionary[sort_item]},
             {"desc": "desc" if self._str_to_bool(descending_order) else "asc"},
             {"limit": str(limit)},
             {"offset": str(page)}

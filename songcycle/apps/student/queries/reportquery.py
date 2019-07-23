@@ -10,7 +10,7 @@ class ReportQuery(BaseQuery):
 
     __singleton = None
     __new_lock = threading.Lock()
-    __sort_item_disctionary = {
+    __sort_item_dictionary = {
         "target-year-sort": 'sr.target_year',
         "auther-user-sort": 'sa.full_name',
         "file-name-sort": 'sr.file_name',
@@ -108,7 +108,7 @@ class ReportQuery(BaseQuery):
             {"target_year": self.to_like_value(target_year)},
             {"full_name": self.to_like_value(full_name)},
             {"file_name": self.to_like_value(file_name)},
-            {"sort": self.__sort_item_disctionary[sort_item]},
+            {"sort": self.__sort_item_dictionary[sort_item]},
             {"desc": "desc" if self._str_to_bool(descending_order) else "asc"},
             {"limit": str(limit)},
             {"offset": str(page)}
