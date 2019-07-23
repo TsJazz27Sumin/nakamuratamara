@@ -57,10 +57,9 @@ class LoginService:
         # テンポラリーのデータは、1日経ったらcronで消したい。
 
         # TODO:demo用
-        if ("@test.com" in email):
+        if ("@example.com" in email):
             print(login_url)
         else:
-            # メールが送信できることは確認できたのでコメントアウト
             message = Mail(
                 from_email=develop.SENDGRID_FROM,
                 to_emails=email,
