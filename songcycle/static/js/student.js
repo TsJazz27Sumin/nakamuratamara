@@ -48,25 +48,4 @@ $(document).ready(function () {
             }
         }
     });
-
-    //ここからAjaxのトリガー
-
-    $("#access-log").click(function () {
-        GetHtmlAsync(this.id, this.id, this.href)
-        return false;
-    });
-
-    function GetHtmlAsync(id, group, url){
-
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "html"
-        }).done(function (html) {
-            history.pushState('', '', url);
-            $('#application').html(html);
-            $('[name="function-title"]').removeClass("active");
-            $('#' + group).find('p').addClass("active");
-        });
-    };
 });

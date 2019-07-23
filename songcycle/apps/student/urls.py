@@ -31,4 +31,5 @@ urlpatterns = [
     path('home/userm/update/', usermsaveview.update, name="user_m_update"),
     path('home/userm/save/', usermsaveview.save_user, name="user_m_save"),
     path('home/accesslog/', accesslogview.index, name="access_log"),
+    path('home/accesslog/download', accesslogview.download_access_log, name="access_log_download"),
 ]

@@ -1,7 +1,11 @@
 {% load timetags %}
 
 <main role="main" class="inner cover-search-result-only">
-    <button id="report-search" type="button" class="btn search-button-sakura wrn-btn">CSV Download</button>
+    <button id="access-log-download" type="button" class="btn search-button-sakura wrn-btn">
+        CSV Download
+        <a name="access-log-download-link" type="hidden" href="{% url 'access_log_download' %}"></a>
+    </button>
+    
     <p class="lead">{{ result_list_count }}</p>
 
     <div class="table-responsive access-log-area">
