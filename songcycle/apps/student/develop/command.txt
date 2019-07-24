@@ -1,6 +1,7 @@
 python manage.py makemigrations student
 python manage.py migrate
 python manage.py runserver
+python manage.py test ./apps/student/tests/*
 
 pip install django-cleanup
 pip install django-bootstrap4
