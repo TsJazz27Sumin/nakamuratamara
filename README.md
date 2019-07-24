@@ -144,6 +144,9 @@
 - マイグレーション関連
   - [Table was deleted, how can I make Django recreate it?](https://stackoverflow.com/questions/33259477/table-was-deleted-how-can-i-make-django-recreate-it)
 
+- UnitTest関連
+  - [自動テストについてのまとめ](https://qiita.com/okoppe8/items/eb7c3be5b9f6be244549)
+
 - デプロイ関連
   - [[Django] プロジェクト構成のベストプラクティスを探る - ２．設定ファイルを本番用と開発用に分割する](https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc)
   - [Heroku アプリに PostgreSQL を導入する](http://neos21.hatenablog.com/entry/2018/12/06/080000)
