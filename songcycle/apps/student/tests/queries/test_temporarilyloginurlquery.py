@@ -23,3 +23,17 @@ class TemporarilyLoginUrlQueryTestCase(TestCase):
     
         result = TemporarilyLoginUrlQuery().is_valid_onetime_password('pwd', valid_time)
         self.assertEqual(result is not None, False)
+
+    def test_is_valid_onetime_password_case3(self):
+    
+        valid_time = datetime.now() - timedelta(minutes=15)
+    
+        result = TemporarilyLoginUrlQuery().is_valid_onetime_password('error', valid_time)
+        self.assertEqual(result is not None, False)
+
+    def test_is_valid_onetime_password_case4(self):
+        
+        valid_time = datetime.now() + timedelta(minutes=15)
+    
+        result = TemporarilyLoginUrlQuery().is_valid_onetime_password('error', valid_time)
+        self.assertEqual(result is not None, False)
