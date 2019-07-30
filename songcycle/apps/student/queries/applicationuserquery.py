@@ -58,17 +58,6 @@ class ApplicationUserQuery(BaseQuery):
         return ApplicationUser.objects.filter(
             status=acitve_code).all().order_by('user_id')
 
-    def get_users_name(self, user_ids):
-        users = ApplicationUser.objects.filter(
-            user_id__in=user_ids).all().order_by('user_id')
-        user_name_dictionary = {}
-
-        for user in users:
-            user_name_dictionary[user.user_id] = user.first_name + \
-                " " + user.last_name
-
-        return user_name_dictionary
-
     def get_user(self, user_id):
         return ApplicationUser.objects.filter(user_id=user_id).first()
 
