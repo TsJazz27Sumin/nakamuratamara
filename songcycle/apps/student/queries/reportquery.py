@@ -28,22 +28,6 @@ class ReportQuery(BaseQuery):
         return Report.objects.all().order_by(
             'target_year', 'create_timestamp').reverse()
 
-    def count(self, target_year, file_name):
-        return Report.objects.filter(
-            target_year__icontains=target_year,
-            file_name__icontains=file_name).count()
-
-    def select(self, target_year, file_name, target_page, offset):
-        start = (target_page - 1) * offset
-        end = start + offset
-
-        return Report.objects.filter(
-            target_year__icontains=target_year,
-            file_name__icontains=file_name).all().order_by(
-            'target_year',
-            'create_timestamp').reverse()[
-            start:end]
-
     def get_one(self, report_id):
         return Report.objects.filter(report_id=report_id).first()
 

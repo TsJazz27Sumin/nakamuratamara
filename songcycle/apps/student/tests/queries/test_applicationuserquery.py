@@ -247,7 +247,7 @@ class ApplicationUserQueryTestCase(TestCase):
 
     def test_custom_count_case6(self):
             
-        result = ApplicationUserQuery().custom_count('', 'name1')
+        result = ApplicationUserQuery().custom_count('', '_name1')
         self.assertEqual(result, 1)
 
     def test_custom_count_case7(self):
@@ -315,7 +315,7 @@ class ApplicationUserQueryTestCase(TestCase):
 
     def test_custom_query_case4(self):
             
-        result_list = ApplicationUserQuery().custom_query('', 'name1', 0, 10, 'user-id-sort', 'False')
+        result_list = ApplicationUserQuery().custom_query('', '_name1', 0, 10, 'user-id-sort', 'False')
         self.assertEqual(result_list[0].user_id, 'U0001')
         self.assertEqual(result_list[0].email, 'example1.com')
         self.assertEqual(result_list[0].full_name, 'first_name1 last_name1')
@@ -330,7 +330,7 @@ class ApplicationUserQueryTestCase(TestCase):
 
     def test_custom_query_case6(self):
             
-        result_list = ApplicationUserQuery().custom_query('aaa', 'name1', 0, 10, 'user-id-sort', 'False')
+        result_list = ApplicationUserQuery().custom_query('aaa', '_name1', 0, 10, 'user-id-sort', 'False')
         self.assertEqual(result_list, [])
 
     def test_custom_query_case7(self):
