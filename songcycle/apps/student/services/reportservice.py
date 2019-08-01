@@ -45,9 +45,6 @@ class ReportService:
             comment,
             login_user_id):
 
-        if(self.__applicationuserrquery.is_exist_user(auther_user_id) == False):
-            json_data = {'data': {'message': 'Error'}}
-
         # Google Driveへのアップロード
         # https://developers.google.com/drive/api/v3/quickstart/python?hl=ja
         # 初回の認証は必要な様子。
