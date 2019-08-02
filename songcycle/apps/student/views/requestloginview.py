@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from user_agents import parse
 
-from apps.student.forms.requestloginform import RequestLoginForm
+from apps.student.forms.login.requestloginform import RequestLoginForm
 from apps.student.services.loginservice import LoginService
 from apps.student.services.accessinformationservice import AccessInformationService
 from apps.student.decorators import decorator

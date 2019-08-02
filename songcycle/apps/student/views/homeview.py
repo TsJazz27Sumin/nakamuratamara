@@ -4,17 +4,13 @@ from apps.student.decorators import decorator
 from apps.student.queries.masterquery import MasterQuery
 from apps.student.services.loginservice import LoginService
 
-#認証エリア
-
 
 @decorator.authenticate("home")
 def home(request):
     context = {'authority_name': request.session['authority']}
 
     return render(request, 'student/home.html', context)
-
-#非認証エリア
-
+    
 
 @decorator.no_authenticate("logout")
 def logout(request):

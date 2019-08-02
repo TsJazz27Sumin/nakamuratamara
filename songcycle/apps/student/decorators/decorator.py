@@ -120,7 +120,7 @@ def authenticate_admin_only_async_json_response(function_name):
                 json_data = {"data": {"message": "Failed"}}
                 return JsonResponse(json_data)
             else:
-                if (args[0].is_ajax() == False):
+                if (args[0].is_ajax() is False):
                     json_data = {"data": {"message": "Failed"}}
                     return JsonResponse(json_data)
 
