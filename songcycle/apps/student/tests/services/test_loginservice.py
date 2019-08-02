@@ -150,49 +150,6 @@ class LoginServiceTestCase(TestCase):
         self.assertEqual(result.create_user_id, "U0001")
         self.assertEqual(result.update_user_id, "U0001")
 
-    def test_get_active_user_case3(self):
-    
-        MasterData.objects.create(
-            code="002",
-            sub_code="01",
-            value='active',
-            sub_value='sub_value',
-            comment='')
-
-        MasterData.objects.create(
-            code="003",
-            sub_code="01",
-            value='15',
-            sub_value='sub_value',
-            comment='')
-
-        ApplicationUserRepository().insert(
-            "U0002",
-            "email@example.com",
-            "first_name2",
-            "last_name2",
-            "full_name2",
-            "01",
-            "01",
-            "comment2",
-            "U0001")
-
-        ApplicationUserRepository().insert(
-            "U0003",
-            "email3@example.com",
-            "first_name3",
-            "last_name3",
-            "full_name3",
-            "02",
-            "02",
-            "comment3",
-            "U0001")
-
-        request_email = "email@example.com"
-        onetime_password = get_random_string(200)
-
-        TemporarilyLoginUrlRepository().insert(request_email, onetime_password)
-
         result = LoginService().get_active_user('onetime_password')
 
         self.assertEqual(result, None)
