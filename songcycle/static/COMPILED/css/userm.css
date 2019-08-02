@@ -72,6 +72,30 @@
 .cover-user-m .user-m-table-area .sort-header:hover {
   color: #4169e1;
 }
+.cover-user-m .user-m-table-area .email {
+  width: 266px;
+}
+.cover-user-m .user-m-table-area .full-name {
+  width: 127px;
+}
+.cover-user-m .user-m-table-area .authority {
+  width: 123px;
+}
+.cover-user-m .user-m-table-area .status {
+  width: 103px;
+}
+.cover-user-m .user-m-table-area .last-login {
+  width: 209px;
+}
+.cover-user-m .user-m-table-area .login-count {
+  width: 147px;
+}
+.cover-user-m .user-m-table-area .detail {
+  width: 136px;
+}
+.cover-user-m .user-m-table-area .delete {
+  width: 99px;
+}
 .cover-user-m .user-m-pagination {
   float: right;
   padding-top: 1rem;
