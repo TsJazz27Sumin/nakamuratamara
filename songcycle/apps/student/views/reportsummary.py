@@ -8,7 +8,7 @@ from apps.student.decorators import decorator
 
 
 class ReportSummaryView(FormView):
-    # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/reportsummary-login/
+    # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/report-summary-login/
     form_class = LoginForm
     template_name = "student/reportsummary/index.html"
 
@@ -20,10 +20,10 @@ class ReportSummaryView(FormView):
         http_accept_language = self.request.META['HTTP_ACCEPT_LANGUAGE']
         user_agent = parse(self.request.META['HTTP_USER_AGENT'])
         remote_addr = self.request.META['REMOTE_ADDR']
-        email = self.request.POST["email"]
+        password = self.request.POST["password"]
 
         access_information_service.add_success(
-            http_accept_language, user_agent, remote_addr, email)
+            http_accept_language, user_agent, remote_addr, password)
         
         return render(self.request, 'student/reportsummary/summary.html', {})
 
@@ -35,9 +35,9 @@ class ReportSummaryView(FormView):
         http_accept_language = self.request.META['HTTP_ACCEPT_LANGUAGE']
         user_agent = parse(self.request.META['HTTP_USER_AGENT'])
         remote_addr = self.request.META['REMOTE_ADDR']
-        email = self.request.POST["email"]
+        password = self.request.POST["password"]
 
         access_information_service.add_fault(
-            http_accept_language, user_agent, remote_addr, email)
+            http_accept_language, user_agent, remote_addr, password)
 
         return render(self.request, 'student/reportsummary/index.html', {})

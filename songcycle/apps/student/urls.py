@@ -10,7 +10,7 @@ from apps.student.views.reportsummary import ReportSummaryView
 
 urlpatterns = [
     path('request-login/', RequestLoginView.as_view(), name="request_login"),
-    path('reportsummary-login/', ReportSummaryView.as_view(), name="report_summary_login"),
+    path('report-summary-login/', ReportSummaryView.as_view(), name="report_summary_login"),
     path('login/', homeview.login, name="login"),
     path('logout/', homeview.logout, name="logout"),
     path('home/', homeview.home, name="home"),

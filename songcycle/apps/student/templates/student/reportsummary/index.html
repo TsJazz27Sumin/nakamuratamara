@@ -16,12 +16,12 @@
 </head>
 
 <body class="text-center">
-    <form action="{% url 'request_login' %}" method="POST" class="form-signin">
+    <form action="{% url 'report_summary_login' %}" method="POST" class="form-signin">
         <h1 class="title">Nakamuratamara</h1>
         {% csrf_token %}
 
         <p>
-            <input class="form-control" type="text" name="email" autofocus="" placeholder="Please input password..." required=""
+            <input class="form-control" type="text" name="password" autofocus="" placeholder="Please input password..." required=""
                 id="password">
         </p>
         <button class="btn btn-md button-sakura btn-block" type="submit">Login</button>
