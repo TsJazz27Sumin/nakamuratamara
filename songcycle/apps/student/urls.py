@@ -6,11 +6,12 @@ from apps.student.views import usermsearchview
 from apps.student.views import usermsaveview
 from apps.student.views import homeview
 from apps.student.views.requestloginview import RequestLoginView
-from apps.student.views.reportsummary import ReportSummaryView
+from apps.student.views import reportsummary
 
 urlpatterns = [
     path('request-login/', RequestLoginView.as_view(), name="request_login"),
-    path('report-summary-login/', ReportSummaryView.as_view(), name="report_summary_login"),
+    path('report-summary/', reportsummary.index, name="report_summary_index"),
+    path('report-summary/show', reportsummary.login, name="report_summary_login"),
     path('login/', homeview.login, name="login"),
     path('logout/', homeview.logout, name="logout"),
     path('home/', homeview.home, name="home"),
