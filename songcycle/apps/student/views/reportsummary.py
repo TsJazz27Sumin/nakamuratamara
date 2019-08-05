@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.shortcuts import reverse
 from django.views.generic import FormView
 from user_agents import parse
 from django.http import HttpResponse
@@ -15,7 +17,7 @@ from config.settings.develop import REPORT_SUMMARY_PASSWORD
 def index(request):
 
     targetyear = request.GET.get(key="targetyear", default="2019")
-    
+
     context = {
         'targetyear': targetyear
     }
@@ -36,18 +38,19 @@ def login(request):
     remote_addr = request.META['REMOTE_ADDR']
     postparam = request.POST
 
-    if 'password' in postparam and 'targetyear' in postparam:
-        password = postparam["password"]
-        targetyear = postparam["targetyear"]
+    targetyear = postparam.get(key="targetyear", default="2019")
 
-        print(password)
-        print(targetyear)
+    if 'password' in postparam:
+        password = postparam["password"]
 
         # TODO：本番と開発環境の切り替え。
         if(REPORT_SUMMARY_PASSWORD == password):
             access_information_service.add_success(
                 http_accept_language, user_agent, remote_addr, password)
-            
+
             return render(request, 'student/reportsummary/summary.html', {})
-    
-    return render(request, 'student/reportsummary/index.html', {})
+
+    return redirect(
+        reverse('report_summary_index') +
+        '?targetyear=' +
+        targetyear)
