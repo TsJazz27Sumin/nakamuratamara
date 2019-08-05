@@ -8,7 +8,7 @@ from apps.student.services.accessinformationservice import AccessInformationServ
 from apps.student.decorators import decorator
 
 
-class RequestLoginView(FormView):
+class requestLoginView(FormView):
     # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
     form_class = RequestLoginForm
     template_name = "student/login/index.html"
