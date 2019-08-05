@@ -4,7 +4,6 @@
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
 <link href="{% static 'css/student.styl' %}" rel="stylesheet">
-<link href="{% static 'css/login.styl' %}" rel="stylesheet">
 {% endblock %}
 
 <!DOCTYPE html>
@@ -24,14 +23,31 @@
             </div>
         </header>
         <main role="main" class="inner cover">
-            <h1 class="cover-heading">ここに目次を出す。</h1>
-        </main>
-
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <p class="mt-5 mb-3 text-muted">&copy; nakamuratamara 2019</p>
+            <div id="search-result">
+                <div class="table-responsive report-table-area">
+                    <table class="table student-table">
+                        <tbody>
+                            {% for result in result_list %}
+                            <tr>
+                                <td class="auther-user">{{ result.full_name }}</td>
+                                <td class="file-name">
+                                    <p class="text">{{result.file_name}}</p>
+                                </td>
+                                <td class="request-download">
+                                    <button id="report-download" class="btn button-royal-blue btn-sm btn-block"
+                                        type="button">
+                                        ダウンロード
+                                        <a name="report-download-link" type="hidden"
+                                            href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </footer>
+        </main>
     </div>
 </body>
 
