@@ -2,21 +2,19 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from user_agents import parse
 
-from apps.student.forms.login.requestloginform import RequestLoginForm
-from apps.student.services.loginservice import LoginService
+from apps.student.forms.reportsummary.loginform import LoginForm
 from apps.student.services.accessinformationservice import AccessInformationService
 from apps.student.decorators import decorator
 
 
-class requestLoginView(FormView):
-    # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/request-login/
-    form_class = RequestLoginForm
-    template_name = "student/login/index.html"
+class ReportSummaryView(FormView):
+    # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/reportsummary-login/
+    form_class = LoginForm
+    template_name = "student/reportsummary/index.html"
 
     @decorator.no_authenticate("form_valid")
     def form_valid(self, form):
 
-        login_service = LoginService()
         access_information_service = AccessInformationService()
 
         http_accept_language = self.request.META['HTTP_ACCEPT_LANGUAGE']
@@ -24,19 +22,10 @@ class requestLoginView(FormView):
         remote_addr = self.request.META['REMOTE_ADDR']
         email = self.request.POST["email"]
 
-        if(login_service.exist_email(email)):
-            access_information_service.add_success(
-                http_accept_language, user_agent, remote_addr, email)
-            login_service.send_login_url(email)
-        else:
-            access_information_service.add_fault(
-                http_accept_language, user_agent, remote_addr, email)
-
-            # TODO
-            # pandasでcsvにしてメール送信してデイリーでログ監視したい。
-
-        # 失敗してもログインURLを送信したことにする。
-        return render(self.request, 'student/login/success.html', {})
+        access_information_service.add_success(
+            http_accept_language, user_agent, remote_addr, email)
+        
+        return render(self.request, 'student/reportsummary/summary.html', {})
 
     @decorator.no_authenticate("form_invalid")
     def form_invalid(self, form):
@@ -51,5 +40,4 @@ class requestLoginView(FormView):
         access_information_service.add_fault(
             http_accept_language, user_agent, remote_addr, email)
 
-        # 失敗してもログインURLを送信したことにする。
-        return render(self.request, 'student/login/success.html', {})
+        return render(self.request, 'student/reportsummary/index.html', {})
