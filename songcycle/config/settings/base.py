@@ -213,3 +213,40 @@ LOGGING = {
         },
     }
 }
+
+# develop.py production.pyについては、APIKEYも含まれるのでGitHubにCommitしていません。
+# もしローカル環境で動かしたい場合は、以下が「develop.py」で設定している項目なので、参考にしていただければと思います。
+# また、/support配下に「command.txt」があります。こちらにinstallが必要と思われるコマンドは並べてあります。
+# マスタデータについても「master.sql」を同じ階層に配置しています。
+
+# from .base import *
+# import os
+
+
+# # Database 
+# # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         # https://stackoverflow.com/questions/39767810/cant-install-psycopg2-package-through-pip-install-is-this-because-of-sierra
+#         'NAME': 'songcycle',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': '127.0.0.1',
+#         'POST': '5432',
+#         'TEST': {
+#             'NAME': 'test_songcycle',
+#         }
+#     }
+# }
+
+# ローカルで動かす分には、sendgridは設定しなくてもいいかと思います。
+# コンソールにログインURLを出力する状態でcommitしてあります。
+
+# SENDGRID_APIKEY = "YOUR SENDGRID_APIKEY"
+# SENDGRID_FROM = "YOUR SENDGRID_FROM"
+
+# ファイルアップロード機能を試したい場合は、こちらを設定いただくと同時に、DriveAPIが使えるように設定いただければと思います。
+# GOOGLE_TARGET_FOLDER_ID = 'YOUR GOOGLE_TARGET_FOLDER_ID'
+# REPORT_SUMMARY_PASSWORD = 'sample'
