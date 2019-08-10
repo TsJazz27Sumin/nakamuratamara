@@ -1,9 +1,14 @@
+{% load compile_static %}
 {% load static %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block extrahead %}
-<link href="{% static 'css/student.styl' %}" rel="stylesheet">
+<link href="{% static 'css/student.styl'|compile %}" rel="stylesheet">
+{% load compress %}
+{% compress js %}
+<script type="text/javascript" src="{% static 'js/report-summary.js' %}"></script>
+{% endcompress %}
 {% endblock %}
 
 <!DOCTYPE html>
@@ -22,22 +27,28 @@
                 <h3 class="masthead-brand">Nakamuratamara</h3>
             </div>
         </header>
-        <main role="main" class="inner cover">
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <select class="custom-select d-block w-100" id="target-year" name="target_year" required="">
-                        <option value="">Select Year...</option>
-                        {% for key,val in target_years %}
-                            {% if target_year == key %}
-                                <option selected value={{ key }}>{{val}}</option>
-                            {% else %}
-                                <option name="target-years" value="{{ key }}">{{val}}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
+        <main role="main" class="inner report-summary-cover-top">
+            <form id="report-summary-form" action="{% url 'report_summary_change' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <select class="custom-select d-block w-100" id="target-year" name="target_year" required="">
+                            <option value="">Select Year...</option>
+                            {% for key,val in target_years %}
+                                {% if target_year == key %}
+                                    <option selected value={{ key }}>{{val}}</option>
+                                {% else %}
+                                    <option name="target-years" value="{{ key }}">{{val}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-            </div>
+            </form>
+        </main>
+        <main role="main" class="inner report-summary-cover-bottom">
             <div id="search-result">
+                {% if result_list_count > 0 %}
                 <div class="table-responsive report-table-area">
                     <table class="table student-table">
                         <tbody>
@@ -56,6 +67,9 @@
                         </tbody>
                     </table>
                 </div>
+                {% else %}
+                <p class="no-summary-report">レポートがありません。</p>
+                {% endif %}
             </div>
         </main>
     </div>

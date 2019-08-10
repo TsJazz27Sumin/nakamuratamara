@@ -12,6 +12,7 @@ urlpatterns = [
     path('request-login/', RequestLoginView.as_view(), name="request_login"),
     path('report-summary/', reportsummary.index, name="report_summary_index"),
     path('report-summary/show', reportsummary.login, name="report_summary_login"),
+    path('report-summary/change', reportsummary.change, name="report_summary_change"),
     path('login/', homeview.login, name="login"),
     path('logout/', homeview.logout, name="logout"),
     path('home/', homeview.home, name="home"),

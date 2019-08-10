@@ -66,6 +66,19 @@ body {
     padding: 9rem;
     color: #212529;
   }
+  .report-summary-cover-top {
+    padding-left: 9rem;
+    padding-right: 9rem;
+    color: #212529;
+  }
+  .report-summary-cover-bottom {
+    padding-left: 9rem;
+    padding-right: 9rem;
+    color: #212529;
+  }
+  .no-summary-report {
+    padding-bottom: 26.5rem;
+  }
   .student-lead {
     font-size: 1.25rem;
     font-weight: 300;
@@ -76,6 +89,16 @@ body {
     color: #212529;
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+  .report-summary-cover-top {
+    color: #212529;
+    padding-top: 5rem;
+  }
+  .report-summary-cover-bottom {
+    color: #212529;
+  }
+  .no-summary-report {
+    padding-bottom: 26.5rem;
   }
   .student-lead {
     font-size: 0.75rem;

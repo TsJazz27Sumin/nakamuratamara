@@ -10,6 +10,7 @@ from apps.student.queries.reportquery import ReportQuery
 from apps.student.decorators import decorator
 from config.settings.develop import REPORT_SUMMARY_PASSWORD
 from apps.student.functions import function
+from apps.student.forms.reportsummary.targetyearform import TargetYearForm
 
 
 # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/report-summary/?targetyear=2019
@@ -58,6 +59,7 @@ def login(request):
 
             context = {
                 'result_list': result_list,
+                'result_list_count': len(result_list),
                 'target_years': function.get_target_years(),
                 'target_year': int(target_year)
             }
@@ -72,3 +74,36 @@ def login(request):
         reverse('report_summary_index') +
         '?targetyear=' +
         target_year)
+
+# 何らかの仕組みで認証エリアにする。
+# @decorator.no_authenticate("change")
+
+
+def change(request):
+
+    form = TargetYearForm(data=request.POST)
+
+    if form.is_valid():
+        target_year = form.cleaned_data['target_year']
+        
+        result_list = ReportQuery().custom_query(
+            str(target_year),
+            '',
+            '',
+            0,
+            100,
+            'auther-user-sort',
+            'True')
+
+        context = {
+            'result_list': result_list,
+            'result_list_count': len(result_list),
+            'target_years': function.get_target_years(),
+            'target_year': int(target_year)
+        }
+
+        # TODO：Webとスマホとデザインを分けると思うので、遷移先も分ける。
+        return render(
+            request,
+            'student/reportsummary/summarypartial.html',
+            context=context)
