@@ -28,11 +28,11 @@
                     <select class="custom-select d-block w-100" id="target-year" name="target_year" required="">
                         <option value="">Select Year...</option>
                         {% for key,val in target_years %}
-                        {% if target_year == key %}
-                        <option selected value={{ key }}>{{val}}</option>
-                        {% else %}
-                        <option name="target-years" value="{{ key }}">{{val}}</option>
-                        {% endif %}
+                            {% if target_year == key %}
+                                <option selected value={{ key }}>{{val}}</option>
+                            {% else %}
+                                <option name="target-years" value="{{ key }}">{{val}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>
