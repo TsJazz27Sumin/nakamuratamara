@@ -9,6 +9,7 @@ from apps.student.services.accessinformationservice import AccessInformationServ
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.decorators import decorator
 from config.settings.develop import REPORT_SUMMARY_PASSWORD
+from apps.student.functions import function
 
 
 # こんなURLでアクセスされる想定：http://127.0.0.1:8000/student/report-summary/?targetyear=2019
@@ -56,7 +57,9 @@ def login(request):
                 'True')
 
             context = {
-                'result_list': result_list
+                'result_list': result_list,
+                'target_years': function.get_target_years(),
+                'target_year': int(target_year)
             }
 
             # TODO：Webとスマホとデザインを分けると思うので、遷移先も分ける。

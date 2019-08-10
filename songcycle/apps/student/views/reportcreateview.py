@@ -8,6 +8,7 @@ from apps.student.forms.report.reportsaveform import ReportSaveForm
 from apps.student.queries.applicationuserquery import ApplicationUserQuery
 from apps.student.queries.reportquery import ReportQuery
 from apps.student.services.reportservice import ReportService
+from apps.student.functions import function
 
 
 @decorator.authenticate_admin_only_async("create")
@@ -15,7 +16,7 @@ def create(request):
 
     context = {
         'choices': __get_choices(),
-        'target_years': __get_target_years()
+        'target_years': function.get_target_years()
     }
 
     html = render_to_string(
@@ -124,12 +125,3 @@ def __get_choices():
              active_user.last_name))
 
     return choices
-
-
-def __get_target_years():
-    target_years = []
-
-    for i in range(2019, 2039):
-        target_years.append((i, i))
-
-    return target_years

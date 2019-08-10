@@ -23,20 +23,30 @@
             </div>
         </header>
         <main role="main" class="inner cover">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <select class="custom-select d-block w-100" id="target-year" name="target_year" required="">
+                        <option value="">Select Year...</option>
+                        {% for key,val in target_years %}
+                        {% if target_year == key %}
+                        <option selected value={{ key }}>{{val}}</option>
+                        {% else %}
+                        <option name="target-years" value="{{ key }}">{{val}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
             <div id="search-result">
                 <div class="table-responsive report-table-area">
                     <table class="table student-table">
                         <tbody>
                             {% for result in result_list %}
                             <tr>
-                                <td class="auther-user">{{ result.full_name }}</td>
-                                <td class="file-name">
-                                    <p class="text">{{result.file_name}}</p>
-                                </td>
                                 <td class="request-download">
                                     <button id="report-download" class="btn button-royal-blue btn-sm btn-block"
                                         type="button">
-                                        ダウンロード
+                                        {{ result.full_name }} / {{result.file_name}}
                                         <a name="report-download-link" type="hidden"
                                             href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
                                     </button>
