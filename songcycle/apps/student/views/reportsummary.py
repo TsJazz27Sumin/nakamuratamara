@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 
 from apps.student.services.accessinformationservice import AccessInformationService
 from apps.student.queries.reportquery import ReportQuery
+from apps.student.services.reportservice import ReportService
 from apps.student.decorators import decorator
 from config.settings.develop import REPORT_SUMMARY_PASSWORD
 from apps.student.functions import function
@@ -48,18 +49,7 @@ def login(request):
             AccessInformationService().add_success(
                 http_accept_language, user_agent, remote_addr, password)
 
-            result_list = ReportQuery().custom_query(
-                target_year,
-                '',
-                '',
-                0,
-                100,
-                'auther-user-sort',
-                'True')
-
             context = {
-                'result_list': result_list,
-                'result_list_count': len(result_list),
                 'target_years': function.get_target_years(),
                 'target_year': int(target_year)
             }
@@ -97,10 +87,36 @@ def change(request):
             'result_list': result_list,
             'result_list_count': len(result_list),
             'target_years': function.get_target_years(),
-            'target_year': int(target_year)
+            'target_year': int(target_year),
+            'password': REPORT_SUMMARY_PASSWORD
         }
 
         return render(
             request,
             'student/reportsummary/summarypartial.html',
             context=context)
+    else:
+        # プルダウン選択でvalidではない場合は、不正操作として何も返さない。
+        return None
+
+
+# ログインエリアではないが、passwordで都度認証しているような形になっている。
+# passwordもreport_idも分かっている場合は、直接URL叩けるがそこまではサポートしない。
+# そもそもpasswordが分かってたら、一覧エリアに入れる。
+@decorator.no_authenticate_download("download_report")
+def download_report(request):
+
+    if(REPORT_SUMMARY_PASSWORD != request.GET.get("password")):
+        return None
+
+    report_id = request.GET.get("report_id")
+
+    # ログインユーザなしなので、ユーザIDはU0000で共通とする。
+    file, file_name = ReportService().download_report(report_id, 'U0000')
+
+    response = HttpResponse(
+        file,
+        content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    response["Content-Disposition"] = "filename=" + file_name
+
+    return response

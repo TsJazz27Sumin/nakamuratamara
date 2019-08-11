@@ -30,4 +30,14 @@ $(document).ready(function () {
             $('#search-result').html(html);
         });
     });
+
+    $("#search-result").on('click', "#report-download", function () {
+
+        const link = $(this).find('[name="report-download-link"]')[0];
+
+        let a = document.createElement("a");
+        a.href = link;
+        a.download = "test.docx";
+        a.click();
+    });
 });

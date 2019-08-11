@@ -33,6 +33,18 @@ def no_authenticate_async(function_name):
     return __decorator
 
 
+def no_authenticate_download(function_name):
+    def __decorator(function):
+        def wrapper(*args, **kwargs):
+
+            __output_ordinary_log(args, function_name)
+
+            return function(*args, **kwargs)
+
+        return wrapper
+    return __decorator
+
+
 def authenticate(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):

@@ -9,7 +9,7 @@
                         type="button">
                         {{ result.full_name }} / {{result.file_name}}
                         <a name="report-download-link" type="hidden"
-                            href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
+                            href="{% url 'report_summary_download' %}?report_id={{result.report_id}}&password={{password}}"></a>
                     </button>
                 </td>
             </tr>

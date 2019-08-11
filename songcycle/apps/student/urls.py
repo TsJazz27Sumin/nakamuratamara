@@ -13,6 +13,7 @@ urlpatterns = [
     path('report-summary/', reportsummary.index, name="report_summary_index"),
     path('report-summary/show', reportsummary.login, name="report_summary_login"),
     path('report-summary/change', reportsummary.change, name="report_summary_change"),
+    path('report-summary/download-report', reportsummary.download_report, name="report_summary_download"),
     path('login/', homeview.login, name="login"),
     path('logout/', homeview.logout, name="logout"),
     path('home/', homeview.home, name="home"),
