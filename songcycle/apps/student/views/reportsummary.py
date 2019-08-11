@@ -64,7 +64,6 @@ def login(request):
                 'target_year': int(target_year)
             }
 
-            # TODO：Webとスマホとデザインを分けると思うので、遷移先も分ける。
             return render(
                 request,
                 'student/reportsummary/summary.html',
@@ -102,7 +101,6 @@ def change(request):
             'target_year': int(target_year)
         }
 
-        # TODO：Webとスマホとデザインを分けると思うので、遷移先も分ける。
         return render(
             request,
             'student/reportsummary/summarypartial.html',

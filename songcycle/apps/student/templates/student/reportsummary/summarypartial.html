@@ -1,11 +1,12 @@
 {% if result_list_count > 0 %}
-<div class="table-responsive report-table-area">
+<div class="table-responsive">
     <table class="table student-table">
         <tbody>
             {% for result in result_list %}
             <tr>
-                <td class="request-download">
-                    <button id="report-download" class="btn button-royal-blue btn-sm btn-block" type="button">
+                <td>
+                    <button id="report-download" class="btn button-royal-blue-without-border btn-sm btn-block"
+                        type="button">
                         {{ result.full_name }} / {{result.file_name}}
                         <a name="report-download-link" type="hidden"
                             href="{% url 'report_download' %}?report_id={{result.report_id}}"></a>
