@@ -74,10 +74,9 @@ def login(request):
         '?targetyear=' +
         target_year)
 
-# 何らかの仕組みで認証エリアにする。
-# @decorator.no_authenticate("change")
 
-
+# ログインエリアではないが、csrfトークンで都度認証しているような形になっている。
+@decorator.no_authenticate_async("change")
 def change(request):
 
     form = TargetYearForm(data=request.POST)

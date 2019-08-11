@@ -18,6 +18,21 @@ def no_authenticate(function_name):
     return __decorator
 
 
+def no_authenticate_async(function_name):
+    def __decorator(function):
+        def wrapper(*args, **kwargs):
+
+            __output_ordinary_log(args, function_name)
+
+            if (args[0].is_ajax() is False):
+                # Ajax通信じゃない場合は、何も返さない。
+                return None
+
+            return function(*args, **kwargs)
+        return wrapper
+    return __decorator
+
+
 def authenticate(function_name):
     def __decorator(function):
         def wrapper(*args, **kwargs):
