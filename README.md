@@ -83,6 +83,7 @@ Nakamuratamara
   - HTML Templates.
     - HTMLテンプレートを配置している。
 - templatetags
+  - Functions for view process in html templates.
     - HTMLテンプレートで使用される表示処理用の関数群を配置している。
 - views
   - First Layer : That corresponds to Controller of MVC. In django, that is called View.
