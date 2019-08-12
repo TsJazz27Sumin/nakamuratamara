@@ -31,7 +31,7 @@ Nakamuratamara
     - Access log browsing / アクセスログ閲覧
         - List / 一覧
         - CSV download / CSVダウンロード
-- Student features
+- Student features / 学生向け機能
     - Login / ログイン
     - List / 一覧
     - Change list / 一覧切り替え
