@@ -214,6 +214,11 @@ LOGGING = {
     }
 }
 
+# develop.py and production.py are inclueded APIKEY. So I don't commit and push to GitHub.
+# If you want to run application. The followings are settings in develop.py. I hope you can refer to it.
+# And there is command.txt under /support directory. I listed command for install requirement.
+# Also there is master data within master.sql in same directory.
+
 # develop.py production.pyについては、APIKEYも含まれるのでGitHubにCommitしていません。
 # もしローカル環境で動かしたい場合は、以下が「develop.py」で設定している項目なので、参考にしていただければと思います。
 # また、/support配下に「command.txt」があります。こちらにinstallが必要と思われるコマンドは並べてあります。
