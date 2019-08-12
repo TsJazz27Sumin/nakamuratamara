@@ -60,9 +60,9 @@ Nakamuratamara
 
 >Authentication for Administrator.
 
-In Japan of recent date, Security incidents are occurred. some cases, there was a leak of id and password. For example, seven pay, home file service. So I design authentication feature without id and password.
+In Japan of recent date, Security incidents are occurred. Some cases, There was a leak of id and password. For example Home file service. So I design authentication feature without id and password.
 
-Everytime administrator request onetime loginurl with his / her email input. Then email include onetime loginurl sent by Sendgrid API.
+Everytime administrator request onetime loginurl with his or her email input. Then email include onetime loginurl is send by Sendgrid API.
 
 最近の日本では、セキュリティ事故が起きています。いくつかのケースでは、IDとパスワードが漏れています。そういった諸々もあって、IDとパスワードを使わない認証処理を設計しました。
 
