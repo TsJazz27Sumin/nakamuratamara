@@ -51,6 +51,33 @@ Nakamuratamara
    - PostgreSQL
    - Google Drive API
    - Sendgrid API
+
+### Using API Features / APIを使っている機能
+ - Authentication for Administrator.  
+   - 管理者向けの認証
+ - Report file management.
+   - レポートファイル管理
+
+>Authentication for Administrator.
+
+In Japan of recent date, Security incidents are occurred. some cases, there was a leak of id and password. For example, seven pay, home file service. So I design authentication feature without id and password.
+
+Everytime administrator request onetime loginurl with his / her email input. Then email include onetime loginurl sent by Sendgrid API.
+
+最近の日本では、セキュリティ事故が起きています。いくつかのケースでは、IDとパスワードが漏れています。そういった諸々もあって、IDとパスワードを使わない認証処理を設計しました。
+
+常に管理者は、メールアドレスを入力してもらって一時的なログインURLを要求してもらいます。すると、一時的なログインURLが含まれたメールがSendgrid APIを利用して送信されます。
+
+>Report file management.
+
+Nowadays we can choose storage. AWS, Azure, GCP. But that costs money. Even if insignificant. So I design report file management with Google Drive API.
+
+Report files are uploaded to indivisul google drive. For example, mine or professor storage.
+
+今日では、私たちはAWSやAzure, GCPといったサービスのストレージを選択することが出来ます。しかし、微々たるものとはいえ、お金がかかります。そのためGoogle Drive APIを使ったレポートファイル管理を設計しました。
+
+レポートファイルは、個人のGoogleドライブにアップロードされます。例えば、私や教授のGoogleドライブにです。
+
 ### Architecture / アーキテクチャ
  - Layerd Architecture x CQRS like I usually do. I usually developing web application by Java or C#.
    - 自分が普段JavaやC#でやっているようなレイヤードアーキテクチャとコマンドクエリ責務分離を掛け合わせた感じで作っています。
