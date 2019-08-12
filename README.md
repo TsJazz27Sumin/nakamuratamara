@@ -162,3 +162,8 @@
 - macで開発する時の小ネタ
   - [Macにおけるバックスラッシュ（\）の入力方法](https://qiita.com/miyohide/items/6cb8967282d4b2db0f61)
   - [WindowsユーザーがMacに乗り換えた時に理解しておくとよい情報](https://qiita.com/yuusuke510/items/11cc201c6a2aa8bb42a8)
+
+- 気が向いたらReact x Djangoする用のメモ
+  - [DjangoのページをReactで作る - Webpack4](https://qiita.com/sand/items/15da91117c680a618c2b)
+  - [Django+Reactで初めてのSPA作ったった](https://qiita.com/Mujica/items/e2c85a93e10ab931c6f7)
+  - [React + Django REST FrameworkでToDoアプリを作りました](https://www.arimakaoru.com/blog/create-todoapp-react-django-rest-framework)
