@@ -7,38 +7,38 @@ Nakamuratamara
   - 親しい大学の先生のために作った学生向けレポート共有Webアプリです。
 
 ## Description / 説明
-### Functional configuration / 機能構成
+### Functional Configuration / 機能構成
 
-- Administrator features / 管理者向け機能
+- Administrator Features / 管理者向け機能
     - Authentication / 認証
         - Login URL Request / ログインURLリクエスト
         - Login / ログイン
         - Logout / ログアウト
-    - Report maintenance / レポートメンテナンス
+    - Report Maintenance / レポートメンテナンス
         - Search / 検索
         - Sort / ソート
         - Paging / ページング
         - Report Create / レポート登録
         - Report Delete / レポート削除
         - Report Download / レポートダウンロード
-    - User maintenance / ユーザーメンテナンス
+    - User Maintenance / ユーザーメンテナンス
         - Search / 検索
         - Sort / ソート
         - Paging / ページング
         - User Create / ユーザー登録
         - User Update / ユーザー更新
         - User Delete / ユーザー削除
-    - Access log browsing / アクセスログ閲覧
+    - Access Log Browsing / アクセスログ閲覧
         - List / 一覧
         - CSV download / CSVダウンロード
-- Student features / 学生向け機能
+- Student Features / 学生向け機能
     - Login / ログイン
     - List / 一覧
     - Change list / 一覧切り替え
     - Report Download / レポートダウンロード
 
-### Technical elements / 技術要素
- - Front end / フロントエンド
+### Technical Elements / 技術要素
+ - Front End / フロントエンド
    - JavaScript
    - jQuery
    - Ajax
@@ -128,7 +128,7 @@ Report files are uploaded to indivisual google drive. For example, mine or profe
 
 [TsJazz27Sumin](https://github.com/TsJazz27Sumin)
 
-## Reference documents / 参考資料
+## Reference Documents / 参考資料
 
 For English-speaking countries : I living in japan, I usually use japanese.
 So Japanese documents are listed.
