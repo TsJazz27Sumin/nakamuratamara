@@ -52,8 +52,7 @@ Nakamuratamara
    - Google Drive API
    - Sendgrid API
 ### Architecture / アーキテクチャ
- - Layerd Architecture x CQRS like I usually do.
- - I usually developing web application by Java or C#.
+ - Layerd Architecture x CQRS like I usually do. I usually developing web application by Java or C#.
    - 自分が普段JavaやC#でやっているようなレイヤードアーキテクチャとコマンドクエリ責務分離を掛け合わせた感じで作っています。
 
 ## Directory Structure Sumary / ディレクトリ構成概要
