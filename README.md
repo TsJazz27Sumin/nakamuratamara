@@ -84,6 +84,8 @@ Report files are uploaded to indivisual google drive. For example, mine or profe
 
 ## Directory Structure Sumary / ディレクトリ構成概要
 
+[Abour this directory.](https://github.com/TsJazz27Sumin/nakamuratamara/tree/master/songcycle/apps/student)
+
 - decorators
   - Decorator for logging and authorization process.
     - ログ出力と認可処理用のデコレーターを配置している。
