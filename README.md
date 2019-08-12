@@ -72,7 +72,7 @@ Everytime administrator request onetime loginurl with his or her email input. Th
 
 Nowadays we can choose storage. AWS, Azure, GCP. But that costs money. Even if insignificant. So I design report file management with Google Drive API.
 
-Report files are uploaded to indivisul google drive. For example, mine or professor storage.
+Report files are uploaded to indivisual google drive. For example, mine or professor storage.
 
 今日では、私たちはAWSやAzure, GCPといったサービスのストレージを選択することが出来ます。しかし、微々たるものとはいえ、お金がかかります。そのためGoogle Drive APIを使ったレポートファイル管理を設計しました。
 
