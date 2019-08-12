@@ -1,23 +1,105 @@
-# イントロダクション
+Nakamuratamara
+====
 
-- 親しい大学の先生のために作ったレポート共有サイトです。（作成中）
-- Pythonのフレームワーク：Djangoを使用しています。
-- 0円運用をするために、Herokuにデプロイし、ストレージとしてGoogle Driveを使用する想定です。
+## Overview / 概要
 
-# 自分が書いたDjango関連の記事
+- This web application made for close university professor. To sharing reports with one's fellow students.
+  - 親しい大学の先生のために作った学生向けレポート共有Webアプリです。
 
-- [DjangoでWebアプリを作ってみる。【vol. 01 開発環境構築】](https://qiita.com/TsJazz27Sumin/items/aa4804cabff9eb1534e8)
-- [DjangoでWebアプリを作ってみる。【vol. 02 IDE導入】](https://qiita.com/TsJazz27Sumin/items/e91f61364366aa341bf4)
-- [DjangoでWebアプリを作ってみる。【vol. 03 DBをPostgreSQLに変更する。】](https://qiita.com/TsJazz27Sumin/items/25b6df3db881ceb42366)
-- [DjangoでWebアプリを作ってみる。【vol. 04 モデルを作ってDjangoAdminで操作してみる。】](https://qiita.com/TsJazz27Sumin/items/a439d6cdad6c97e02f6b)
-- [DjangoでWebアプリを作ってみる。【vol. 05 Djangoビューを使ってHelloWorldをしてみる。】](https://qiita.com/TsJazz27Sumin/items/ba0b6fee502792301149)
-- [DjangoでWebアプリを作ってみる。【vol. 06 EdinetのAPIを叩いて、有価証券報告書から役員情報を抜き出す】](https://qiita.com/TsJazz27Sumin/items/776eea0c6d0ac823d0f6)
-- [DjangoでWebアプリを作ってみる。【vol. 07 有価証券報告書から抜き出した役員情報を加工する。】](https://qiita.com/TsJazz27Sumin/items/3f2a6d1eb18973fefd62)
-- [DjangoでWebアプリを作ってみる。【vol. 08 有価証券報告書から抜き出した役員情報を画面に表示する。】](https://qiita.com/TsJazz27Sumin/items/cf5159d53ebc7f294cd8)
-- [DjangoでWebアプリを作ってみる。【vol. 09 ここまでの課題の解消】](https://qiita.com/TsJazz27Sumin/items/248c65fa712bc443c084)
-- [DjangoでWebアプリを作ってみる。【vol. 10 Ajaxを使ってみる。】](https://qiita.com/TsJazz27Sumin/items/6ec833c70f0b18ce116a)
+## Description / 説明
+### Functional configuration / 機能構成
 
-# 参考記事
+- Administrator features / 管理者向け機能
+    - Authentication / 認証
+        - Login URL Request / ログインURLリクエスト
+        - Login / ログイン
+        - Logout / ログアウト
+    - Report maintenance / レポートメンテナンス
+        - Search / 検索
+        - Sort / ソート
+        - Paging / ページング
+        - Report Create / レポート登録
+        - Report Delete / レポート削除
+        - Report Download / レポートダウンロード
+    - User maintenance / ユーザーメンテナンス
+        - Search / 検索
+        - Sort / ソート
+        - Paging / ページング
+        - User Create / ユーザー登録
+        - User Update / ユーザー更新
+        - User Delete / ユーザー削除
+    - Access log browsing / アクセスログ閲覧
+        - List / 一覧
+        - CSV download / CSVダウンロード
+- Student features
+    - Login / ログイン
+    - List / 一覧
+    - Change list / 一覧切り替え
+    - Report Download / レポートダウンロード
+
+### Technical elements / 技術要素
+ - Front end / フロントエンド
+   - JavaScript
+   - jQuery
+   - Ajax
+   - Stylus
+   - HTML
+ - Server Side / サーバーサイド
+   - Python
+   - Python Web Framework : Django
+   - SQL
+   - PostgreSQL
+   - Google Drive API
+   - Sendgrid API
+### Architecture / アーキテクチャ
+ - Layerd Architecture x CQRS like I usually do.
+ - I usually developing web application by Java or C#.
+   - 自分が普段JavaやC#でやっているようなレイヤードアーキテクチャとコマンドクエリ責務分離を掛け合わせた感じで作っています。
+
+## Directory Structure Sumary / ディレクトリ構成概要
+
+- decorators
+  - Decorator for logging and authorization process.
+    - ログ出力と認可処理用のデコレーターを配置している。
+- forms
+  - Classes for forms in html.
+    - HTML上のフォームに対応するクラス群を配置している。
+- functions
+  - Commonly used logic is called from mutiple class.
+    - 複数のクラスから共通利用されるような処理を配置している。
+- models
+  - Models corresponds to tables in database.
+    - DBのテーブルに対応するモデルクラスを配置している。
+- queries
+  - Second Layer : Search process. That corresponds to Query of CQRS. To take charge of select database access.
+    - 【2層目】検索を取り扱う。CQRSのQueryに対応させている。検索のDBアクセスを担当する。
+- repositories
+  - Third Layer : To take charge of insert, update, delete database access. 
+    - 【3層目】登録・更新・削除のDBアクセスを担当する。
+- services
+  - Second Layer : To take charge of business logic about insert, update, delete procss. That corresponds to Command of CQRS.
+    - 【2層目】ビジネスロジックを担当する部分。登録・更新・削除を取り扱う。
+        - CQRSのCommandに対応させている。
+- templates
+  - HTML Templates.
+    - HTMLテンプレートを配置している。
+- templatetags
+    - HTMLテンプレートで使用される表示処理用の関数群を配置している。
+- views
+  - First Layer : That corresponds to Controller of MVC. In django, that is called View.
+    - 【1層目】MVCで言う所のController、DjangoではViewと呼ばれる。
+
+## Requirement / 必要条件
+ - Please use Linux OS. [Because Windows OS has issue about python.](https://github.com/django-helpdesk/django-helpdesk/issues/621) I tried to use ajax in django. But don't work except JsonResponse. 
+   - Linux OSを使用してください。Windowsでは、Pythonについて課題があります。DjangoでAjaxを試してみたのですが、JsonResponseを除いて動作しませんでした。
+ - My development environment is Mac OS : Mojave.
+   - 自分の開発環境は、Mac OSのMojaveです。
+
+## Author
+
+[TsJazz27Sumin](https://github.com/TsJazz27Sumin)
+
+## Reference documents / 参考資料
 - 命名ルール
   - [Python命名規則一覧](https://qiita.com/naomi7325/items/4eb1d2a40277361e898b)
 
