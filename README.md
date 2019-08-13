@@ -3,7 +3,7 @@ Nakamuratamara
 
 ## Overview / 概要
 
-- This web application made for close university professor. To sharing reports with one's fellow students.
+- This web application made for a close university professor. To sharing reports with one's fellow students.
   - 親しい大学の先生のために作った学生向けレポート共有Webアプリです。
 
 ## Description / 説明
@@ -60,9 +60,9 @@ Nakamuratamara
 
 >Authentication for Administrator.
 
-In Japan of recent date, Security incidents are occurred. Some cases, There was a leak of id and password. For example Home file service. So I design authentication feature without id and password.
+In Japan of recent date, Security incidents are occurring. Some cases, There was a leak of id and password. For example Home file service. So I design authentication feature without id and password.
 
-Everytime administrator request onetime loginurl with his or her email input. Then email include onetime loginurl is send by Sendgrid API.
+Everytime administrator request onetime loginurl with his or her email input. Then email includes onetime loginurl is sent by Sendgrid API.
 
 最近の日本では、セキュリティ事故が起きています。いくつかのケースでは、IDとパスワードが漏れています。そういった諸々もあって、IDとパスワードを使わない認証処理を設計しました。
 
@@ -72,14 +72,14 @@ Everytime administrator request onetime loginurl with his or her email input. Th
 
 Nowadays we can choose storage. AWS, Azure, GCP. But that costs money. Even if insignificant. So I design report file management with Google Drive API.
 
-Report files are uploaded to indivisual google drive. For example, mine or professor storage.
+Report files are uploaded to individual google drive. For example, mine or professor storage.
 
 今日では、私たちはAWSやAzure, GCPといったサービスのストレージを選択することが出来ます。しかし、微々たるものとはいえ、お金がかかります。そのためGoogle Drive APIを使ったレポートファイル管理を設計しました。
 
 レポートファイルは、個人のGoogleドライブにアップロードされます。例えば、私や教授のGoogleドライブにです。
 
 ### Architecture / アーキテクチャ
- - Layerd Architecture x CQRS like I usually do. I usually developing web application by Java or C#.
+ - Layerd Architecture x CQRS like I usually do. I am usually developing web applications with Java or C#.
    - 自分が普段JavaやC#でやっているようなレイヤードアーキテクチャとコマンドクエリ責務分離を掛け合わせた感じで作っています。
 
 ## Directory Structure Sumary / ディレクトリ構成概要
