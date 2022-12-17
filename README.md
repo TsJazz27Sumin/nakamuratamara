@@ -1,7 +1,7 @@
 Nakamuratamara
 ====
 
-## Overview / 概要
+## Overview
 
 - This web application made for a close university professor. To sharing reports with one's fellow students.
 
